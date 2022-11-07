@@ -7,20 +7,20 @@ export default function AddUser() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    firstname: String,
-    middlename: null,
-    lastname: null,
+    firstName: null,
+    middleName:null ,
+    lastName: null,
     email: null,
-    username: "",
-    password: '',
-    maddress: '',
-    ccnumber: Number,
-    ccexpiry: "",
+    username: null,
+    password: null,
+    mailingAddress: null,
+    cardNumber: null,
+    expiryDate: null,
     cvv: null,
-    ccname: ''
+    cardOwnerName: null
   })
 
-  const { firstname, middlename, lastname, email, username, password, maddress, ccnumber, ccexpiry, cvv, ccname } = user;
+  const { firstName, middleName, lastName, email, username, password, mailingAddress, cardNumber, expiryDate, cvv, cardOwnerName } = user;
 
   const onInputChange= (e) =>{
     setUser({...user,[e.target.name]:e.target.value})
@@ -44,26 +44,26 @@ export default function AddUser() {
               type={"text"}
               className="form-control"
               placeholder='Enter your First Name'
-              name='firstname'
-              value={firstname}
+              name='firstName'
+              value={firstName}
               onChange={(e) => onInputChange(e)} 
               />
-            <label htmlFor='middlename' className='form-label'> Middle Name </label>
+            <label htmlFor='middleName' className='form-label'> Middle Name </label>
             <input
               type={"text"}
               className="form-control"
               placeholder='Enter your Middle Name'
-              name='middlename'
-              value={middlename} 
+              name='middleName'
+              value={middleName} 
               onChange={(e) => onInputChange(e)} 
               />
-            <label htmlFor='lastname' className='form-label'> Last Name </label>
+            <label htmlFor='lastName' className='form-label'> Last Name </label>
             <input
               type={"text"}
               className="form-control"
               placeholder='Enter your Last Name'
-              name='lastname'
-              value={lastname}
+              name='lastName'
+              value={lastName}
               onChange={(e) => onInputChange(e)} 
               />
             <label htmlFor='email' className='form-label'> Email </label>
@@ -93,33 +93,33 @@ export default function AddUser() {
               value={password}
               onChange={(e) => onInputChange(e)} 
               />
-            <label htmlFor='maddress' className='form-label'>Mailing Address </label>
+            <label htmlFor='mailingAddress' className='form-label'>Mailing Address </label>
             <input
               type={"text"}
               className="form-control"
               placeholder='Enter your mailing address'
-              name='maddress'
-              value={maddress} 
+              name='mailingAddress'
+              value={mailingAddress} 
               onChange={(e) => onInputChange(e)} 
               />
-            <label htmlFor='ccnumber' className='form-label'>Credit Card Number </label>
+            <label htmlFor='cardNumber' className='form-label'>Credit Card Number </label>
             <input
               type={"number"}
               className="form-control"
               placeholder='Enter credit card number'
-              name='ccnumber'
+              name='cardNumber'
               minLength={16}
               maxLength='16'
-              value={ccnumber} 
+              value={cardNumber} 
               onChange={(e) => onInputChange(e)} 
               />
-            <label htmlFor='ccexpiry' className='form-label'>Credit Card Expiry </label>
+            <label htmlFor='expiryDate' className='form-label'>Credit Card Expiry </label>
             <input
               type={"month"}
               className="form-control"
               placeholder='Enter credit card expiry in mm/yy format'
-              name='ccexpiry'
-              value={ccexpiry}
+              name='expiryDate'
+              value={expiryDate}
               onChange={(e) => onInputChange(e)} 
               />
             <label htmlFor='cvv' className='form-label'>Credit Card CVV </label>
@@ -133,13 +133,13 @@ export default function AddUser() {
               value={cvv} 
               onChange={(e) => onInputChange(e)} 
               />
-            <label htmlFor='ccname' className='form-label'>Name on Credit Card </label>
+            <label htmlFor='cardOwnerName' className='form-label'>Name on Credit Card </label>
             <input
               type={"text"}
               className="form-control"
               placeholder='Enter name on the credit card'
-              name='ccname'
-              value={ccname}
+              name='cardOwnerName'
+              value={cardOwnerName}
               onChange={(e) => onInputChange(e)} 
               />
           </div>
