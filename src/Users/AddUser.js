@@ -18,7 +18,10 @@ export default function AddUser() {
     expiryDate: null,
     cvv: null,
     cardOwnerName: null
-  })
+  });
+
+
+
 
   const { firstName, middleName, lastName, email, username, password, mailingAddress, cardNumber, expiryDate, cvv, cardOwnerName } = user;
 
@@ -100,6 +103,17 @@ export default function AddUser() {
               placeholder='Enter your mailing address'
               name='mailingAddress'
               value={mailingAddress} 
+              onChange={(e) => onInputChange(e)} 
+              />
+              <label htmlFor='cardNumber' className='form-label'>Credit Card Number </label>
+            <input
+              type={"number"}
+              className="form-control"
+              placeholder='Enter credit card number'
+              name='cardNumber'
+              minLength={16}
+              maxLength='16'
+              value={cardNumber} 
               onChange={(e) => onInputChange(e)} 
               />
             <label htmlFor='cardNumber' className='form-label'>Credit Card Number </label>
