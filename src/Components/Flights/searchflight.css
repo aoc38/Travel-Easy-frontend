@@ -1,0 +1,9 @@
+.ml-4 {
+    margin-left: 10px;
+}
+.border-right{
+    border-right: 1px solid gray;
+}
+.scroll-vertical {
+    overflow-y: scroll;
+}
