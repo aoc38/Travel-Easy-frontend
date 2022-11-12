@@ -38,18 +38,40 @@ function SearchFlight() {
     { label: 4 },
     { label: 5 },
   ]);
-  const [selectedNoOfTravellers, setSelectedNoOfTravellers] = useState('')
-  
-
+  const [selectedNoOfTravellers, setSelectedNoOfTravellers] = useState("");
+  const [bookReturn, setBookReturn] = useState(false);
+  const [btnType, setbtnType] = useState("oneWay");
+  const [returnDate, setReturnDate] = useState("");
+  const bookType = [
+    {
+      name: "One way",
+      id: "oneWay",
+    },
+    {
+      name: "Return",
+      id: "return",
+    },
+  ];
+  const handleBookType = (id) => {
+    setbtnType(id);
+    if (id === "oneWay") {
+      setBookReturn(false);
+      setReturnDate("");
+    } else if (id === "return") {
+      setBookReturn(true);
+    }
+  };
 
   const onSearch = () => {
     setShowList(true);
   };
 
-//   const onPassengersChange = (event) => {
-//     // setTravellers(event.target.value);
+  
 
-//   };
+  //   const onPassengersChange = (event) => {
+  //     // setTravellers(event.target.value);
+
+  //   };
   const onPassengersChange = (value) => {
     setSelectedNoOfTravellers(value);
   };
@@ -62,6 +84,20 @@ function SearchFlight() {
                     
                   </div> */}
         <div className="col-md-3 border-right ml-4">
+          <div className="btn-group d-flex justify-content-center">
+            {bookType.map((type) => {
+              return (
+                <button
+                  type="button"
+                  className={`btn ${btnType === type.id ? "active_btn" : ""}`}
+                  key={type.id}
+                  onClick={() => handleBookType(type.id)}
+                >
+                  {type.name}
+                </button>
+              );
+            })}
+          </div>
           <div>
             <div className="mt-2">
               <SearchInput input={source} label="Source" className="mt-2" />
@@ -73,12 +109,22 @@ function SearchFlight() {
                 className="mt-2"
               />
             </div>
+            
             <div className="mt-2">
               <DatePickerTravel
                 value={value}
                 label="Departure Date"
                 className="mt-2"
               />
+            </div>
+            <div className="mt-2">
+            {btnType === "return" ? (
+                    <DatePickerTravel
+                    value={value}
+                    label="Return Date"
+                    className="mt-2"
+                  />
+                  ) : null}
             </div>
             <div className="mt-2">
               <SelectDropdown
