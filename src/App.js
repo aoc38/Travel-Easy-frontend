@@ -9,6 +9,7 @@ import Flightdetails from './Components/Flights/flightdetails';
 import BookForm from './Components/Flights/bookform';
 import EditUser from './Users/EditUser';
 import Usermiles from './Components/Flights/usermiles';
+import Bookinghistory from './Components/Flights/bookinghistory';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/bookform" element={<BookForm />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
           <Route exact path="/usermiles" element={<Usermiles />} />
+          <Route exact path="/bookinghistory" element={<Bookinghistory />} />
           
         </Routes>
 

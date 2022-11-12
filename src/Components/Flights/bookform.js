@@ -29,6 +29,9 @@ function Bookform(props) {
       const onCardTypeChange = (value) => {
         setCardList(value);
       }
+      const showSuccessPopup = () => {
+        alert("Payment Successful");
+      }
     return (
         <div className='container' style={{ textAlign: "center" }}>
             <div className='col-md-6'>
@@ -45,7 +48,7 @@ function Bookform(props) {
                         <div className="mt-2" ><BasicTextFields className="mt-2" label="Card Number" /></div>
                         <div className="mt-2" ><DatePickerTravel className="mt-2" label="Expiration date" /></div>
                         <div className='mt-2'><BasicTextFields label="CVV" variant="outlined" id="outline-basic"/></div>
-                        <Link className="mt-2 btn btn-primary" label="Continue">Continue</Link>
+                        <Link classN ame="mt-2 btn btn-primary" to="/Bookinghistory" onClick={showSuccessPopup} label="Continue">Continue</Link>
                         {/* <Link to="/bookform" className="btn btn-primary">Se</Link> */}
                     </FormControl>
                 </CardContent>
