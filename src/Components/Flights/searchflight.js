@@ -9,16 +9,9 @@ import DatePickerTravel from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
 import "./searchflight.css";
 import { useState } from "react";
+import SearchFilter from "./searchFilter";
 
 function SearchFlight() {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //       showList: false,
-  //       passengers: [1, 2, 3, 4, 5],
-  //       filterDropdownItems: [{ label: "Price", name: "" }],
-  //     };
-  //   }
   const [showList, setShowList] = useState(false);
   const [source, setSource] = useState([
     { label: "The Shawshank Redemption", year: 1994 },
@@ -137,6 +130,7 @@ function SearchFlight() {
           </div>
         </div>
         <div className="col-md-8 scroll-vertical mt-3">
+        <SearchFilter />
           {!showList ? <FlightList /> : ""}
         </div>
       </div>

@@ -68,7 +68,8 @@ function Flightdetails(props) {
                     
                   </div>
                   {/* <button className='btn btn-primary'>Book Now</button> */}
-                  <Link to="/BookForm" className='btn btn-primary'>Book Now</Link>
+                  {/* <Link to="/BookForm" className='btn btn-primary'>Book Now</Link> */}
+                  <Link to="/Usermiles" className='btn btn-primary'>Book Now</Link>
                  </div>
             </CardContent>
             </Card>
