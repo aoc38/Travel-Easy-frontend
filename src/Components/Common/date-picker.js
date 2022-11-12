@@ -4,8 +4,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-export default function DatePickerTravel(props) {
+export default function CustomDatePicker(props) {
   const [value, setValue] = React.useState(null);
+
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -14,6 +16,7 @@ export default function DatePickerTravel(props) {
         value={value}
         onChange={(newValue) => {
           setValue(newValue);
+          props.onChange(newValue.format(props.format))
         }}
         renderInput={(params) => <TextField {...params} />}
       />
