@@ -4,6 +4,7 @@
         "company": "US Airlines",
         "points": 25000,
         "duration": 590,
+        "price" : 990,
         "segment": [
             {
                 "duration": 590,
@@ -19,6 +20,7 @@
         "company": "Dalta",
         "points": 20000,
         "duration": 862,
+        "price" : 1200,
         "segment": [
             {
                 "duration": 635,
@@ -42,6 +44,7 @@
         "company": "Aviana",
         "points": 17000,
         "duration": 1050,
+        "price": 1500,
         "segment": [
             {
                 "duration": 515,

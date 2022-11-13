@@ -50,36 +50,22 @@ function FlightList(props) {
                 <p>{getTimings(flight)}</p>
               </div>
               <div>
+                <h5>{flight.company}</h5>
+              </div>
+              <div>
                 <h5>{getDestination(flight)}</h5>
                 <div>{getStops(flight)} stop's {getDuration(flight)} hours</div>
               </div>
               <div>
                 <h5>${flight.price}</h5>
-                <Link to="/flightdetails" className="btn btn-primary">Select</Link>
+                {/* <Link to={{ pathname: "/flightdetails/'${this.props.testvalue}", state: { flight } }} className="btn btn-primary">Select</Link> */}
+                <Link to={{ pathname: `/flightdetails/${flight.id}` }} className="btn btn-primary" >Select</Link>
+
               </div>
             </div>
           </CardContent>
         )
       })}
-      {/* <Card sx={{ maxWidth: 345 }} style={{ margin: 10 }}>
-        <CardContent>
-          <div className="flex-container">
-            <div>
-              <h5>Ethihad</h5>
-              <p>4:25am - 10:30pm</p>
-            </div>
-            <div>
-              <h5>IAH-CHENNAI</h5>
-              <div>1 Stop 20 hr</div>
-            </div>
-            <div>
-              <h5>$2057</h5>
-              <Link to="/flightdetails" className="btn btn-primary">Select</Link>
-            </div>
-          </div>
-        </CardContent>
-      </Card> */}
-
     </div>
   );
 }

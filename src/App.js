@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/" element={<SearchFlight />} />
-          <Route exact path="/Flightdetails" element={<Flightdetails />} />
+          <Route exact path="/Flightdetails/:id" element={<Flightdetails />} />
           <Route exact path="/bookform" element={<BookForm />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
           <Route exact path="/usermiles" element={<Usermiles />} />

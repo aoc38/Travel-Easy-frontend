@@ -8,7 +8,7 @@ import SelectDropdown from "../Common/dropdown";
 import "./searchflight.css";
 import { useState } from "react";
 import SearchFilter from "./searchFilter";
-import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFlights } from './flight-service';
+import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFlights, getFilterStrategies } from './flight-service';
 import Information from "./information";
 
 
@@ -28,7 +28,8 @@ function SearchFlight() {
   const [noOfPassengers, setNoOfPassengers] = useState(getNoOfPassengers()[0].label);
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
-  const [flights, setFlights] = useState([])
+  const [flights, setFlights] = useState([]);
+  const [filterBy, setFilterBy] = useState("");
 
   const handleBookType = (id) => {
     setBookingType(id);
@@ -50,19 +51,24 @@ function SearchFlight() {
     setDestination(location.id);
   }
 
-  const onSearch = () => {
+  const fetchFlights = () => {
     let request = {
       'source': source,
       'destination': destination,
       'departureDate': departureDate,
       'returnDate': returnDate,
       'bookingType': bookingType,
-      'noOfPassengers': noOfPassengers
+      'noOfPassengers': noOfPassengers,
+      'filterBy' : filterBy
     }
-    setFlights(getFlights())
+    setFlights(getFlights(request))
     setShowList(true);
   };
 
+  const onFilterSelected = (type) =>{
+    setFilterBy(type);
+    fetchFlights();
+  }
 
   return (
     <div>
@@ -126,13 +132,19 @@ function SearchFlight() {
                 onChange={setNoOfPassengers}
               />
             </div>
-            <Button onClick={onSearch} btname="Search Flights" />
+            <Button onClick={fetchFlights} btname="Search Flights" />
           </div>
         </div>
         <div className="col-md-8 scroll-vertical mt-3">
 
           {showList ? <div>
-            <SearchFilter />
+            {/* <SearchFilter value={getFilterStrategies()} onChange={onFilterSelected}/> */}
+            <SelectDropdown
+                label="Sort By"
+                value={getFilterStrategies()}
+                onChange={onFilterSelected}
+              />
+
             <FlightList flights={flights} />
           </div> : <Information/>}
         </div>
