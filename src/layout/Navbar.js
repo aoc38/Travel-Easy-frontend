@@ -16,7 +16,12 @@ export default function Navbar() {
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <Link className='btn btn-outline-light' to ="/adduser">Create Account</Link>
+
+                    <Link className='btn btn-outline-light' to ="/adduser">Create Account
+                    </Link>
+                    <Link className='btn btn-outline-light' to ="/home">Home
+                    </Link>
+
                 </div>
               </nav>
 
