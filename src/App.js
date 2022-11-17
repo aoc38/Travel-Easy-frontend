@@ -9,7 +9,7 @@ import Flightdetails from './Components/Flights/flightdetails';
 import BookForm from './Components/Flights/bookform';
 import EditUser from './Users/EditUser';
 import Feedback from './Components/Feedback/Feedbackform';
-
+import SearchDeals from './Components/Deals/SearchDeals';
 
 function App() { 
  
@@ -25,6 +25,7 @@ function App() {
           <Route exact path="/bookform" element={<BookForm />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
           <Route exact path="/feedbackform" element={<Feedback />} />
+          <Route exact path="/deals" element={<SearchDeals />} />
         </Routes>
 
       </Router>
