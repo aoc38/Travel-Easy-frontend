@@ -5,10 +5,10 @@ function button(props) {
   return (
     <div>
       <Button
-      variant="contained"
-        onClick={() => (
-        props.onSearchFilterList()
-        )}
+        variant="contained"
+        onClick={props.onClick}
+        disabled={props.disabled}
+        value={props.value}
       >
         {props.btname}
       </Button>
