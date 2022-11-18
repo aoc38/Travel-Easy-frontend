@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function AddUser() {
   
   let navigate = useNavigate();
+ // const [cards,setCards] = useState([]);
 
   const [user, setUser] = useState({
     firstName: null,
@@ -14,24 +15,64 @@ export default function AddUser() {
     username: null,
     password: null,
     mailingAddress: null,
-    cardNumber: null,
-    expiryDate: null,
-    cvv: null,
-    cardOwnerName: null
+    card:{}
+    // cards:[]
+    // cardNumber: null,
+    // expiryDate: null,
+    // cvv: null,
+    // cardOwnerName: null
   });
 
 
+  const { firstName,middleName, lastName, email, username, password, mailingAddress } = user;
+  const {cardNumber,cardOwnerName,cvv,expiryDate,cardType } = user.card;
+  
+  //const { firstName, middleName, lastName, email, username, password, mailingAddress } = user;
+  // const {cardNumber,cardOwnerName,cvv,expiryDate}= cards;
 
-
-  const { firstName, middleName, lastName, email, username, password, mailingAddress, cardNumber, expiryDate, cvv, cardOwnerName } = user;
 
   const onInputChange= (e) =>{
-    setUser({...user,[e.target.name]:e.target.value})
+    setUser({...user,[e.target.name]:e.target.value});
+    // setUser({...user.cards,cards});
   };
+
+  //[{}]
+  const onCardInputChange= (e) =>{
+    setUser({...user,...{card:{...user.card,[e.target.name]:e.target.value}}});
+  };
+  
 
   const onSubmit= async(e)=>{
     e.preventDefault();
-    await axios.post("http://localhost:8080/user",user)
+    try {
+      let response = await axios.post("http://localhost:8080/user",user);
+      console.log(response.data);
+    } catch (error) {
+      console.log( `ERROR: ${error}`);
+    }
+
+    // try {
+    //   let res = await fetch("http://localhost:8080/user", {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       firstName:firstName,
+    //       cards:cards
+    //     }),
+    //     config: {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     },
+    //   });
+    //   let resJson = await res.json();
+    //   if (res.status === 200) {
+    //     console.log("Success");
+    //   } else {
+    //     console.log("Error");
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
     navigate('/');
   };
   
@@ -50,6 +91,7 @@ export default function AddUser() {
               name='firstName'
               value={firstName}
               onChange={(e) => onInputChange(e)} 
+            // onChange = {(e) => setFirstName(e.target.value)}
               />
             <label htmlFor='middleName' className='form-label'> Middle Name </label>
             <input
@@ -105,17 +147,16 @@ export default function AddUser() {
               value={mailingAddress} 
               onChange={(e) => onInputChange(e)} 
               />
-              <label htmlFor='cardNumber' className='form-label'>Credit Card Number </label>
-            <input
-              type={"number"}
+              <label htmlFor='cardType' className='form-label'>Card Type</label>
+              <select value={cardType} 
               className="form-control"
-              placeholder='Enter credit card number'
-              name='cardNumber'
-              minLength={16}
-              maxLength='16'
-              value={cardNumber} 
-              onChange={(e) => onInputChange(e)} 
-              />
+              name='cardType'
+              onChange={(e) => onCardInputChange(e)} 
+              >
+                <option value="VISA">VISA</option>
+                <option value="MASTER CARD">MASTER CARD</option>
+              </select>
+
             <label htmlFor='cardNumber' className='form-label'>Credit Card Number </label>
             <input
               type={"number"}
@@ -125,7 +166,7 @@ export default function AddUser() {
               minLength={16}
               maxLength='16'
               value={cardNumber} 
-              onChange={(e) => onInputChange(e)} 
+              onChange={(e) => onCardInputChange(e)} 
               />
             <label htmlFor='expiryDate' className='form-label'>Credit Card Expiry </label>
             <input
@@ -134,7 +175,7 @@ export default function AddUser() {
               placeholder='Enter credit card expiry in mm/yy format'
               name='expiryDate'
               value={expiryDate}
-              onChange={(e) => onInputChange(e)} 
+              onChange={(e) => onCardInputChange(e)} 
               />
             <label htmlFor='cvv' className='form-label'>Credit Card CVV </label>
             <input
@@ -145,7 +186,7 @@ export default function AddUser() {
               placeholder='Enter cvv'
               name='cvv'
               value={cvv} 
-              onChange={(e) => onInputChange(e)} 
+              onChange={(e) => onCardInputChange(e)} 
               />
             <label htmlFor='cardOwnerName' className='form-label'>Name on Credit Card </label>
             <input
@@ -154,7 +195,7 @@ export default function AddUser() {
               placeholder='Enter name on the credit card'
               name='cardOwnerName'
               value={cardOwnerName}
-              onChange={(e) => onInputChange(e)} 
+              onChange={(e) => onCardInputChange(e)} 
               />
           </div>
           <button type='submit' className='btn btn-outline-primary'>Submit</button>
