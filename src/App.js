@@ -8,6 +8,9 @@ import SearchFlight from './Components/Flights/searchflight';
 import Flightdetails from './Components/Flights/flightdetails';
 import BookForm from './Components/Flights/bookform';
 import EditUser from './Users/EditUser';
+import Usermiles from './Components/Flights/usermiles';
+import Bookinghistory from './Components/Flights/bookinghistory';
+import React from 'react';
 import Feedback from './Components/Feedback/Feedbackform';
 import SearchDeals from './Components/Deals/SearchDeals';
 
@@ -21,9 +24,11 @@ function App() {
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/" element={<SearchFlight />} />
-          <Route exact path="/Flightdetails" element={<Flightdetails />} />
+          <Route exact path="/Flightdetails/:id" element={<Flightdetails />} />
           <Route exact path="/bookform" element={<BookForm />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
+          <Route exact path="/usermiles" element={<Usermiles />} />
+          <Route exact path="/bookinghistory" element={<Bookinghistory />} />
           <Route exact path="/feedbackform" element={<Feedback />} />
           <Route exact path="/deals" element={<SearchDeals />} />
         </Routes>

@@ -6,7 +6,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function SelectDropdown(props) {
- 
+  const [value, setValue] = React.useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    props.onChange(event.target.value);
+  };
 
   return (
     <Box sx={{ width: 302 }}>
@@ -15,11 +20,21 @@ export default function SelectDropdown(props) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={props.passengers}
+          value={value}
           label={props.label}
-          onChange={props.onPassengersChange}
+          onChange={handleChange}
         >
-          <MenuItem value={10}>{props.passengers}</MenuItem>
+         {props.value.map((value, i) => {
+             return (
+              <MenuItem key={i} value={value.label}>{value.label}</MenuItem>
+             )
+         })}
+            
+          
+            
+          
+          
+          {/* <MenuItem value={0}>10</MenuItem> */}
         </Select>
       </FormControl>
     </Box>
