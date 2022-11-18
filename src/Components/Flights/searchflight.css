@@ -1,12 +1,12 @@
 .ml-4 {
     margin-left: 10px;
 }
-.border-right{
+/* .border-right{
     border-right: 1px solid gray;
-}
-.scroll-vertical {
+} */
+/* .scroll-vertical {
     overflow-y: scroll;
-}
+} */
 .active_btn {
     background-color: deepskyblue !important;
   }

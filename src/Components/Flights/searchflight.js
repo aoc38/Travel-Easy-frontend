@@ -5,9 +5,11 @@ import Button from "../Common/button";
 import "./flight-form.css";
 import CustomDatePicker from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
+import Card from "@mui/material/Card";
+import CardContent from '@mui/material/CardContent';
 import "./searchflight.css";
 import { useState } from "react";
-import SearchFilter from "./searchFilter";
+// import SearchFilter from "./searchFilter";
 import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFlights, getFilterStrategies } from './flight-service';
 import Information from "./information";
 
@@ -30,6 +32,7 @@ function SearchFlight() {
   const [destination, setDestination] = useState("");
   const [flights, setFlights] = useState([]);
   const [filterBy, setFilterBy] = useState("");
+  const [disableButton, setDisableButton] = useState(true);
 
   const handleBookType = (id) => {
     setBookingType(id);
@@ -45,10 +48,44 @@ function SearchFlight() {
   };
 
   const onSourceSelected = (location) => {
-    setSource(location.id);
+    setSource(location != null && location.id);
+
+    let buttonVal = disableSearchBtn();
+    console.log(`button val = ${buttonVal}`);
+    setDisableButton(buttonVal);
   }
   const onDestinationSelected = (location) => {
-    setDestination(location.id);
+    setDestination(location != null && location.id);
+
+    let buttonVal = disableSearchBtn();
+    console.log(`button val = ${buttonVal}`);
+    setDisableButton(buttonVal);
+  }
+
+  const handleDepartureDate = (deptDate) => {
+    debugger;
+    setDepartureDate(deptDate);
+
+    let buttonVal = disableSearchBtn();
+    console.log(`button val = ${buttonVal}`);
+    setDisableButton(buttonVal);
+  }
+
+  const handleReturnDate = (rtDate) => {
+    debugger;
+    setReturnDate(rtDate);
+
+    let buttonVal = disableSearchBtn();
+    console.log(`button val = ${buttonVal}`);
+    setDisableButton(buttonVal);
+  }
+
+  const handleNumberOfPassengers = (event) => {
+    debugger;
+    setNoOfPassengers(event);
+    let buttonVal = disableSearchBtn();
+    console.log(`button val = ${buttonVal}`);
+    setDisableButton(buttonVal);
   }
 
   const fetchFlights = () => {
@@ -61,7 +98,8 @@ function SearchFlight() {
       'noOfPassengers': noOfPassengers,
       'filterBy' : filterBy
     }
-    setFlights(getFlights(request))
+    setFlights(getFlights(request));
+    console.log("flight list", getFlights(request));
     setShowList(true);
   };
 
@@ -69,11 +107,29 @@ function SearchFlight() {
     setFilterBy(type);
     fetchFlights();
   }
+  const disableSearchBtn = () => {
+    debugger;
+    console.log("ffffff");
+    if(noOfPassengersList !== null && source !== '' && destination !== '' && departureDate !== '') {
+      if (bookReturn) {
+        return returnDate === '';
+      } else {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  // const disableButton = source == null || destination == null || returnDate == null || departureDate == null;
 
   return (
-    <div>
+    <div className="container-fluid">
       <div className="row">
-        <div className="col-md-3 border-right ml-4">
+        <div className="col-md-12">
+        <Card>
+        {/* <div className="col-md-3 ml-4"> */}
+          <div className="col-md-3">
           <div className="btn-group d-flex justify-content-center">
             {bookingTypes.map((type) => {
               return (
@@ -88,16 +144,21 @@ function SearchFlight() {
               );
             })}
           </div>
-          <div>
-            <div className="mt-2">
+          </div>
+          <div className="row">
+          <div className="col-md-12">
+          <div className="d-flex">
+            <div className="p-2 mt-2">
               <InputSearch
+                value={source}
                 input={airports}
                 onChange={onSourceSelected}
                 label="Source"
                 className="mt-2" />
             </div>
-            <div className="mt-2">
+            <div className="p-2 mt-2">
               <InputSearch
+                value={destination}
                 input={airports}
                 onChange={onDestinationSelected}
                 label="Destination"
@@ -105,40 +166,50 @@ function SearchFlight() {
               />
             </div>
 
-            <div className="mt-2">
+            <div className="p-2 mt-2">
               <CustomDatePicker
                 value={value}
-                onChange={setDepartureDate}
+                onChange={handleDepartureDate}
                 format={DATE_FORMAT}
                 label="Departure Date"
                 className="mt-2"
               />
             </div>
-            <div className="mt-2">
+            <div className="p-2 mt-2">
               {bookingType === "return" ? (
                 <CustomDatePicker
                   value={value}
-                  onChange={setReturnDate}
+                  onChange={handleReturnDate}
                   format={DATE_FORMAT}
                   label="Return Date"
                   className="mt-2"
                 />
               ) : null}
             </div>
-            <div className="mt-2">
+            <div className="p-2 mt-2">
               <SelectDropdown
                 label="No of travellers"
                 value={noOfPassengersList}
-                onChange={setNoOfPassengers}
+                onChange={handleNumberOfPassengers}
               />
             </div>
-            <Button onClick={fetchFlights} btname="Search Flights" />
+           <div>
+            <Button 
+            disabled={disableButton} 
+            onClick={fetchFlights} 
+            btname="Search Flights" />
+            </div>
           </div>
+          </div>
+          </div>
+        {/* </div> */}
+        </Card>
         </div>
-        <div className="col-md-8 scroll-vertical mt-3">
+        <div className="col-md-12 mt-3">
 
           {showList ? <div>
             {/* <SearchFilter value={getFilterStrategies()} onChange={onFilterSelected}/> */}
+            
             <SelectDropdown
                 label="Sort By"
                 value={getFilterStrategies()}

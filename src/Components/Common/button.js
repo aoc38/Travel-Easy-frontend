@@ -7,6 +7,8 @@ function button(props) {
       <Button
         variant="contained"
         onClick={props.onClick}
+        disabled={props.disabled}
+        value={props.value}
       >
         {props.btname}
       </Button>

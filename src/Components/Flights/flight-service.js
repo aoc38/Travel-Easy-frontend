@@ -35,7 +35,7 @@ export function getFilterStrategies() {
         },
         {
             label: "Airline",
-            id: "htl",
+            id: "aln",
         }
     ]
 }

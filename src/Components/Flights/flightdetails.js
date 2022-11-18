@@ -10,6 +10,7 @@ function Flightdetails(props) {
     const { id } = useParams()
     let data = getFlightById(id); //check whether data is valid or not, array should not be empty
     let flight = data.length == 1 ? data[0] : {};
+    console.log("flight details" , flight);
 
     return (
         <div className='container'>
@@ -33,6 +34,7 @@ function Flightdetails(props) {
                             </div>
                         </div>
                         {flight.segment.map((segment, i) => {
+                            const tax = (15 / 100) * (flight.price);
                             return (
                                 <div className='col-md-12' key={i}>
                                     <div className="col-md-2" style={{ display: "inline-block" }}>
@@ -41,22 +43,27 @@ function Flightdetails(props) {
                                         <div>{"Boeing"}-{"332154"}</div>
                                     </div>
                                     <div className="col-md-4" style={{ display: "inline-block" }}>
-                                        <div className="">{"7:10"}</div>
-                                        <div>{"Houston"}, {"TX"}</div>
+                                        <div className="">{segment.arrivalTime}</div>
+                                        <div>{segment.origin}</div>
                                         <div>{"("} {"IAH"} {")"}-{"George Bush Intercon"}</div>
                                     </div>
                                     <div className="col-md-4" style={{ display: "inline-block" }}>
-                                        <div className="">{"7:10"}</div>
-                                        <div>{"Houston"}, {"TX"}</div>
+                                        <div className="">{segment.departureTime}</div>
+                                        <div>{segment.destination}</div>
                                         <div>{"("} {"IAH"} {")"}-{"George Bush Intercon"}</div>
                                     </div>
                                     <div className="col-md-2" style={{ display: "inline-block" }}>
                                         <div>{"14hr35m"}</div>
                                     </div>
+                                    <div>
+                                        <p>Taxes and fees = {tax}</p>
+                                        <p>Total Price {tax + flight.price}</p>
+                                    </div>
 
                                 </div>
                             )
                         })}
+                        
 
 
                         {/* <div className='col-md-12'>

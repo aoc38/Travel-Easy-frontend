@@ -16,3 +16,8 @@
   .fnt{
     font-size: 14px;
   }
+  .card-list:hover {
+    border-color: hsl(88, 88%, 28%);
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 29%);
+    transition: all 0.2s ease-in-out;
+  }

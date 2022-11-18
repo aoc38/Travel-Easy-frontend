@@ -48,7 +48,7 @@ function Bookform(props) {
                         <div className="mt-2" ><BasicTextFields className="mt-2" label="Card Number" /></div>
                         <div className="mt-2" ><DatePickerTravel className="mt-2" label="Expiration date" /></div>
                         <div className='mt-2'><BasicTextFields label="CVV" variant="outlined" id="outline-basic"/></div>
-                        <Link classN ame="mt-2 btn btn-primary" to="/Bookinghistory" onClick={showSuccessPopup} label="Continue">Continue</Link>
+                        <Link className="mt-2 btn btn-primary" to="/Bookinghistory" onClick={showSuccessPopup} label="Continue">Continue</Link>
                         {/* <Link to="/bookform" className="btn btn-primary">Se</Link> */}
                     </FormControl>
                 </CardContent>
