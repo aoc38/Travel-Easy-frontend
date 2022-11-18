@@ -127,9 +127,9 @@ function SearchFlight() {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
-        <Card>
+        <Card className="mrgn">
         {/* <div className="col-md-3 ml-4"> */}
-          <div className="col-md-3">
+          <div className="col-md-3 mrgn">
           <div className="btn-group d-flex justify-content-center">
             {bookingTypes.map((type) => {
               return (
@@ -171,7 +171,7 @@ function SearchFlight() {
                 value={value}
                 onChange={handleDepartureDate}
                 format={DATE_FORMAT}
-                label="Departure Date"
+                label="Departure"
                 className="mt-2"
               />
             </div>
@@ -181,7 +181,7 @@ function SearchFlight() {
                   value={value}
                   onChange={handleReturnDate}
                   format={DATE_FORMAT}
-                  label="Return Date"
+                  label="Return"
                   className="mt-2"
                 />
               ) : null}
@@ -193,16 +193,17 @@ function SearchFlight() {
                 onChange={handleNumberOfPassengers}
               />
             </div>
-           <div>
-            <Button 
-            disabled={disableButton} 
-            onClick={fetchFlights} 
-            btname="Search Flights" />
-            </div>
           </div>
           </div>
           </div>
         {/* </div> */}
+        <div className="flt-rt">
+            <Button 
+            
+            disabled={disableButton} 
+            onClick={fetchFlights} 
+            btname="Search Flights" />
+            </div>
         </Card>
         </div>
         <div className="col-md-12 mt-3">
