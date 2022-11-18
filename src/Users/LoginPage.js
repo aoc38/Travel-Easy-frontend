@@ -27,7 +27,7 @@ export default function LoginPage() {
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
-    navigate('/flightsearch');
+    navigate('/searchFlight');
   };
 
   return (
@@ -62,7 +62,7 @@ export default function LoginPage() {
             <div className="text-center">
               Not registered yet?{" "}
               <span className="link-primary">
-                <Link to={"/adduser"}>Sign Up </Link>
+                <Link to={"/register"}>Sign Up </Link>
               </span>
             </div>
 

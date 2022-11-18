@@ -39,7 +39,7 @@ export default function Navbar() {
                        
                         localStorage.getItem("user-info") ?
                             <>
-                                <Link className='btn btn-outline-light' to="/flightsearch">Flights
+                                <Link className='btn btn-outline-primary' to="/searchFlight">Flights
                                 </Link>
                                 <Link className='btn btn-outline-light' to="/hotels">Hotels
                                 </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
                             </>
                             :
                             <>
-                                <Link className='btn btn-outline-light' to="/flightsearch">Flights
+                                <Link className='btn btn-outline-light' to="/searchFlight">Flights
                                 </Link>
                                 <Link className='btn btn-outline-light' to="/hotels">Hotels
                                 </Link>

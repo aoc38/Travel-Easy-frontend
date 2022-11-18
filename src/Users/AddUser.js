@@ -49,7 +49,7 @@ export default function AddUser() {
       console.log(response.data);
       console.warn(response.data);
       localStorage.setItem("user-info", JSON.stringify(response.data));
-      navigate('/flightsearch');
+      navigate('/searchFlight');
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
