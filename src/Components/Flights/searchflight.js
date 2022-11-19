@@ -112,8 +112,12 @@ function SearchFlight() {
     return true;
   }
 
+  const canLocationBeSearched = (value, reason) => {
+    return value && value.length >=5 && reason != 'reset';
+  }
+
   const searchSourceLocations = async (event, value, reason) => {
-    if(value && value.length >=5){
+    if(canLocationBeSearched(value, reason)){
       let results = await getLocations(value);
       let data = results.data.data;
       setFromLocations(data);
@@ -121,7 +125,7 @@ function SearchFlight() {
   }
 
   const searchDestinationLocations = async (event, value, reason) => {
-    if(value && value.length >=5){
+    if(canLocationBeSearched(value, reason)){
       let results = await getLocations(value);
       let data = results.data.data;
       setToLocations(data);
