@@ -9,8 +9,8 @@ export default function InputSearch(props) {
   }
 
   const handleAutocompleteTextChange = (event) => {
-    if (event.target.value && event.target.value.length > 3) {
-      props.onInputChange(this.state.query);
+    if (event.target.value && event.target.value.length > 5) {
+      props.onInputChange(event.target.value);
     }
   }
 
@@ -19,13 +19,12 @@ export default function InputSearch(props) {
       disablePortal
       id="combo-box-demo"
       options={props.input}
+      onChange={onChange}
       onInputChange={props.onInputChange}
       getOptionLabel={option => option.name}
+      disableCloseOnSelect={true}
       sx={{ width: 300 }}
-      onChange={onChange}
-      // renderInput={(params) => <TextField {...params} label={props.name}  />}
       renderInput={params => <TextField {...params} label={props.label} variant="outlined" onChange={handleAutocompleteTextChange} />}
-
     />
   );
 }
