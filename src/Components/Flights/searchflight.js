@@ -86,6 +86,7 @@ function SearchFlight() {
       'filterBy' : filterBy
     }
     let response = await getFlights(request);
+    console.log(response);
     let flights = response.data;
     setFlights(flights);
     setShowList(true);
@@ -184,6 +185,7 @@ function SearchFlight() {
               <CustomDatePicker
                 value={value}
                 onChange={handleDepartureDate}
+                disablePast
                 format={DATE_FORMAT}
                 label="Departure"
                 className="mt-2"
@@ -194,6 +196,7 @@ function SearchFlight() {
                 <CustomDatePicker
                   value={value}
                   onChange={handleReturnDate}
+                  disablePast
                   format={DATE_FORMAT}
                   label="Return"
                   className="mt-2"
