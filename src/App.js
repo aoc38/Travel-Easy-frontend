@@ -12,7 +12,7 @@ import Usermiles from './Components/Flights/usermiles';
 import Bookinghistory from './Components/Flights/bookinghistory';
 import React from 'react';
 import Feedback from './Components/Feedback/Feedbackform';
-import SearchDeals from './Components/Deals/SearchDeals';
+import SearchDeal from './Components/Deals/searchdeals';
 import LoginPage from './Users/LoginPage';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/usermiles" element={<Usermiles />} />
           <Route exact path="/bookinghistory" element={<Bookinghistory />} />
           <Route exact path="/feedbackform" element={<Feedback />} />
-          <Route exact path="/deals" element={<SearchDeals />} />
+          <Route exact path="/searchdeals" element={<SearchDeal />} />
         </Routes>
 
       </Router>

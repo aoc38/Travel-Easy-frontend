@@ -41,7 +41,7 @@ function FlightList(props) {
       <div>
 
       </div>
-      {props.flights.length === 0 && <div>No Flights Found</div>}
+      <div>No Flights Found</div>
       {props.flights.map((flight, i) => {
         return (
           <Card style={{margin: "10px"}} className="card-list">

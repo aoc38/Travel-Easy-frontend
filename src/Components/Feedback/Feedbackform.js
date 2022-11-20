@@ -2,7 +2,7 @@ import { useState } from 'react'
 import React from 'react';
 import axios from 'axios';
 import Card from '../Common/Card';
-import Button from '../Feedback/button';
+import Button from '../Common/button';
 import './rating.css';
 import { Link, useNavigate } from 'react-router-dom';
 
