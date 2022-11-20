@@ -1,5 +1,5 @@
-var hotel = require('../json/hotels.json');
-var destinationCity = require('../json/city.json');
+var hotel = require('./hotels.json');
+var destinationCity = require('./city.json');
 
 
 export function getNoOfGuest() {
