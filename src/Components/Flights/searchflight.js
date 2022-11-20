@@ -6,13 +6,14 @@ import "./flight-form.css";
 import CustomDatePicker from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import CardContent from '@mui/material/CardContent';
 import "./searchflight.css";
 import { useState } from "react";
 // import SearchFilter from "./searchFilter";
 import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFilterStrategies } from './flight-service';
 import Information from "./information";
 import {getLocations, getFlights} from '../../services/flight/amadeus-api-service'
+
 
 function SearchFlight() {
   const bookingTypes = getFlightBookingTypes();
@@ -26,11 +27,10 @@ function SearchFlight() {
   const [bookReturn, setBookReturn] = useState(false);
   const [bookingType, setBookingType] = useState(bookingTypes[0].id);
 
+
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  const [noOfPassengers, setNoOfPassengers] = useState(
-    getNoOfPassengers()[0].label
-  );
+  const [noOfPassengers, setNoOfPassengers] = useState(getNoOfPassengers()[0].label);
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
   const [flights, setFlights] = useState([]);
@@ -92,7 +92,7 @@ function SearchFlight() {
     setShowList(true);
   };
 
-  const onFilterSelected = (type) => {
+  const onFilterSelected = (type) =>{
     setFilterBy(type);
     fetchFlights();
   }
@@ -105,14 +105,14 @@ function SearchFlight() {
   const disableSearchBtn = () => {
     if(noOfPassengers && source !== '' && destination !== '' && departureDate !== '') {
       if (bookReturn) {
-        return returnDate === "";
+        return returnDate === '';
       } else {
         return false;
       }
     }
 
     return true;
-  };
+  }
 
   const canLocationBeSearched = (value, reason) => {
     return value && value.length >=5 && reason != 'reset';
@@ -180,27 +180,6 @@ function SearchFlight() {
                 className="mt-2"
               />
             </div>
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d-flex">
-                  <div className="p-2 mt-2">
-                    <InputSearch
-                      value={source}
-                      input={airports}
-                      onChange={onSourceSelected}
-                      label="Source"
-                      className="mt-2"
-                    />
-                  </div>
-                  <div className="p-2 mt-2">
-                    <InputSearch
-                      value={destination}
-                      input={airports}
-                      onChange={onDestinationSelected}
-                      label="Destination"
-                      className="mt-2"
-                    />
-                  </div>
 
             <div className="p-2 mt-2">
               <CustomDatePicker
@@ -245,21 +224,18 @@ function SearchFlight() {
         </Card>
         </div>
         <div className="col-md-12 mt-3">
-          {showList ? (
-            <div>
-              {/* <SearchFilter value={getFilterStrategies()} onChange={onFilterSelected}/> */}
 
-              <SelectDropdown
+          {showList ? <div>
+            {/* <SearchFilter value={getFilterStrategies()} onChange={onFilterSelected}/> */}
+            
+            <SelectDropdown
                 label="Sort By"
                 value={getFilterStrategies()}
                 onChange={onFilterSelected}
               />
 
-              <FlightList flights={flights} />
-            </div>
-          ) : (
-            <Information />
-          )}
+            <FlightList flights={flights} />
+          </div> : <Information/>}
         </div>
       </div>
     </div>

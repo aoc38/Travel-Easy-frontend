@@ -17,13 +17,18 @@ function DealsList(props) {
     return flight.price;
   };
 
+  const isValid = () => {
+    if (props.hasOwnProperty("flights") && props.flights.hasOwnProperty("data") && props.flights.data.length !== 0) {
+      return true;
+    }
+    return false;
+  }
+
   return (
     <div className="list-flight">
-      <div>
-
-      </div>
-      {props.flights.length === 0 && <div>No Deals Found</div>}
-      {props.flights.map((flight, i) => {
+     {!isValid() ?
+        <div>No Deals Found</div> :
+      props.flights.map((flight, i) => {
         return (
           <Card style={{ margin: "10px" }} className="card-list">
             <CardContent key={flight.id}>

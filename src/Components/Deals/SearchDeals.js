@@ -7,19 +7,22 @@ import Card from "@mui/material/Card";
 import "../Flights/searchflight.css";
 import { useState } from "react";
 import BasicTextFields from "../Common/textfield";
-
+import "../Flights/flightlist.css"
 import DealsList from"./dealslist";
 import SelectDropdown from "../Common/dropdown";
 import {
   getDeals,
   getAirports,
   getFilterStrategies 
-} from "../Deals/deals-service";
+} from "./deals-service";
 import Information from "../Flights/information";
+import {getLocations, getFlights} from '../../services/flight/amadeus-api-service'
 
 function SearchDeal() {
     const [source, setSource] = useState("");
-    const [airports, setAirports] = useState(getAirports());
+    //const [airports, setAirports] = useState(getAirports());
+    const [fromLocations, setFromLocations] = useState([]);
+    const [toLocations, setToLocations] = useState([]); 
     const [disableButton, setDisableButton] = useState(true);
     const [destination, setDestination] = useState("");
     const [minPrice, setMinPrice] = useState(0);
@@ -38,55 +41,39 @@ function SearchDeal() {
       };
 
     const onSourceSelected = (location) => {
-        setSource(location != null && location.id);
-    
-        let buttonVal = disableSearchBtn();
-        console.log(`button val = ${buttonVal}`);
-        setDisableButton(buttonVal);
+        setSource(location);
+        validateForm();
       };
 
       const onDestinationSelected = (location) => {
-        setDestination(location != null && location.id);
-    
-        let buttonVal = disableSearchBtn();
-        console.log(`button val = ${buttonVal}`);
-        setDisableButton(buttonVal);
+        setDestination(location);
+        validateForm();
       };
 
       const handleDepartureDate = (deptDate) => {
-        debugger;
-        setDepartureDate(deptDate);
-    
-        let buttonVal = disableSearchBtn();
-        console.log(`button val = ${buttonVal}`);
-        setDisableButton(buttonVal);
+         setDepartureDate(deptDate);
+         validateForm();
       };
 
       const handleReturnDate = (rtDate) => {
-        debugger;
-        setReturnDate(rtDate);
-    
-        let buttonVal = disableSearchBtn();
-        console.log(`button val = ${buttonVal}`);
-        setDisableButton(buttonVal);
+          setReturnDate(rtDate);
+          validateForm();
       };
     
       const handleMinPrice = (minPrice) => {
         setMinPrice(minPrice.target.value);
-    
-        let buttonVal = disableSearchBtn();
-        console.log(`button val = ${buttonVal}`);
-        setDisableButton(buttonVal);
+        validateForm();
       };
 
       const handleMaxPrice = (maxPrice) => {
         setMaxPrice(maxPrice.target.value);
-    
-        let buttonVal = disableSearchBtn();
-        console.log(`button val = ${buttonVal}`);
-        setDisableButton(buttonVal);
+        validateForm();
       };
 
+      const validateForm = () => {
+        let buttonVal = disableSearchBtn();
+        setDisableButton(buttonVal);
+      }
     
       const fetchDeals = () => {
         let request = {
@@ -105,8 +92,7 @@ function SearchDeal() {
     
 
       const disableSearchBtn = () => {
-        debugger;
-        console.log("ffffff");
+        
         if (
           source !== "" &&
           destination !== "" &&
@@ -120,6 +106,27 @@ function SearchDeal() {
         return true;
       };
 
+      
+  const canLocationBeSearched = (value, reason) => {
+    return value && value.length >=5 && reason != 'reset';
+  }
+
+  const searchSourceLocations = async (event, value, reason) => {
+    if(canLocationBeSearched(value, reason)){
+      let results = await getLocations(value);
+      let data = results.data.data;
+      setFromLocations(data);
+    }
+  }
+
+  const searchDestinationLocations = async (event, value, reason) => {
+    if(canLocationBeSearched(value, reason)){
+      let results = await getLocations(value);
+      let data = results.data.data;
+      setToLocations(data);
+    }
+  }
+
   return (
     <div className="container-fluid">
     <div className="row">
@@ -130,21 +137,22 @@ function SearchDeal() {
             <div className="d-flex">
               <div className="p-2 mt-2">
                 <InputSearch
-                  value={source}
-                  input={airports}
-                  onChange={onSourceSelected}
-                  label="Source"
-                  className="mt-2"
-                />
+                value={source}
+                input={fromLocations}
+                onInputChange={searchSourceLocations}
+                onChange={onSourceSelected}
+                label="Source"
+                className="mt-2" />
               </div>
               <div className="p-2 mt-2">
-                <InputSearch
-                  value={destination}
-                  input={airports}
-                  onChange={onDestinationSelected}
-                  label="Destination"
-                  className="mt-2"
-                />
+              <InputSearch
+                value={destination}
+                input={toLocations}
+                onInputChange={searchDestinationLocations}
+                onChange={onDestinationSelected}
+                label="Destination"
+                className="mt-2"
+              />
               </div>
 
               <div className="p-2 mt-2">
