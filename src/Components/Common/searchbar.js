@@ -4,8 +4,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 export default function InputSearch(props) {
 
-  const onChnage = (event, values) => {
-    props.onChange(values);     
+  const onChange = (event, values) => {
+    props.onChange(values);
+  }
+
+  const handleAutocompleteTextChange = (event) => {
+    if (event.target.value && event.target.value.length > 5) {
+      props.onInputChange(event.target.value);
+    }
   }
 
   return (
@@ -13,9 +19,12 @@ export default function InputSearch(props) {
       disablePortal
       id="combo-box-demo"
       options={props.input}
+      onChange={onChange}
+      onInputChange={props.onInputChange}
+      getOptionLabel={option => option.name}
+      disableCloseOnSelect={true}
       sx={{ width: 300 }}
-      onChange={onChnage}
-      renderInput={(params) => <TextField {...params} label={props.label} />}
+      renderInput={params => <TextField {...params} label={props.label} variant="outlined" onChange={handleAutocompleteTextChange} />}
     />
   );
 }

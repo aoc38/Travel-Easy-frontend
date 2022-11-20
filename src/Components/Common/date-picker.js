@@ -14,6 +14,7 @@ export default function CustomDatePicker(props) {
       <DatePicker
         label={props.label}
         value={value}
+        disablePast={props.disablePast}
         onChange={(newValue) => {
           setValue(newValue);
           props.onChange(newValue.format(props.format))

@@ -10,8 +10,9 @@ import CardContent from '@mui/material/CardContent';
 import "./searchflight.css";
 import { useState } from "react";
 // import SearchFilter from "./searchFilter";
-import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFlights, getFilterStrategies } from './flight-service';
+import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFilterStrategies } from './flight-service';
 import Information from "./information";
+import {getLocations, getFlights} from '../../services/flight/amadeus-api-service'
 
 
 function SearchFlight() {
@@ -19,7 +20,9 @@ function SearchFlight() {
   const noOfPassengersList = getNoOfPassengers();
   const DATE_FORMAT = "YYYY-MM-DD";
   const [showList, setShowList] = useState(false);
-  const [airports, setAirports] = useState(getAirports());
+  // const [airports, setAirports] = useState([]);
+  const [fromLocations, setFromLocations] = useState([]);
+  const [toLocations, setToLocations] = useState([]);
   const [value, setValue] = useState("");
   const [bookReturn, setBookReturn] = useState(false);
   const [bookingType, setBookingType] = useState(bookingTypes[0].id);
@@ -48,47 +51,31 @@ function SearchFlight() {
   };
 
   const onSourceSelected = (location) => {
-    setSource(location != null && location.id);
-
-    let buttonVal = disableSearchBtn();
-    console.log(`button val = ${buttonVal}`);
-    setDisableButton(buttonVal);
+    setSource(location);
+    validateForm();
   }
   const onDestinationSelected = (location) => {
-    setDestination(location != null && location.id);
-
-    let buttonVal = disableSearchBtn();
-    console.log(`button val = ${buttonVal}`);
-    setDisableButton(buttonVal);
+    setDestination(location);
+    validateForm();
   }
 
   const handleDepartureDate = (deptDate) => {
-    debugger;
     setDepartureDate(deptDate);
-
-    let buttonVal = disableSearchBtn();
-    console.log(`button val = ${buttonVal}`);
-    setDisableButton(buttonVal);
+    validateForm();
   }
 
   const handleReturnDate = (rtDate) => {
-    debugger;
     setReturnDate(rtDate);
-
-    let buttonVal = disableSearchBtn();
-    console.log(`button val = ${buttonVal}`);
-    setDisableButton(buttonVal);
+    validateForm();
   }
 
   const handleNumberOfPassengers = (event) => {
-    debugger;
     setNoOfPassengers(event);
-    let buttonVal = disableSearchBtn();
-    console.log(`button val = ${buttonVal}`);
-    setDisableButton(buttonVal);
+    validateForm();
+
   }
 
-  const fetchFlights = () => {
+  const fetchFlights = async() => {
     let request = {
       'source': source,
       'destination': destination,
@@ -98,8 +85,10 @@ function SearchFlight() {
       'noOfPassengers': noOfPassengers,
       'filterBy' : filterBy
     }
-    setFlights(getFlights(request));
-    console.log("flight list", getFlights(request));
+    let response = await getFlights(request);
+    console.log(response);
+    let flights = response.data;
+    setFlights(flights);
     setShowList(true);
   };
 
@@ -107,10 +96,14 @@ function SearchFlight() {
     setFilterBy(type);
     fetchFlights();
   }
+
+  const validateForm = () => {
+    let buttonVal = disableSearchBtn();
+    setDisableButton(buttonVal);
+  }
+
   const disableSearchBtn = () => {
-    debugger;
-    console.log("ffffff");
-    if(noOfPassengersList !== null && source !== '' && destination !== '' && departureDate !== '') {
+    if(noOfPassengers && source !== '' && destination !== '' && departureDate !== '') {
       if (bookReturn) {
         return returnDate === '';
       } else {
@@ -119,6 +112,26 @@ function SearchFlight() {
     }
 
     return true;
+  }
+
+  const canLocationBeSearched = (value, reason) => {
+    return value && value.length >=5 && reason != 'reset';
+  }
+
+  const searchSourceLocations = async (event, value, reason) => {
+    if(canLocationBeSearched(value, reason)){
+      let results = await getLocations(value);
+      let data = results.data.data;
+      setFromLocations(data);
+    }
+  }
+
+  const searchDestinationLocations = async (event, value, reason) => {
+    if(canLocationBeSearched(value, reason)){
+      let results = await getLocations(value);
+      let data = results.data.data;
+      setToLocations(data);
+    }
   }
 
   // const disableButton = source == null || destination == null || returnDate == null || departureDate == null;
@@ -151,7 +164,8 @@ function SearchFlight() {
             <div className="p-2 mt-2">
               <InputSearch
                 value={source}
-                input={airports}
+                input={fromLocations}
+                onInputChange={searchSourceLocations}
                 onChange={onSourceSelected}
                 label="Source"
                 className="mt-2" />
@@ -159,7 +173,8 @@ function SearchFlight() {
             <div className="p-2 mt-2">
               <InputSearch
                 value={destination}
-                input={airports}
+                input={toLocations}
+                onInputChange={searchDestinationLocations}
                 onChange={onDestinationSelected}
                 label="Destination"
                 className="mt-2"
@@ -170,6 +185,7 @@ function SearchFlight() {
               <CustomDatePicker
                 value={value}
                 onChange={handleDepartureDate}
+                disablePast
                 format={DATE_FORMAT}
                 label="Departure"
                 className="mt-2"
@@ -180,6 +196,7 @@ function SearchFlight() {
                 <CustomDatePicker
                   value={value}
                   onChange={handleReturnDate}
+                  disablePast
                   format={DATE_FORMAT}
                   label="Return"
                   className="mt-2"
