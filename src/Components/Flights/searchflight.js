@@ -10,9 +10,9 @@ import CardContent from '@mui/material/CardContent';
 import "./searchflight.css";
 import { useState } from "react";
 // import SearchFilter from "./searchFilter";
-import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFlights, getFilterStrategies } from './flight-service';
+import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFilterStrategies } from './flight-service';
 import Information from "./information";
-import {getLocations} from '../../services/flight/amadeus-api-service'
+import {getLocations, getFlights} from '../../services/flight/amadeus-api-service'
 
 
 function SearchFlight() {
@@ -75,7 +75,7 @@ function SearchFlight() {
 
   }
 
-  const fetchFlights = () => {
+  const fetchFlights = async() => {
     let request = {
       'source': source,
       'destination': destination,
@@ -85,8 +85,9 @@ function SearchFlight() {
       'noOfPassengers': noOfPassengers,
       'filterBy' : filterBy
     }
-    setFlights(getFlights(request));
-    console.log("flight list", getFlights(request));
+    let response = await getFlights(request);
+    let flights = response.data;
+    setFlights(flights);
     setShowList(true);
   };
 

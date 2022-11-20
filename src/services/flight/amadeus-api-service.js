@@ -1,6 +1,9 @@
 import axios from 'axios';
 import oauth from 'axios-oauth-client';
 
+var flights = require('../../Components/Flights/flights.json');
+
+
 
 const TOKEN_URL = "https://test.api.amadeus.com/v1/security/oauth2/token";
 const CLIENT_ID = "P3G5IApLLov0ZGVVggFdUz81lnJGUk6Q";
@@ -8,7 +11,7 @@ const CLIENT_SECRET = "agEic6gcwcp06XAV";
 
 const AMADEUS_BASE_URL = "https://test.api.amadeus.com";
 const LOCATIONS_URL = AMADEUS_BASE_URL + "/v1/reference-data/locations"
-const FLIGHTS_AVAILABILITY_URL = AMADEUS_BASE_URL + "v1/shopping/availability/flight-availabilities";
+const FLIGHTS_AVAILABILITY_URL = AMADEUS_BASE_URL + "/v1/shopping/availability/flight-availabilities";
 
 
 export const getClientCredentials = oauth.clientCredentials(
@@ -65,5 +68,14 @@ export const getFlights = async (request) => {
         ]
     }
     let authHeader = await getAuthHeader();
+    const result = await axios.post(FLIGHTS_AVAILABILITY_URL, requestBody, {
+        headers: {
+            // 'X-HTTP-Method-Override' : 'GET',
+            'Content-Type' : "application/json",
+            'Authorization': authHeader
+        }
+    });
+    // let result = {"data" : flights}
+    return result;
 }
 
