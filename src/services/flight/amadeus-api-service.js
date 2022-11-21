@@ -1,7 +1,7 @@
 import axios from 'axios';
 import oauth from 'axios-oauth-client';
 
-var flights = require('../../Components/Flights/flights.json');
+//var flights = require('../../Components/Flights/flights.json');
 
 
 
@@ -76,6 +76,7 @@ export const getFlights = async (request) => {
         }
     });
     // let result = {"data" : flights}
+    console.warn(result.data);
     return result;
 }
 
