@@ -34,7 +34,7 @@ function App() {
           <Route exact path="/bookinghistory" element={<Bookinghistory />} />
           <Route exact path="/feedbackform" element={<Feedback />} />
           <Route exact path="/deals" element={<SearchDeals />} />
-          <Route exact path="/searchHotel" element={<SearchHotel />} />
+          <Route exact path="/hotels" element={<SearchHotel />} />
         </Routes>
 
       </Router>
