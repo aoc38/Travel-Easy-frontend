@@ -173,8 +173,6 @@ export default function AddUser() {
                 className="form-control"
                 placeholder='Enter credit card number'
                 name='cardNumber'
-                minLength={16}
-                maxLength='16'
                 value={cardNumber}
                 onChange={(e) => onCardInputChange(e)}
               />

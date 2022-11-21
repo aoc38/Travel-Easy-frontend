@@ -32,7 +32,7 @@ export default function EditUser() {
   };
 
   useEffect(() => {
-    loadUser()
+    loadUser();
   },[])
 
   const onSubmit= async(e)=>{
@@ -44,7 +44,7 @@ export default function EditUser() {
   const loadUser = async () => {
     const result = await axios.get(`http://localhost:8080/user/${id}`);
     setUser(result.data);
-  }
+  };
   
   return (
     <div className='container'>
