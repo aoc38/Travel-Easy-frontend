@@ -6,12 +6,34 @@ import "./flightdetails.css";
 import { getFlightById } from './flight-service';
 
 
-function Flightdetails(props) {
-    const { id } = useParams()
-    let data = getFlightById(id); //check whether data is valid or not, array should not be empty
-    let flight = data.length == 1 ? data[0] : {};
-    console.log("flight details" , flight);
+function Flightdetails() {
 
+    //getting logged in user from local storage
+    let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
+    console.warn(loggedinUser);
+
+    //getting id from path 
+    const { id,pc } = useParams()
+    
+    console.log("data in Flight details page: ", id);
+    console.log("passenger count in Flight details page: ", pc);
+    let data = getFlightById(id);
+    let flight = data.length == 1 ? data[0] : {};
+    console.log("flight details", flight);
+    let noOfPassengers = pc;
+    // let data = getFlightById(id); //check whether data is valid or not, array should not be empty
+    // let flight = data.length == 1 ? data[0] : {};
+    // console.log("flight details" , flight);
+    const getPrice = (flight) => {
+        return flight.price * noOfPassengers;
+      }
+    const taxAmont = (flight) => {
+        return (15 / 100) * getPrice(flight);
+      }
+
+    const getTotalPrice = (flight) =>{
+        return getPrice(flight) + taxAmont(flight);
+    }
     return (
         <div className='container'>
             <Card style={{ margin: 10 }}>
@@ -19,99 +41,66 @@ function Flightdetails(props) {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="title">
-                                <span className="fromto">{flight.segment[0].origin}</span>
+                                {/* <span className="fromto">{flight.segment[0].origin}</span> */}
+                                <span className="fromto">{flight.departureCityName}</span>
                                 {"-"}
-                                <span>{flight.segment[flight.segment.length - 1].destination}</span>
+                                {/* <span>{flight.segment[flight.segment.length - 1].destination}</span> */}
+                                <span>{flight.arrivalCityName}</span>
+                                <div>
+                                    <span>{flight.airline}</span>
+
+                                </div>
+
                             </div>
+
                         </div>
+
 
                         <div className='col-md-12'>
                             <div className="brdr-btm">
                                 <span>Departure</span>{": "}
+                                {/* <span>{flight.segment[0].departureTime}</span>
                                 <span>{flight.segment[0].departureTime}</span>
-                                <span>{"("}</span><span>arrives {flight.segment[flight.segment.length - 1].arrivalTime} </span><span>{")"}</span>
-                                <span style={{ float: "right" }}>{"20hr15min"}</span>
+                                <span>{"("}</span><span>arrives {flight.segment[flight.segment.length - 1].arrivalTime} </span><span>{")"}</span> */}
+
+                                <span>{flight.departureTime}</span>
+                                <span>{"("}</span><span>arrives {flight.arrivalTime} </span><span>{")"}</span>
+
+                                {/* <span style={{ float: "right" }}>{"20hr15min"}</span> */}
                             </div>
                         </div>
-                        {flight.segment.map((segment, i) => {
-                            const tax = (15 / 100) * (flight.price);
-                            return (
-                                <div className='col-md-12' key={i}>
-                                    <div className="col-md-2" style={{ display: "inline-block" }}>
-                                        <div className="">{flight.company}</div>
-                                        <div>{"Flight 212"}</div>
-                                        <div>{"Boeing"}-{"332154"}</div>
-                                    </div>
-                                    <div className="col-md-4" style={{ display: "inline-block" }}>
-                                        <div className="">{segment.arrivalTime}</div>
-                                        <div>{segment.origin}</div>
-                                        <div>{"("} {"IAH"} {")"}-{"George Bush Intercon"}</div>
-                                    </div>
-                                    <div className="col-md-4" style={{ display: "inline-block" }}>
-                                        <div className="">{segment.departureTime}</div>
-                                        <div>{segment.destination}</div>
-                                        <div>{"("} {"IAH"} {")"}-{"George Bush Intercon"}</div>
-                                    </div>
-                                    <div className="col-md-2" style={{ display: "inline-block" }}>
-                                        <div>{"14hr35m"}</div>
-                                    </div>
-                                    <div>
-                                        <p>Taxes and fees = {tax}</p>
-                                        <p>Total Price {tax + flight.price}</p>
-                                    </div>
-
-                                </div>
-                            )
-                        })}
-                        
-
-
-                        {/* <div className='col-md-12'>
-                            <div className="col-md-2" style={{ display: "inline-block" }}>
-                                <div className="">{"qatar"}</div>
-                                <div>{"Flight 212"}</div>
-                                <div>{"Boeing"}-{"332154"}</div>
-                            </div>
-                            <div className="col-md-4" style={{ display: "inline-block" }}>
-                                <div className="">{"7:10"}</div>
-                                <div>{"Houston"}, {"TX"}</div>
-                                <div>{"("} {"IAH"} {")"}-{"George Bush Intercon"}</div>
-                            </div>
-                            <div className="col-md-4" style={{ display: "inline-block" }}>
-                                <div className="">{"7:10"}</div>
-                                <div>{"Houston"}, {"TX"}</div>
-                                <div>{"("} {"IAH"} {")"}-{"George Bush Intercon"}</div>
-                            </div>
-                            <div className="col-md-2" style={{ display: "inline-block" }}>
-                                <div>{"14hr35m"}</div>
-                            </div>
-
-                        </div>
-                        <div>Connection in {"Dubai"}, {"United Arab Emirates"}</div>
                         <div className='col-md-12'>
-                            <div className="col-md-2" style={{ display: "inline-block" }}>
-                                <div className="">{"qatar"}</div>
-                                <div>{"Flight 212"}</div>
-                                <div>{"Boeing"}-{"332154"}</div>
+                            <div className="brdr-btm">
+                                <span>Flight Price </span>{": "}
+                                <span>{getPrice(flight)}</span>
                             </div>
-                            <div className="col-md-4" style={{ display: "inline-block" }}>
-                                <div className="">{"7:10"}</div>
-                                <div>{"Houston"}, {"TX"}</div>
-                                <div>{"("} {"IAH"} {")"}-{"George Bush Intercon"}</div>
+                        </div>
+                        <div className='col-md-12'>
+                            <div className="brdr-btm">
+                                <span>Tax&Fee</span>{": "}
+                                <span>{taxAmont(flight)}</span>
                             </div>
-                            <div className="col-md-4" style={{ display: "inline-block" }}>
-                                <div className="">{"7:10"}</div>
-                                <div>{"Houston"}, {"TX"}</div>
-                                <div>{"("} {"IAH"} {")"}-{"George Bush Intercon"}</div>
+                        </div>
+                        <div className='col-md-12'>
+                            <div className="brdr-btm">
+                                <span>Total Price </span>{": "}
+                                <span>{getTotalPrice(flight)}</span>
                             </div>
-                            <div className="col-md-2" style={{ display: "inline-block" }}>
-                                <div>{"14hr35m"}</div>
-                            </div>
+                        </div>
 
-                        </div> */}
-                        {/* <button className='btn btn-primary'>Book Now</button> */}
-                        {/* <Link to="/BookForm" className='btn btn-primary'>Book Now</Link> */}
-                        <Link to="/Usermiles" className='btn btn-primary'>Book Now</Link>
+                        {
+
+                            localStorage.getItem("user-info") ?
+                                <>
+                                
+                                    <Link to={{ pathname: `/usermiles/${id}` }} className='btn btn-primary'>Book Now</Link>
+                                </>
+                                :
+                                <>
+                                    <Link to="/loginuser" className='btn btn-primary'>Book Now</Link>
+                                </>
+                        }
+
                     </div>
                 </CardContent>
             </Card>
