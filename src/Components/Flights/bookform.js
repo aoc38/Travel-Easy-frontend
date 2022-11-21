@@ -10,6 +10,12 @@ import "./flight-form.css";
 import { useState } from 'react';
 
 function Bookform(props) {
+  
+    const [person,setPerson] = useState({
+      firstName : null,
+      lastName : null
+    });
+
     const [cardType, setCardType] = useState([
         {
           label: "Amex",

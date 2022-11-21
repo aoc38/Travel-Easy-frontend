@@ -19,7 +19,7 @@ function Flightdetails() {
     console.log("passenger count in Flight details page: ", pc);
     let data = getFlightById(id);
     let flight = data.length == 1 ? data[0] : {};
-    console.log("flight details", flight);
+    console.log("flight details in js : ", flight);
     let noOfPassengers = pc;
     // let data = getFlightById(id); //check whether data is valid or not, array should not be empty
     // let flight = data.length == 1 ? data[0] : {};
