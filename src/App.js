@@ -28,9 +28,9 @@ function App() {
           <Route exact path="/loginuser" element={<LoginPage />} />
           <Route exact path="/searchFlight" element={<SearchFlight />} />
           <Route exact path="/flightdetails/:id/:pc" element={<Flightdetails />} />
-          <Route exact path="/bookform" element={<BookForm />} />
+          <Route exact path="/bookform/:id/:pc" element={<BookForm />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
-          <Route exact path="/usermiles/:id" element={<Usermiles />} />
+          <Route exact path="/usermiles/:id/:pc" element={<Usermiles />} />
           <Route exact path="/bookinghistory" element={<Bookinghistory />} />
           <Route exact path="/feedbackform" element={<Feedback />} />
           <Route exact path="/deals" element={<SearchDeals />} />

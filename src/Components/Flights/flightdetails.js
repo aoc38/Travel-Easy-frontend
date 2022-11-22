@@ -93,7 +93,7 @@ function Flightdetails() {
                             localStorage.getItem("user-info") ?
                                 <>
                                 
-                                    <Link to={{ pathname: `/usermiles/${id}` }} className='btn btn-primary'>Book Now</Link>
+                                    <Link to={{ pathname: `/usermiles/${id}/${noOfPassengers}` }} className='btn btn-primary'>Book Now</Link>
                                 </>
                                 :
                                 <>

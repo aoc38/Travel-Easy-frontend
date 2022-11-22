@@ -63,48 +63,11 @@ export default function FlightStatus() {
       setFromLocations(data);
     }
   }
-
-  // const fetchSourceLocations = async(e,value)=>{
-  //    e.preventDefault();
-  //   let LOCATIONS_URL = 'https://www.flightstats.com/v2/api-next/search/airline-airport';
-  //   const result = await axios.get(LOCATIONS_URL, 
-  //     {
-  //     params: {
-  //         'type': 'airline',
-  //         'query': value
-  //     },
-  //     headers: {
-  //       'Access-Control-Allow-Origin': '*'
-  //   }
-  //   });
-  //   console.warn(result.data);
-  //   setSource(result.data);
-  //   setFromLocations(result.data);
-  // }
-     // `https://www.flightstats.com/v2/api-next/search/airline-airport?query=${source}&type=airline`)
-    // console.log(result.data);
-    // setSource(result.data);
-    //navigate('/');
- 
-
-  // const fetchFlightStatus = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     let response = await axios.post("http://localhost:8080/usersignup", user);
-  //     console.log(response.data);
-  //     console.warn(response.data);
-  //     localStorage.setItem("user-info", JSON.stringify(response.data));
-  //     navigate('/searchFlight');
-  //   } catch (error) {
-  //     console.log(`ERROR: ${error}`);
-  //   }
-
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
           <Card className="mrgn">
-            <div className="col-md-3 mrgn">
               <div className="row">
                 <div className="col-md-12">
                   <div className="d-flex">
@@ -139,7 +102,6 @@ export default function FlightStatus() {
                   </div>
                 </div>
               </div>
-            </div>
             <div className="flt-rt">
               <Button
                 disabled={disableButton}

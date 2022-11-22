@@ -13,10 +13,11 @@ function Usermiles() {
   const userData = (loggedinUser);
 
   //getting params from url
-  const { id } = useParams();
+  const { id,pc } = useParams();
   console.log("data in Flight details page: ", id);
   let data = getFlightById(id);
   let flight = data.length == 1 ? data[0] : {};
+  flight.miles = pc * flight.miles;
   console.log("flight details in user miles : ", flight);
   
 
@@ -78,7 +79,7 @@ function Usermiles() {
           </div>
           
         </CardContent>
-        <Link to="/bookForm" className='btn btn-primary'>Checkout</Link>
+        <Link to= {{ pathname: `/bookForm/${id}/${pc}` }}  className='btn btn-primary'>Checkout</Link>
       </Card>
     </div>
 
