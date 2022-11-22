@@ -10,8 +10,17 @@ import "./searchflight.css";
 import { useState } from "react";
 import { getNoOfPassengers, getFlightBookingTypes, getFilterStrategies } from './flight-service';
 import Information from "./information";
-import { getLocations } from '../../services/flight/amadeus-api-service'
+import { getLocations } from '../../services/flight/amadeus-api-service';
+import { Fab } from '@mui/material';
+import { RateReview } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
+
+const styles = {
+  position: "fixed",
+  bottom: (theme) => theme.spacing(2),
+  right: (theme) => theme.spacing(2)
+}
 
 
 function SearchFlight() {
@@ -274,7 +283,11 @@ function SearchFlight() {
           </div> : <Information />}
         </div>
       </div>
+      <div id='bottom'>
+             <Link className='btn btn-outline-light' to="/feedbackform"><Fab sx={styles}><RateReview /></Fab></Link>
+            </div>
     </div>
+    
   );
 }
 

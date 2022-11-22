@@ -77,9 +77,9 @@ export default function Home() {
                 </table>
             </div>
 
-            <div id='bottom'>
+            {/* <div id='bottom'>
              <Link className='btn btn-outline-light' to="/feedbackform"><Fab sx={styles}><RateReview /></Fab></Link>
-            </div>
+            </div> */}
         </div>
 
        
