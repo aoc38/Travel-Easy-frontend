@@ -8,6 +8,7 @@
             "arrivalCityName":"DENVER",
             "flightType":"DOMESTIC",
             "price":300,
+            "deals_price":110,
             "miles":15000,
             "airline":"American Airlines" ,
             "departureTime":"05:30:00",
@@ -21,11 +22,42 @@
             "arrivalCityName":"ATLANTA",
             "flightType":"DOMESTIC",
             "price":400,
+            "deals_price":2000,
             "miles":15000,
             "airline":"American Airlines" ,
             "departureTime":"08:30:00",
             "arrivalTime":"10:41:00"
+        },
+
+        {
+            "id":"3",
+            "departureDate":"2022-11-22",
+            "arrivalDate":"2022-11-22",
+            "departureCityName":"AUSTIN",
+            "arrivalCityName":"DALLAS",
+            "flightType":"DOMESTIC",
+            "price":400,
+            "deals_price":200,
+            "miles":15000,
+            "airline":"American Airlines" ,
+            "departureTime":"08:30:00",
+            "arrivalTime":"10:41:00"
+        },
+        {
+            "id":"4",
+            "departureDate":"2022-11-26",
+            "arrivalDate":"2022-11-26",
+            "departureCityName":"AUSTIN",
+            "arrivalCityName":"DENVER",
+            "flightType":"DOMESTIC",
+            "price":300,
+            "deals_price":500,
+            "miles":15000,
+            "airline":"American Airlines" ,
+            "departureTime":"05:30:00",
+            "arrivalTime":"08:41:00"
         }
+
 
     ]
 }

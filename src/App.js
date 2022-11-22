@@ -12,7 +12,7 @@ import Usermiles from './Components/Flights/Usermiles';
 import Bookinghistory from './Components/Flights/bookinghistory';
 import React from 'react';
 import Feedback from './Components/Feedback/Feedbackform';
-import SearchDeal from './Components/Deals/searchdeals';
+import SearchDeal from './Components/Deals/SearchDeals';
 import LoginPage from './Users/LoginPage';
 import FlightStatus from './Components/Flights/FlightStatus';
 
@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/usermiles/:id" element={<Usermiles />} />
           <Route exact path="/bookinghistory" element={<Bookinghistory />} />
           <Route exact path="/feedbackform" element={<Feedback />} />
-          <Route exact path="/deals" element={<SearchDeals />} />
+          <Route exact path="/SearchDeals" element={<SearchDeal />} />
           <Route exact path="/flightstatus" element={<FlightStatus />} />
           
         </Routes>

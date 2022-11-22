@@ -1,5 +1,6 @@
 var airports = require('../Flights/airports.json');
 var flights = require('../Flights/flights.json');
+var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
 
 
 export function getFilterStrategies() {
@@ -22,7 +23,7 @@ export function getAirports() {
 
 export function getDeals(request) {
     // TODO make a REST call to backend and get data for testing using JSON file
-    let data =  JSON.parse(JSON.stringify(flights));
+    let data =  JSON.parse(JSON.stringify(flightsJsonData));
     if (request.filterBy && request.filterBy === 'Price: High to Low') {
         data = data.sort((a, b) => a.price - b.price)
     } else if (request.filterBy && request.filterBy === 'Price: Low to high') {
@@ -33,9 +34,11 @@ export function getDeals(request) {
 
 export function getFlightById(id){
     // TODO make a REST call to backend and get data for testing using JSON file
-    let data =  JSON.parse(JSON.stringify(flights));
-    data = data.filter((obj) => obj.id === id);
-    return data;
+    let jsondata =  JSON.parse(JSON.stringify(flightsJsonData));
+    console.log("json data = ",jsondata);
+    let result = jsondata.data.filter((obj) => obj.id === id);
+    console.log("result = ",result);
+    return result;
 }
 
 
