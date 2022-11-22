@@ -86,9 +86,7 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            <div id='bottom'>
-                <Link className='btn btn-outline-light' to="/feedbackform"><Fab sx={styles}><RateReview /></Fab></Link>
-            </div>
+           
         </div>
 
 
