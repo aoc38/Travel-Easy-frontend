@@ -17,7 +17,7 @@ function Bookform() {
   const { id,pc } = useParams();
   console.log("data in Flight details page: ", id);
   let data = getFlightById(id);
-  let flight = data.length == 1 ? data[0] : {};
+  let flight = data.length ===  1 ? data[0] : {};
   flight.price = pc * flight.price;
   flight.miles = pc * flight.miles;
   console.log("flight details in book form : ", flight);

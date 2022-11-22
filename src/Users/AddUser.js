@@ -1,21 +1,25 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext';
+import { useContext } from 'react';
 
 export default function AddUser() {
 
   let navigate = useNavigate();
   // const [cards,setCards] = useState([]);
-
+  const {SetloggedInUser} = useContext(UserContext);
   const [user, setUser] = useState({
-    firstName: null,
-    middleName: null,
-    lastName: null,
-    email: null,
-    username: null,
-    password: null,
-    mailingAddress: null,
-    card: {}
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
+    mailingAddress: "",
+    card: {
+      cardType:'VISA'
+    }
     // cards:[]
     // cardNumber: null,
     // expiryDate: null,
@@ -48,7 +52,8 @@ export default function AddUser() {
       let response = await axios.post("http://localhost:8080/usersignup", user);
       console.log(response.data);
       console.warn(response.data);
-      localStorage.setItem("user-info", JSON.stringify(response.data));
+      //localStorage.setItem("user-info", JSON.stringify(response.data));
+      SetloggedInUser(JSON.stringify(response.data));
       navigate('/searchFlight');
     } catch (error) {
       console.log(`ERROR: ${error}`);
