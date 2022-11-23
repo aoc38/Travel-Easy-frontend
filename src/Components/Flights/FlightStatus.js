@@ -1,9 +1,13 @@
 import React from 'react'
-import Card from '../Common/Card';
+// import Card from '../Common/Card';
 import InputSearch from "../Common/searchbar";
 import CustomDatePicker from "../Common/date-picker";
 import { useState } from "react";
+// import Button from "../Common/button";
+import { Card } from '@mui/material';
 import Button from "../Common/button";
+// import InputSearch from "../Common/searchbar";
+// import CustomDatePicker from "../Common/date-picker";
 import FlightStatusList from './FlightStatusList';
 import Information from "./information";
 import { getLocations } from '../../services/flight/amadeus-api-service'
@@ -100,22 +104,22 @@ export default function FlightStatus() {
 
   return (
     <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-12">
-          <Card className="mrgn">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d-flex">
-                  <div className="p-2 mt-2">
-                    <InputSearch
+    <div className="row">
+      <div className="col-md-12">
+        <Card className="mrgn-flight-status">
+        <div className="row">
+                 <div className="col-md-12">
+                   <div className="d-flex justify-content-center">
+                     <div className="p-2 mt-2">
+                     <InputSearch
                       value={source}
                       input={fromLocations}
                       onChange={onSourceSelected}
                       onInputChange={searchSourceLocations}
                       label="Source"
                       className="mt-2" />
-                  </div>
-                  <div className="p-2 mt-2">
+                    </div>
+                    <div className="p-2 mt-2">
                     <InputSearch
                       value={destination}
                       input={toLocations}
@@ -124,9 +128,9 @@ export default function FlightStatus() {
                       label="Destination"
                       className="mt-2"
                     />
-                  </div>
+                    </div>
 
-                  <div className="p-2 mt-2">
+                    <div className="p-2 mt-2">
                     <CustomDatePicker
                       value={value}
                       onChange={handleDepartureDate}
@@ -134,24 +138,26 @@ export default function FlightStatus() {
                       label="Departure"
                       className="mt-2"
                     />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="flt-rt">
-              <Button
+                <div className='col-md-12'>
+                <div className="p-2 mt-2 text-center">
+                <Button
                 disabled={disableButton}
                 onClick={fetchFlightStatus}
                 btname="Search" />
-            </div>
+                    </div>
+                </div>
+              </div>
           </Card>
-        </div>
-      </div>
-      <div className="col-md-12 mt-3">
-          {showList ? <div>
-            <FlightStatusList fsdata={flightStatus} />
-          </div> : <Information />}
-        </div>
-    </div>
+          </div>
+          <div className="col-md-12 mt-3">
+           {showList ? <div>
+             <FlightStatusList fsdata={flightStatus} />
+           </div> : <Information />}
+         </div>
+          </div>
+          </div>
   );
 }

@@ -6,6 +6,7 @@ export default function FlightStatusList(props) {
 
 
   const isValid = () => {
+    console.log("flights data", props.fsdata);
     if (props.hasOwnProperty("fsdata") && props.fsdata !== null) {
       return true;
     }
