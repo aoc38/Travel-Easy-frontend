@@ -17,8 +17,8 @@ export default function Feedbackform() {
   let navigate = useNavigate();
 
   const [feedback, setFeedback] = useState({
-    comments: null,
-    userRating: null ,
+    comments: "",
+    userRating: "" ,
   });
  const { comments, userRating } = feedback;
  // const {comments} =feedback;
