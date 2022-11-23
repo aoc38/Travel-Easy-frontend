@@ -3,10 +3,9 @@ import React from 'react'
 import './rating.css';
 
 
- export default function Selectrating({select}) {
-  const [selected,setSelected] = useState(10)
+ export default function Selectrating({select,selected}) {
+  
   const handleChange=(e)=>{
-    setSelected(+e.currentTarget.value)
     select(+e.currentTarget.value)
   }
   return (

@@ -1,0 +1,57 @@
+import { useState } from "react";
+import React from "react";
+import axios from "axios";
+import Card from "../Common/Card";
+import Button from "../Common/button";
+import "./rating.css";
+import { Link, useNavigate } from "react-router-dom";
+
+
+
+export default function Feedbackform() {
+
+  let navigate = useNavigate();
+
+  const [feedback,setFeedback] = useState({
+    rating:null,
+    comments:null    
+  });
+
+  const {rating, comments} =feedback
+
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post("http://localhost:8080/feedback", feedback);
+    navigate("/home");
+  };
+
+  const onInputChange= (e) =>{
+    setFeedback({...feedback,[e.target.name]:e.target.value})
+  };
+
+  return (
+    <Card>
+      <form onSubmit={handleSubmit}>
+        <h2>How would you rate your service with us?</h2>
+      
+        <div className='mb-3'>
+            <input
+              type={"number"}
+              className="form-control"
+              placeholder='Please rate us (1 as lowest - 10 as highest)'
+              name='rating'
+            value={rating}
+              onChange={(e) => onInputChange(e)} 
+              />
+               <input
+            type={"text"}
+            placeholder='Write a review'
+            name='comments'
+            value={comments}
+            onChange={(e) => onInputChange(e)}
+          />
+        </div>
+      </form>
+    </Card>
+  );
+}

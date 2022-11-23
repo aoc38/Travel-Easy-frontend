@@ -20,10 +20,7 @@ function Dealsdetails() {
     let data = getFlightById(id);
     let flight = data.length == 1 ? data[0] : {};
     console.log("flight details", flight);
-    //let noOfPassengers = pc;
-    // let data = getFlightById(id); //check whether data is valid or not, array should not be empty
-    // let flight = data.length == 1 ? data[0] : {};
-    // console.log("flight details" , flight);
+    
     const getPrice = (flight) => {
         return flight.deals_price;
       }
