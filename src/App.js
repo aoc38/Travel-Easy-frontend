@@ -15,6 +15,7 @@ import Feedback from './Components/Feedback/Feedbackform';
 import SearchDeal from './Components/Deals/SearchDeals';
 import LoginPage from './Users/LoginPage';
 import FlightStatus from './Components/Flights/FlightStatus';
+import Dealsdetails from './Components/Deals/Dealsdetails';
 
 function App() {
 
@@ -28,6 +29,8 @@ function App() {
           <Route exact path="/loginuser" element={<LoginPage />} />
           <Route exact path="/searchFlight" element={<SearchFlight />} />
           <Route exact path="/flightdetails/:id/:pc" element={<Flightdetails />} />
+          <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
+
           <Route exact path="/bookform" element={<BookForm />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
           <Route exact path="/usermiles/:id" element={<Usermiles />} />

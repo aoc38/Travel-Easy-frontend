@@ -2,8 +2,8 @@ import React from 'react';
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import { Link, useParams } from "react-router-dom";
-import "./flightdetails.css";
-import { getFlightById } from './flight-service';
+import "../Flights/flightdetails.css";
+import { getFlightById } from '../Flights/flight-service';
 
 
 function Dealsdetails() {
@@ -28,6 +28,13 @@ function Dealsdetails() {
         return flight.deals_price;
       }
    
+      const getPriceMiles = (flight) => {
+        return flight.miles;
+      }
+
+      const getTotalPrice_miles = (flight) =>{
+        return getPriceMiles(flight);
+    }
 
     const getTotalPrice = (flight) =>{
         return getPrice(flight);
@@ -39,10 +46,8 @@ function Dealsdetails() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="title">
-                                {/* <span className="fromto">{flight.segment[0].origin}</span> */}
                                 <span className="fromto">{flight.departureCityName}</span>
                                 {"-"}
-                                {/* <span>{flight.segment[flight.segment.length - 1].destination}</span> */}
                                 <span>{flight.arrivalCityName}</span>
                                 </div>
 
@@ -52,22 +57,25 @@ function Dealsdetails() {
                         <div className='col-md-12'>
                             <div className="brdr-btm">
                                 <span>Departure</span>{": "}
-                                {/* <span>{flight.segment[0].departureTime}</span>
-                                <span>{flight.segment[0].departureTime}</span>
-                                <span>{"("}</span><span>arrives {flight.segment[flight.segment.length - 1].arrivalTime} </span><span>{")"}</span> */}
-
+                                
                                 <span>{flight.departureTime}</span>
                                 <span>{"("}</span><span>arrives {flight.arrivalTime} </span><span>{")"}</span>
 
-                                {/* <span style={{ float: "right" }}>{"20hr15min"}</span> */}
                             </div>
                         </div>
                       
                        
                         <div className='col-md-12'>
                             <div className="brdr-btm">
-                                <span>Total Price </span>{": "}
-                                <span>{getTotalPrice(flight)}</span>
+                                <span>Total Price in Dollars</span>{": "}
+                                <span>${getTotalPrice(flight)}</span>
+                            </div>
+                        </div>
+
+                        <div className='col-md-12'>
+                            <div className="brdr-btm">
+                                <span>Total Price in Miles</span>{": "}
+                                <span>{getTotalPrice_miles(flight)} miles</span>
                             </div>
                         </div>
 
@@ -91,4 +99,4 @@ function Dealsdetails() {
     );
 }
 
-export default Flightdetails;
+export default Dealsdetails;

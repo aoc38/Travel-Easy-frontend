@@ -14,10 +14,16 @@ export default function Feedbackform() {
     userRating: null,
   });
   const { comments, userRating } = feedback;
+  
+const [selected,setSelected] =useState(10);
 
-  const onRatingChange = (e) => {
-    //setFeedback({...feedback,...{rating:{...feedback.rating,[e.target.name]:e.target.value}}});
-    setFeedback({ ...feedback, [e.target.name]: e.target.value });
+const handleChange = (e) =>{
+  setSelected(+e.target.value);
+  //selected(+e.target.value);
+  setFeedback({ ...feedback.userRating, [e.target.name]: e.target.value }); 
+}
+   const onRatingChange = (e) => {
+    setFeedback({ ...feedback.comments, [e.target.name]: e.target.value });
 
   };
 
@@ -39,8 +45,8 @@ export default function Feedbackform() {
               id='num1'
               name='userRating'
               value='1'
-              checked = {feedback.userRating === 1}
-              onChange={(e) => onRatingChange(e)}
+              checked = {selected=== 1? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num1'>1</label>
           </li>
@@ -50,8 +56,8 @@ export default function Feedbackform() {
               id='num2'
               name='userRating'
               value='2'
-              checked={userRating === 2}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected=== 2? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num2'>2</label>
           </li>
@@ -61,8 +67,8 @@ export default function Feedbackform() {
               id='num3'
               name='userRating'
               value='3'
-              checked={userRating === 3}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected=== 3? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num3'>3</label>
           </li>
@@ -72,8 +78,8 @@ export default function Feedbackform() {
               id='num4'
               name='userRating'
               value='4'
-              checked={userRating === 4}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected=== 4? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num4'>4</label>
           </li>
@@ -83,8 +89,8 @@ export default function Feedbackform() {
               id='num5'
               name='userRating'
               value='5'
-              checked={userRating === 5}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected=== 5? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num5'>5</label>
           </li>
@@ -94,8 +100,8 @@ export default function Feedbackform() {
               id='num6'
               name='userRating'
               value='6'
-              checked={userRating === 6}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected=== 6? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num6'>6</label>
           </li>
@@ -105,8 +111,8 @@ export default function Feedbackform() {
               id='num7'
               name='userRating'
               value='7'
-              checked={userRating === 7}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected=== 7? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num7'>7</label>
           </li>
@@ -116,8 +122,8 @@ export default function Feedbackform() {
               id='num8'
               name='userRating'
               value='8'
-              checked={userRating === 8}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected=== 8? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num8'>8</label>
           </li>
@@ -127,8 +133,8 @@ export default function Feedbackform() {
               id='num9'
               name='userRating'
               value='9'
-              checked={userRating === 9}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected=== 9? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num1'>9</label>
           </li>
@@ -138,8 +144,8 @@ export default function Feedbackform() {
               id='num10'
               name='userRating'
               value='10'
-              checked={userRating === 10}
-              onChange={(e) => onRatingChange(e)}
+              checked={selected === 10? userRating === selected:false}
+              onChange={handleChange}
             />
             <label htmlFor='num1'>10</label>
           </li>

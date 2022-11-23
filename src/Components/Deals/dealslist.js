@@ -33,21 +33,7 @@ function DealsList(props) {
   }
   return (
     <div className="list-flight">
-         <div className="flex-container">
-                <div>
-                  <h5>SOURCE</h5>
-                </div>
-                <div>
-                  <h5>DESTINATION</h5>
-                </div>
-              <div>
-                  <h5>ROUND TRIP PRICE</h5>
-              </div>
-              <div>
-                  <h5>ROUND TRIP PRICE IN MILES</h5>
-              </div>
-              </div>
-     {!isValid() ?
+      {!isValid() ?
         <div>No Deals Found</div> :
       props.deals.map((flight, i) => {
         return (
@@ -70,9 +56,9 @@ function DealsList(props) {
                   >
                     Select
                   </Link>
-        </div>
-        <div>
-                  <h5>${getPriceinMiles(flight)}</h5>
+              </div>
+              <div>
+                  <h5>{getPriceinMiles(flight)} miles</h5>
                   
                   <Link
                     to={{ pathname: `/dealsdetails/${flight.id}` }}
