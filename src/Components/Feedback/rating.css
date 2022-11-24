@@ -18,14 +18,14 @@ ul {
   text-align: center;
 }
 
-.rating {
+.ratingButton {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin: 30px 0 40px;
 }
 
-.rating li,
+.ratingButton li,
 .num-display {
   position: relative;
   background: #f4f4f4;
@@ -39,7 +39,7 @@ ul {
   transition: 0.3s;
 }
 
-.rating li label {
+.ratingButton li label {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -51,7 +51,7 @@ ul {
   cursor: pointer;
 }
 
-.rating li:hover,
+.ratingButton li:hover,
 .num-display {
   background: #035efc;
   color: #fff;
