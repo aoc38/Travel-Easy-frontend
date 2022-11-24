@@ -43,7 +43,7 @@ export default function Navbar() {
                                 </Link>
                                 <Link className='btn btn-outline-light' to="/hotels">Hotels
                                 </Link>
-                                <Link className='btn btn-outline-light' to="/deals">Deals
+                                <Link className='btn btn-outline-light' to="/searchdeals">Deals
                                 </Link>
 
                             </>
@@ -53,7 +53,9 @@ export default function Navbar() {
                                 </Link>
                                 <Link className='btn btn-outline-light' to="/hotels">Hotels
                                 </Link>
-                                <Link className='btn btn-outline-light' to="/deals">Deals
+                                <Link className='btn btn-outline-light' to="/searchdeals">Deals
+                                </Link>
+                                <Link className='btn btn-outline-light' to="/flightstatus">Flight Status
                                 </Link>
                                 <Link className='btn btn-outline-light' to="/loginuser">Login
                                 </Link>
@@ -84,9 +86,7 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            <div id='bottom'>
-                <Link className='btn btn-outline-light' to="/feedbackform"><Fab sx={styles}><RateReview /></Fab></Link>
-            </div>
+           
         </div>
 
 

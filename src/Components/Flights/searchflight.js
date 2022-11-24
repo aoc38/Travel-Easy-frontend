@@ -6,13 +6,21 @@ import "./flight-form.css";
 import CustomDatePicker from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
 import Card from "@mui/material/Card";
-import CardContent from '@mui/material/CardContent';
 import "./searchflight.css";
 import { useState } from "react";
-// import SearchFilter from "./searchFilter";
-import { getNoOfPassengers, getFlightBookingTypes, getAirports, getFilterStrategies } from './flight-service';
+import { getNoOfPassengers, getFlightBookingTypes, getFilterStrategies } from './flight-service';
 import Information from "./information";
-import {getLocations, getFlights} from '../../services/flight/amadeus-api-service'
+import { getLocations } from '../../services/flight/amadeus-api-service';
+import { Fab } from '@mui/material';
+import { RateReview } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
+
+const styles = {
+  position: "fixed",
+  bottom: (theme) => theme.spacing(2),
+  right: (theme) => theme.spacing(2)
+}
 
 
 function SearchFlight() {
@@ -36,6 +44,9 @@ function SearchFlight() {
   const [flights, setFlights] = useState([]);
   const [filterBy, setFilterBy] = useState("");
   const [disableButton, setDisableButton] = useState(true);
+  const [flightType,setFlightType] = useState("");
+
+
 
   const handleBookType = (id) => {
     setBookingType(id);
@@ -75,7 +86,24 @@ function SearchFlight() {
 
   }
 
-  const fetchFlights = async() => {
+  // const fetchFlights = async() => {
+  //   let request = {
+  //     'source': source,
+  //     'destination': destination,
+  //     'departureDate': departureDate,
+  //     'returnDate': returnDate,
+  //     'bookingType': bookingType,
+  //     'noOfPassengers': noOfPassengers,
+  //     'filterBy' : filterBy
+  //   }
+  //   let response = await getFlights(request);
+  //   console.log(response);
+  //   let flights = response.data;
+  //   setFlights(flights);
+  //   setShowList(true);
+  // };
+
+  const fetchFlights = async () => {
     let request = {
       'source': source,
       'destination': destination,
@@ -83,16 +111,33 @@ function SearchFlight() {
       'returnDate': returnDate,
       'bookingType': bookingType,
       'noOfPassengers': noOfPassengers,
-      'filterBy' : filterBy
+      'filterBy': filterBy
     }
-    let response = await getFlights(request);
-    console.log(response);
+    
+    let response = await getFlightSearchReq(request);
+    console.log("response from 108 in search flight : ",response);
     let flights = response.data;
     setFlights(flights);
     setShowList(true);
-  };
+  }
 
-  const onFilterSelected = (type) =>{
+  function getFlightSearchReq(request) {
+    // TODO make a REST call to backend and get data for testing using JSON file
+
+    let data = JSON.parse(JSON.stringify(flightsJsonData));
+    console.log(data);
+    if (request.filterBy && request.filterBy === 'Price: High to Low') {
+      data = data.sort((a, b) => a.price - b.price)
+    } else if (request.filterBy && request.filterBy === 'Price: Low to high') {
+      data = data.sort((a, b) => b.price - a.price);
+    } else if (request.filterBy && request.filterBy === 'Airline') {
+      data = data.sort((a, b) => b.company - a.company);
+    }
+    return data;
+  }
+
+
+  const onFilterSelected = (type) => {
     setFilterBy(type);
     fetchFlights();
   }
@@ -103,7 +148,7 @@ function SearchFlight() {
   }
 
   const disableSearchBtn = () => {
-    if(noOfPassengers && source !== '' && destination !== '' && departureDate !== '') {
+    if (noOfPassengers && source !== '' && destination !== '' && departureDate !== '') {
       if (bookReturn) {
         return returnDate === '';
       } else {
@@ -115,11 +160,11 @@ function SearchFlight() {
   }
 
   const canLocationBeSearched = (value, reason) => {
-    return value && value.length >=5 && reason != 'reset';
+    return value && value.length >= 3 && reason != 'reset';
   }
 
   const searchSourceLocations = async (event, value, reason) => {
-    if(canLocationBeSearched(value, reason)){
+    if (canLocationBeSearched(value, reason)) {
       let results = await getLocations(value);
       let data = results.data.data;
       setFromLocations(data);
@@ -127,7 +172,7 @@ function SearchFlight() {
   }
 
   const searchDestinationLocations = async (event, value, reason) => {
-    if(canLocationBeSearched(value, reason)){
+    if (canLocationBeSearched(value, reason)) {
       let results = await getLocations(value);
       let data = results.data.data;
       setToLocations(data);
@@ -140,105 +185,109 @@ function SearchFlight() {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
-        <Card className="mrgn">
-        {/* <div className="col-md-3 ml-4"> */}
-          <div className="col-md-3 mrgn">
-          <div className="btn-group d-flex justify-content-center">
-            {bookingTypes.map((type) => {
-              return (
-                <button
-                  type="button"
-                  className={`btn ${bookingType === type.id ? "active_btn" : ""}`}
-                  key={type.id}
-                  onClick={() => handleBookType(type.id)}
-                >
-                  {type.name}
-                </button>
-              );
-            })}
-          </div>
-          </div>
-          <div className="row">
-          <div className="col-md-12">
-          <div className="d-flex">
-            <div className="p-2 mt-2">
-              <InputSearch
-                value={source}
-                input={fromLocations}
-                onInputChange={searchSourceLocations}
-                onChange={onSourceSelected}
-                label="Source"
-                className="mt-2" />
+          <Card className="mrgn">
+            {/* <div className="col-md-3 ml-4"> */}
+            <div className="col-md-3 mrgn">
+              <div className="btn-group d-flex justify-content-center">
+                {bookingTypes.map((type) => {
+                  return (
+                    <button
+                      type="button"
+                      className={`btn ${bookingType === type.id ? "active_btn" : ""}`}
+                      key={type.id}
+                      onClick={() => handleBookType(type.id)}
+                    >
+                      {type.name}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            <div className="p-2 mt-2">
-              <InputSearch
-                value={destination}
-                input={toLocations}
-                onInputChange={searchDestinationLocations}
-                onChange={onDestinationSelected}
-                label="Destination"
-                className="mt-2"
-              />
-            </div>
+            <div className="row">
+              <div className="col-md-12">
+                <div className="d-flex">
+                  <div className="p-2 mt-2">
+                    <InputSearch
+                      value={source}
+                      input={fromLocations}
+                      onInputChange={searchSourceLocations}
+                      onChange={onSourceSelected}
+                      label="Source"
+                      className="mt-2" />
+                  </div>
+                  <div className="p-2 mt-2">
+                    <InputSearch
+                      value={destination}
+                      input={toLocations}
+                      onInputChange={searchDestinationLocations}
+                      onChange={onDestinationSelected}
+                      label="Destination"
+                      className="mt-2"
+                    />
+                  </div>
 
-            <div className="p-2 mt-2">
-              <CustomDatePicker
-                value={value}
-                onChange={handleDepartureDate}
-                disablePast
-                format={DATE_FORMAT}
-                label="Departure"
-                className="mt-2"
-              />
+                  <div className="p-2 mt-2">
+                    <CustomDatePicker
+                      value={value}
+                      onChange={handleDepartureDate}
+                      disablePast
+                      format={DATE_FORMAT}
+                      label="Departure"
+                      className="mt-2"
+                    />
+                  </div>
+                  <div className="p-2 mt-2">
+                    {bookingType === "return" ? (
+                      <CustomDatePicker
+                        value={value}
+                        onChange={handleReturnDate}
+                        disablePast
+                        format={DATE_FORMAT}
+                        label="Return"
+                        className="mt-2"
+                      />
+                    ) : null}
+                  </div>
+                  <div className="p-2 mt-2">
+                    <SelectDropdown
+                      label="No of travellers"
+                      value={noOfPassengersList}
+                      onChange={handleNumberOfPassengers}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="p-2 mt-2">
-              {bookingType === "return" ? (
-                <CustomDatePicker
-                  value={value}
-                  onChange={handleReturnDate}
-                  disablePast
-                  format={DATE_FORMAT}
-                  label="Return"
-                  className="mt-2"
-                />
-              ) : null}
+            {/* </div> */}
+            <div className="flt-rt">
+              <Button
+
+                disabled={disableButton}
+                onClick={fetchFlights}
+                btname="Search Flights" />
             </div>
-            <div className="p-2 mt-2">
-              <SelectDropdown
-                label="No of travellers"
-                value={noOfPassengersList}
-                onChange={handleNumberOfPassengers}
-              />
-            </div>
-          </div>
-          </div>
-          </div>
-        {/* </div> */}
-        <div className="flt-rt">
-            <Button 
-            
-            disabled={disableButton} 
-            onClick={fetchFlights} 
-            btname="Search Flights" />
-            </div>
-        </Card>
+          </Card>
         </div>
         <div className="col-md-12 mt-3">
 
           {showList ? <div>
             {/* <SearchFilter value={getFilterStrategies()} onChange={onFilterSelected}/> */}
-            
-            <SelectDropdown
-                label="Sort By"
-                value={getFilterStrategies()}
-                onChange={onFilterSelected}
-              />
 
-            <FlightList flights={flights} />
-          </div> : <Information/>}
+            <SelectDropdown
+              label="Sort By"
+              value={getFilterStrategies()}
+              onChange={onFilterSelected}
+            />
+
+            <FlightList flights={flights} noOfPassengers = {noOfPassengers}  />
+          </div> : <Information />}
         </div>
       </div>
+      <div id='bottom'>
+             <Link className='btn btn-outline-light' to="/feedbackform"><Fab sx={styles}><RateReview /></Fab></Link>
+            </div>
     </div>
+    
   );
 }
 
