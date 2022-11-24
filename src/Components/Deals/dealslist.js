@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
 import { parse } from 'tinyduration';
 import "../Flights/flightlist.css";
+import { getDeals, getAirports, getFilterStrategies } from "./deals-service";
 
 function DealsList(props) {
 
@@ -34,11 +35,18 @@ function DealsList(props) {
   return (
     <div className="list-flight">
       {!isValid() ?
+
         <div>No Deals Found</div> :
+        
       props.deals.map((flight, i) => {
         return (
-          <Card style={{ margin: "10px" }} className="card-list">
           
+          <Card style={{ margin: "10px" }} className="card-list">
+           <SelectDropdown
+                label="Sort By"
+                value={getFilterStrategies()}
+                onChange={onFilterSelected}
+              />
             <CardContent key={flight.id}>
               <div className="flex-container">
                 <div>
@@ -51,7 +59,7 @@ function DealsList(props) {
                   <h5>${getPrice(flight)}</h5>
                   
                   <Link
-                    to={{ pathname: `/dealsdetails/${flight.id}` }}
+                    to={{ pathname: `/dealsdetails/${flight.id}`, state:"isMiles: false"  }}
                     className="btn btn-primary"
                   >
                     Select
@@ -61,7 +69,7 @@ function DealsList(props) {
                   <h5>{getPriceinMiles(flight)} miles</h5>
                   
                   <Link
-                    to={{ pathname: `/dealsdetails/${flight.id}` }}
+                    to={{ pathname: `/dealsdetails/${flight.id}`, state:"isMiles: true"}}
                     className="btn btn-primary"
                   >
                     Select

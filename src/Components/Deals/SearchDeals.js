@@ -16,7 +16,7 @@ import {
   getLocations,
   getFlights,
 } from "../../services/flight/amadeus-api-service";
-var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
+var flightsJsonData = require("../DummyDataFiles/FlightsDummy/FlightSearchData.json");
 
 function SearchDeal() {
   const [source, setSource] = useState("");
@@ -26,7 +26,7 @@ function SearchDeal() {
   const [disableButton, setDisableButton] = useState(true);
   const [destination, setDestination] = useState("");
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000000);
+  const [maxPrice, setMaxPrice] = useState(0);
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [value, setValue] = useState("");
@@ -82,35 +82,37 @@ function SearchDeal() {
       destination: destination,
       departureDate: departureDate,
       returnDate: returnDate,
-      minPrice:minPrice,
-      maxPrice:maxPrice,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
       filterBy: filterBy,
     };
     let response = await getDealsSearchReq(request);
-    console.log("response from 108 in search flight : ",response);
-    let deals =response;
-  
-    
-   
+    console.log("response from 108 in search flight : ", response);
+    let deals = response;
+
     console.log("deals", deals);
     setDeals(deals);
     setShowList(true);
+  };
+
+  function getDealsSearchReq(request) {
+    // TODO make a REST call to backend and get data for testing using JSON file
+
+    let data = JSON.parse(JSON.stringify(flightsJsonData));
+    console.log("Data:", data, "Request:", request);
+    if (request.filterBy && request.filterBy === "Price: High to Low") {
+      data = data.sort((a, b) => a.deals_price - b.deals_price);
+    } else if (request.filterBy && request.filterBy === "Price: Low to high") {
+      data = data.sort((a, b) => b.deals_price - a.deals_price);
+    }
+    return data.data.filter(
+      (obj) =>
+        (obj.deals_price > request.minPrice) &&
+        (obj.deals_price < request.maxPrice )&&
+       (obj.departureCityName === request.source.address.cityName) &&
+        (obj.arrivalCityName === request.destination.address.cityName)
+    );
   }
-
-
-
-function getDealsSearchReq(request) {
-  // TODO make a REST call to backend and get data for testing using JSON file
-
-  let data = JSON.parse(JSON.stringify(flightsJsonData));
-  console.log("Data:",data, "Request:",request);
-  if (request.filterBy && request.filterBy === 'Price: High to Low') {
-    data = data.sort((a, b) => a.deals_price - b.deals_price)
-  } else if (request.filterBy && request.filterBy === 'Price: Low to high') {
-    data = data.sort((a, b) => b.deals_price - a.deals_price);
-  } 
-  return data.data.filter((obj) => obj.deals_price > request.minPrice && obj.deals_price <request.maxPrice);
-}
   const disableSearchBtn = () => {
     if (
       source !== "" &&
@@ -239,7 +241,6 @@ function getDealsSearchReq(request) {
                 value={getFilterStrategies()}
                 onChange={onFilterSelected}
               />
-
               <DealsList deals={deals} />
             </div>
           ) : (
