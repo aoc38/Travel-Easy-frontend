@@ -161,8 +161,8 @@ function SearchDeal() {
                       input={fromLocations}
                       onInputChange={searchSourceLocations}
                       onChange={onSourceSelected}
-                      label="Source"
-                      className="mt-2"
+                      label="From"
+                      className=""
                     />
                   </div>
                   <div className="p-2 mt-2">
@@ -171,7 +171,7 @@ function SearchDeal() {
                       input={toLocations}
                       onInputChange={searchDestinationLocations}
                       onChange={onDestinationSelected}
-                      label="Destination"
+                      label="To"
                       className="mt-2"
                     />
                   </div>
@@ -236,11 +236,11 @@ function SearchDeal() {
         <div className="col-md-12 mt-3">
           {showList ? (
             <div>
-              <SelectDropdown
+             <SelectDropdown
                 label="Sort By"
                 value={getFilterStrategies()}
                 onChange={onFilterSelected}
-              />
+          />
               <DealsList deals={deals} />
             </div>
           ) : (

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { parse } from 'tinyduration';
 import "../Flights/flightlist.css";
 import { getDeals, getAirports, getFilterStrategies } from "./deals-service";
+import SelectDropdown from "../Common/dropdown";
 
 function DealsList(props) {
 
@@ -42,7 +43,7 @@ function DealsList(props) {
         return (
           
           <Card style={{ margin: "10px" }} className="card-list">
-         
+          
             <CardContent key={flight.id}>
               <div className="flex-container">
                 <div>
