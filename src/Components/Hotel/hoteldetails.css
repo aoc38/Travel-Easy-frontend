@@ -1,3 +1,16 @@
 .brdr-btm {
     border-bottom: 1px solid #ccc;
 }
+
+.mrgn {
+    margin: 10px;
+}
+
+.ml-4 {
+    margin-left: 10px;
+}
+
+.flt-rt {
+    float: right;
+    margin: 10px;
+  }

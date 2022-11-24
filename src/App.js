@@ -15,6 +15,7 @@ import Feedback from './Components/Feedback/Feedbackform';
 import SearchDeals from './Components/Deals/SearchDeals';
 import SearchHotel from './Components/Hotel/searchHotel';
 import LoginPage from './Users/LoginPage';
+import Hoteldetails from './Components/Hotel/hoteldetails';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/feedbackform" element={<Feedback />} />
           <Route exact path="/deals" element={<SearchDeals />} />
           <Route exact path="/hotels" element={<SearchHotel />} />
+          <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} />
         </Routes>
 
       </Router>

@@ -72,14 +72,10 @@ function SearchHotel() {
 
       const disableSearchBtn = () => {
         if(guestsCount && destination !== '' && checkInDate !== '' && checkOutDate !== '') {
-          
-            return false;
-          
+          return false;
         }
-    
-        return true;
-    
-      }
+          return true;
+        }
 
       const canLocationBeSearched = (value, reason) => {
         return value && value.length >=5 && reason !== 'reset';

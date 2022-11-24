@@ -56,8 +56,9 @@ function FlightList(props) {
 
   return (
     <div className="list-flight">
-      {!isValid() ?
-        <div>No Flights Found</div> :
+      {
+         !isValid() ?
+          <div>"No Flights Found"</div> :
         props.flights.data.map((flight, i) => {
           return (
             <Card style={{ margin: "10px" }} className="card-list">

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { parse } from 'tinyduration';
 import "./hotelList.css";
 import {getHotelOffers} from '../../services/hotel/amadeus-api-service'
+import HotelDetails from "./hoteldetails";
 
 function HotelList(props) {
 
@@ -50,7 +51,7 @@ function HotelList(props) {
                   <div>
                    
                     {/* <Link to={{ pathname: "/flightdetails/'${this.props.testvalue}", state: { flight } }} className="btn btn-primary">Select</Link> */}
-                    <Link to={{ pathname: `/hoteldetails/${hotel.hotelId}` }} className="btn btn-primary" >Select</Link>
+                    <Link to={{ pathname: `/hoteldetails/${hotel.hotelId}`, state: hotel.hotelId }} className="btn btn-primary" >Select</Link>
 
                   </div>
                  

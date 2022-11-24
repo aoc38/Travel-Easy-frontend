@@ -60,11 +60,12 @@ export const getHotels = async (request) => {
 }
 
 
-export const getHotelOffers = async (hotelId) => {
+export const getHotelOffers = async (request) => {
     let authHeader = await getAuthHeader();
     const result = await axios.get( HOTEL_OFFER_AVAILABILITY_URL, {
         params: {
-            'hotelId' : hotelId
+            'hotelIds' : request.hotelId,
+            'adults' : 1
         },
         headers: {
             'Authorization': authHeader
