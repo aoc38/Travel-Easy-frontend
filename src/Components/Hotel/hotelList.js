@@ -22,10 +22,7 @@ function HotelList(props) {
     return hotel.hotelId;
   }
 
-  const getHotelOffer = (hotel) => {
-    let offers = getHotelOffers(getHotelId(hotel));
-    return offers;
-  }
+  
 
   
 
@@ -50,14 +47,14 @@ function HotelList(props) {
                   <div>
                     <h5>{getHotelName(hotel)}</h5>
                   </div>
-
-                 
                   <div>
-                    
-                    {/* <Link to={{ pathname: "/flightdetails/'${this.props.testvalue}", state: { flight } }} className="btn btn-primary">Select</Link> */}
                    
+                    {/* <Link to={{ pathname: "/flightdetails/'${this.props.testvalue}", state: { flight } }} className="btn btn-primary">Select</Link> */}
+                    <Link to={{ pathname: `/hoteldetails/${hotel.hotelId}` }} className="btn btn-primary" >Select</Link>
 
                   </div>
+                 
+                  
                 </div>
             </CardContent>
             </Card>
