@@ -42,11 +42,7 @@ function DealsList(props) {
         return (
           
           <Card style={{ margin: "10px" }} className="card-list">
-           <SelectDropdown
-                label="Sort By"
-                value={getFilterStrategies()}
-                onChange={onFilterSelected}
-              />
+         
             <CardContent key={flight.id}>
               <div className="flex-container">
                 <div>
