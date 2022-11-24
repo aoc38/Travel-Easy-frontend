@@ -3,6 +3,7 @@ import { Nav, NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function NavigationHome() {
     // const { loggedinUser, SetloggedInUser } = useContext(UserContext);
@@ -29,8 +30,6 @@ export default function NavigationHome() {
                                     <Nav.Link href="/hotels">Hotels</Nav.Link>
                                     <Nav.Link href="/deals">Deals</Nav.Link>
                                     <Nav.Link href="/flightstatus">Flight Status</Nav.Link>
-
-
                                 </>
                                 :
                                 <>
@@ -58,7 +57,6 @@ export default function NavigationHome() {
                     }
                 </Container>
             </Navbar>
-
         </div>
     )
 }
