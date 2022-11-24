@@ -5,10 +5,13 @@ import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
+import { UserContext } from "../../Users/UserContext";
+import { useContext } from "react";
 
 function Usermiles() {
   //get logged in user info 
-  let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
+  //let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
+  const { loggedinUser } = useContext(UserContext);
   console.log("logged data in UserMiles : ", loggedinUser);
   const userData = (loggedinUser);
 

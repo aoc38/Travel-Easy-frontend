@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link,useParams } from 'react-router-dom';
 import "./flight-form.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getFlightById } from './flight-service';
+import { UserContext } from '../../Users/UserContext';
 
 function Bookform() {
 
   //get logged in user info 
-  let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
+  const {loggedinUser} = useContext(UserContext);
+  //let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
   console.log("logged data in BookForm : ", loggedinUser);
-  const userData = (loggedinUser);
+  const userData = (JSON.parse(loggedinUser));
   let userid = userData.id;
 
   //getting params from url

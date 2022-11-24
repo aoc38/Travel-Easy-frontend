@@ -9,17 +9,17 @@ export default function EditUser() {
   const {id} = useParams()
 
   const [user, setUser] = useState({
-    firstName: null,
-    middleName:null ,
-    lastName: null,
-    email: null,
-    username: null,
-    password: null,
-    mailingAddress: null,
-    cardNumber: null,
-    expiryDate: null,
-    cvv: null,
-    cardOwnerName: null
+    firstName: "",
+    middleName:"" ,
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
+    mailingAddress:"",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+    cardOwnerName: ""
   });
 
 
@@ -33,7 +33,8 @@ export default function EditUser() {
 
   useEffect(() => {
     loadUser();
-  },[user])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   const onSubmit= async(e)=>{
     e.preventDefault();
@@ -169,7 +170,7 @@ export default function EditUser() {
               />
           </div>
           <button type='submit' className='btn btn-outline-primary'>Submit</button>
-          <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/"}>Cancel</Link>
+          <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
           </form>
         </div>
       </div>

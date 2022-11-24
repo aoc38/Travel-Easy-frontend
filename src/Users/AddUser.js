@@ -1,14 +1,12 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from './UserContext';
-import { useContext } from 'react';
 
 export default function AddUser() {
 
   let navigate = useNavigate();
   // const [cards,setCards] = useState([]);
-  const {SetloggedInUser} = useContext(UserContext);
+  // const {SetloggedInUser} = useContext(UserContext);
   const [user, setUser] = useState({
     firstName: "",
     middleName: "",
@@ -53,7 +51,8 @@ export default function AddUser() {
       console.log(response.data);
       console.warn(response.data);
       //localStorage.setItem("user-info", JSON.stringify(response.data));
-      SetloggedInUser(JSON.stringify(response.data));
+      // SetloggedInUser(JSON.stringify(response.data));
+      sessionStorage.setItem("user-info",JSON.stringify(response.data));
       navigate('/searchFlight');
     } catch (error) {
       console.log(`ERROR: ${error}`);
@@ -212,7 +211,7 @@ export default function AddUser() {
               />
             </div>
             <button type='submit' className='btn btn-outline-primary'>Submit</button>
-            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/"}>Cancel</Link>
+            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
           </form>
         </div>
       </div>

@@ -1,16 +1,15 @@
-import React from "react";
-import InputSearch from "../Common/searchbar";
-import FlightList from "./flightlist";
+import Card from "@mui/material/Card";
+import React, { useState } from "react";
+import { getLocations } from '../../services/flight/amadeus-api-service';
 import Button from "../Common/button";
-import "./flight-form.css";
 import CustomDatePicker from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
-import Card from "@mui/material/Card";
-import "./searchflight.css";
-import { useState } from "react";
-import { getNoOfPassengers, getFlightBookingTypes, getFilterStrategies } from './flight-service';
+import InputSearch from "../Common/searchbar";
+import "./flight-form.css";
+import { getFilterStrategies, getFlightBookingTypes, getNoOfPassengers } from './flight-service';
+import FlightList from "./flightlist";
 import Information from "./information";
-import { getLocations } from '../../services/flight/amadeus-api-service'
+import "./searchflight.css";
 
 
 var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
@@ -19,6 +18,8 @@ var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.j
 function SearchFlight() {
 
   // const {loggedinUser,SetloggedInUser} = useContext(UserContext);
+
+  // let loggedinUser = sessionStorage.getItem("user-info");
 
   const bookingTypes = getFlightBookingTypes();
   const noOfPassengersList = getNoOfPassengers();

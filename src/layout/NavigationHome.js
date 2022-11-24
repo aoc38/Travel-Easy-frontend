@@ -1,16 +1,18 @@
 import React from 'react';
+import { Nav, NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Nav, NavDropdown } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '../Users/UserContext';
 
 export default function NavigationHome() {
-    const { loggedinUser, SetloggedInUser } = useContext(UserContext);
+    // const { loggedinUser, SetloggedInUser } = useContext(UserContext);
+    let loggedinUser = sessionStorage.getItem("user-info");
+    console.log("Logged in user in Navigation bar ",loggedinUser);
     let navigate = useNavigate();
+    
     function logOut() {
-        SetloggedInUser(null);
+        //SetloggedInUser(null);
+        sessionStorage.removeItem("user-info");
         navigate("/searchFlight");
     }
 
