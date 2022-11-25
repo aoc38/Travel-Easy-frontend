@@ -24,6 +24,7 @@ import SearchDeal from './Components/Deals/SearchDeals';
 import LoginPage from './Users/LoginPage';
 import FlightStatus from './Components/Flights/FlightStatus';
 import Dealsdetails from './Components/Deals/Dealsdetails';
+import FeedbackSuccess from './Components/Feedback/FeedbackSuccess';
 import SearchHotel from './Components/Hotel/searchHotel';
 import Hoteldetails from './Components/Hotel/hoteldetails';
 
@@ -40,7 +41,6 @@ function App() {
           <Route exact path="/searchFlight" element={<SearchFlight />} />
           <Route exact path="/flightdetails/:id/:pc" element={<Flightdetails />} />
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
-
           <Route exact path="/bookform" element={<BookForm />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
           <Route exact path="/usermiles/:id" element={<Usermiles />} />
@@ -48,9 +48,9 @@ function App() {
           <Route exact path="/feedbackform" element={<Feedback />} />
           <Route exact path="/SearchDeals" element={<SearchDeal />} />
           <Route exact path="/flightstatus" element={<FlightStatus />} />
+          <Route exact path="/feedbacksuccess" element={<FeedbackSuccess />} />
           <Route exact path="/hotels" element={<SearchHotel />} />
           <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} />
-
         </Routes>
 
   //to store the current user

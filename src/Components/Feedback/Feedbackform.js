@@ -171,11 +171,8 @@ const handleChange = (e) =>{
             value={comments}
             onChange={onRatingChange}
           />
-          <input type='submit' label="Send" />
-
-
         </div>
-      </form>
+        <div className='text-center'> <Link to="/feedbacksuccess" className='btn btn-outline-primary m-4'>Submit</Link></div>      </form>
     </Card>
 
 
