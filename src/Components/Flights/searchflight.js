@@ -19,7 +19,6 @@ function SearchFlight() {
 
   // const {loggedinUser,SetloggedInUser} = useContext(UserContext);
 
-  // let loggedinUser = sessionStorage.getItem("user-info");
 
   const bookingTypes = getFlightBookingTypes();
   const noOfPassengersList = getNoOfPassengers();

@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function NavigationHome() {
     // const { loggedinUser, SetloggedInUser } = useContext(UserContext);
-    let loggedinUser = sessionStorage.getItem("user-info");
+    let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
     console.log("Logged in user in Navigation bar ",loggedinUser);
     let navigate = useNavigate();
     
@@ -46,7 +46,7 @@ export default function NavigationHome() {
                         loggedinUser ?
                             <Nav>
                                 <Navbar.Collapse className="justify-content-end">
-                                    <NavDropdown title={loggedinUser && (JSON.parse(loggedinUser).firstName)}>
+                                    <NavDropdown title={loggedinUser && ((loggedinUser).firstName)}>
                                         <NavDropdown.Item onClick={logOut}>
                                             Logout
                                         </NavDropdown.Item>

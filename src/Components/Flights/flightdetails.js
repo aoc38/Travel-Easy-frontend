@@ -11,7 +11,7 @@ function Flightdetails() {
     //getting logged in user from local storage
     // let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
     // const { loggedinUser } = useContext(UserContext);
-    let loggedinUser = sessionStorage.getItem("user-info");
+    let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
     console.log("loggedinUser in Flight details page : ",loggedinUser);
 
     //getting id from path 
