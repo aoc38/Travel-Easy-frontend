@@ -27,6 +27,16 @@ function DealsList(props) {
     return flight.miles;
   };
 
+  const getStartTime = (flight) => {
+    //return flight.segments[0].departure.at;
+    return flight.departureTime;
+  }
+
+  const getEndTime = (flight) => {
+   // return flight.segments[flight.segments.length - 1].arrival.at;
+   return flight.arrivalTime;
+  }
+
   const isValid = () => {
     if (props.hasOwnProperty("deals") && props.deals.length !== 0) {
       return true;
@@ -48,9 +58,11 @@ function DealsList(props) {
               <div className="flex-container">
                 <div>
                   <h5>{getSource(flight)}</h5>
+                  <p>{getStartTime(flight)}</p>
                 </div>
                 <div>
                   <h5>{getDestination(flight)}</h5>
+                  <p>{getEndTime(flight)}</p>
                 </div>
               <div>
                   <h5>${getPrice(flight)}</h5>

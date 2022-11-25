@@ -16,6 +16,8 @@ import SearchDeal from './Components/Deals/SearchDeals';
 import LoginPage from './Users/LoginPage';
 import FlightStatus from './Components/Flights/FlightStatus';
 import Dealsdetails from './Components/Deals/Dealsdetails';
+import FeedbackSuccess from './Components/Feedback/FeedbackSuccess';
+
 
 function App() {
 
@@ -38,6 +40,8 @@ function App() {
           <Route exact path="/feedbackform" element={<Feedback />} />
           <Route exact path="/SearchDeals" element={<SearchDeal />} />
           <Route exact path="/flightstatus" element={<FlightStatus />} />
+
+          <Route exact path="/feedbacksuccess" element={<FeedbackSuccess />} />
           
         </Routes>
 
