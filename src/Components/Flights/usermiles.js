@@ -46,10 +46,6 @@ function Usermiles() {
   //toggle checkbox based on user miles
  // const [ usermilesCheckbox, setIsUserMilesCheckbox ] = useState(false);
 
-
-
-
-
   //checkbox for user miles
   const [isUserMilesChecked, setIsUserMilesChecked] = useState(false);
 

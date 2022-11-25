@@ -1,0 +1,76 @@
+{
+    "data": [
+      {
+        "type": "hotel-offers",
+        "hotel": {
+          "type": "hotel",
+          "hotelId": "MCLONGHM",
+          "chainCode": "MC",
+          "dupeId": "700031300",
+          "name": "JW Marriott Grosvenor House London",
+          "cityCode": "LON",
+          "photo1": "http://pix3.agoda.net/hotelimages/15/0/59a863c3a6e93b759faf2beea910d516.jpg?s=312x",
+          "photo2": "http://pix5.agoda.net/hotelimages/15/15/15_13072409510013984463.jpg?s=312x",
+          "photo3": "http://pix2.agoda.net/hotelimages/15/15/15_17091312040056285473.jpg?s=312x",
+          "photo4": "http://pix4.agoda.net/hotelimages/15/15/15_17091312040056285476.jpg?s=312x",
+          "photo5": "http://pix5.agoda.net/hotelimages/15/15/15_17091312040056285477.jpg?s=312x",
+          "latitude": 51.50988,
+          "longitude": -0.15509
+        },
+        "available": true,
+        "offers": [
+          {
+            "id": "1FV3EH6OPV",
+            "checkInDate": "2022-11-22",
+            "checkOutDate": "2022-11-23",
+            "rateCode": "S9R",
+            "rateFamilyEstimated": {
+              "code": "SRS",
+              "type": "C"
+            },
+            "room": {
+              "type": "XMI",
+              "typeEstimated": {
+                "category": "DELUXE_ROOM",
+                "beds": 1,
+                "bedType": "QUEEN"
+              },
+              "description": {
+                "text": "Marriott Senior Discount, 62 years and older valid ID required\nDeluxe Queen Room, 1 Queen(s), 20sqm/215sqft-29\nsqm/312sqft, Wireless internet, for a fee, Wire",
+                "lang": "EN"
+              }
+            },
+            "guests": {
+              "adults": 1
+            },
+            "price": {
+              "currency": "GBP",
+              "base": "552.00",
+              "total": "552.00",
+              "variations": {
+                "average": {
+                  "base": "552.00"
+                },
+                "changes": [
+                  {
+                    "startDate": "2022-11-22",
+                    "endDate": "2022-11-23",
+                    "total": "552.00"
+                  }
+                ]
+              }
+            },
+            "policies": {
+              "paymentType": "guarantee",
+              "cancellation": {
+                "amount": "552.00",
+                "deadline": "2022-11-21T23:59:00Z"
+              }
+            },
+            "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+          }
+        ],
+        "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+      }
+    ]
+  }

@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Fab } from '@mui/material'
+import { RateReview } from '@mui/icons-material';
+
+const styles = {
+    position: "fixed",
+    bottom: (theme) => theme.spacing(2),
+    right: (theme) => theme.spacing(2)
+}
 
 export default function Home() {
 
@@ -68,6 +76,12 @@ export default function Home() {
                     </tbody>
                 </table>
             </div>
+
+            {/* <div id='bottom'>
+             <Link className='btn btn-outline-light' to="/feedbackform"><Fab sx={styles}><RateReview /></Fab></Link>
+            </div> */}
         </div>
+
+       
     )
 }
