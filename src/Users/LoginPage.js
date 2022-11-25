@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   let navigate = useNavigate();
-
+  // const {SetloggedInUser} = useContext(UserContext);
+  
   const [loginData, setLoginData] = useState({
-    username: null,
-    password: null
+    username: "",
+    password: ""
   });
 
   const { username, password } = loginData;
@@ -23,7 +25,10 @@ export default function LoginPage() {
     try {
       let response = await axios.post("http://localhost:8080/userlogin", loginData);
       console.log(response.data);
-      localStorage.setItem("user-info", JSON.stringify(response.data));
+     // localStorage.setItem("user-info", JSON.stringify(response.data));
+    //  SetloggedInUser(JSON.stringify(response.data));
+    sessionStorage.setItem("user-info",JSON.stringify(response.data));
+      
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
@@ -57,7 +62,7 @@ export default function LoginPage() {
               />
             </div>
             <button type='submit' className='btn btn-outline-primary'>Submit</button>
-            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/"}>Cancel</Link>
+            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
 
             <div className="text-center">
               Not registered yet?{" "}
