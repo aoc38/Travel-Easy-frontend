@@ -1,16 +1,16 @@
-import React from "react";
-import InputSearch from "../Common/searchbar";
-import FlightList from "./flightlist";
+import Card from "@mui/material/Card";
+import React, { useState } from "react";
+import { getLocations } from '../../services/flight/amadeus-api-service';
 import Button from "../Common/button";
-import "./flight-form.css";
 import CustomDatePicker from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
-import Card from "@mui/material/Card";
-import "./searchflight.css";
-import { useState } from "react";
-import { getNoOfPassengers, getFlightBookingTypes, getFilterStrategies } from './flight-service';
+import InputSearch from "../Common/searchbar";
+import "./flight-form.css";
+import { getFilterStrategies, getFlightBookingTypes, getNoOfPassengers } from './flight-service';
+import FlightList from "./flightlist";
 import Information from "./information";
-import { getLocations } from '../../services/flight/amadeus-api-service';
+import "./searchflight.css";
+
 import { Fab } from '@mui/material';
 import { RateReview } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
@@ -24,6 +24,10 @@ const styles = {
 
 
 function SearchFlight() {
+
+  // const {loggedinUser,SetloggedInUser} = useContext(UserContext);
+
+
   const bookingTypes = getFlightBookingTypes();
   const noOfPassengersList = getNoOfPassengers();
   const DATE_FORMAT = "YYYY-MM-DD";
@@ -31,7 +35,7 @@ function SearchFlight() {
   // const [airports, setAirports] = useState([]);
   const [fromLocations, setFromLocations] = useState([]);
   const [toLocations, setToLocations] = useState([]);
-  const [value, setValue] = useState("");
+  const [value] = useState("");
   const [bookReturn, setBookReturn] = useState(false);
   const [bookingType, setBookingType] = useState(bookingTypes[0].id);
 
@@ -44,7 +48,9 @@ function SearchFlight() {
   const [flights, setFlights] = useState([]);
   const [filterBy, setFilterBy] = useState("");
   const [disableButton, setDisableButton] = useState(true);
-  const [flightType,setFlightType] = useState("");
+  // const [flightType, setFlightType] = useState("");
+
+
 
 
 
@@ -58,6 +64,11 @@ function SearchFlight() {
       case "return":
         setBookReturn(true);
         break;
+      default:
+        setBookReturn(false);
+        setReturnDate("");
+        break;
+
     }
   };
 
@@ -113,9 +124,9 @@ function SearchFlight() {
       'noOfPassengers': noOfPassengers,
       'filterBy': filterBy
     }
-    
+
     let response = await getFlightSearchReq(request);
-    console.log("response from 108 in search flight : ",response);
+    console.log("response from 108 in search flight : ", response);
     let flights = response.data;
     setFlights(flights);
     setShowList(true);
@@ -160,7 +171,7 @@ function SearchFlight() {
   }
 
   const canLocationBeSearched = (value, reason) => {
-    return value && value.length >= 3 && reason != 'reset';
+    return value && value.length >= 3 && reason !== 'reset';
   }
 
   const searchSourceLocations = async (event, value, reason) => {
@@ -269,17 +280,14 @@ function SearchFlight() {
           </Card>
         </div>
         <div className="col-md-12 mt-3">
-
           {showList ? <div>
             {/* <SearchFilter value={getFilterStrategies()} onChange={onFilterSelected}/> */}
-
             <SelectDropdown
               label="Sort By"
               value={getFilterStrategies()}
               onChange={onFilterSelected}
             />
-
-            <FlightList flights={flights} noOfPassengers = {noOfPassengers}  />
+            <FlightList flights={flights} noOfPassengers={noOfPassengers} />
           </div> : <Information />}
         </div>
       </div>
