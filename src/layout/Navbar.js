@@ -71,7 +71,7 @@ export default function Navbar() {
                     {
                     localStorage.getItem("user-info") ?
                      <Nav>
-                     <NavDropdown title = {loggedinUser && loggedinUser.firstName}>
+                     <NavDropdown title = {loggedinUser && loggedinUser.firstName} className ='loggeduser'>
                         <NavDropdown.Item onClick = {logOut}>
                             Logout
                         </NavDropdown.Item>

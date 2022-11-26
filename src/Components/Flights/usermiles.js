@@ -32,24 +32,39 @@ function Usermiles() {
   const [isUserMilesChecked, setIsUserMilesChecked] = useState(false);
 
   return (
-     <div>
-       <div className='container'>
-         <div className='row'>
-           <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
-              <div className='col-md-12'>
-               <div className="brdr-btm">
-                 <span>Miles Available </span>{": "}
-                 <span>{()=>getAccMiles(userData)}</span>
-               </div>
-             </div>
-             
-             <Link to="/BookForm" className='btn btn-primary'>Checkout</Link>
-           </div>
-         </div>
-       </div>
-     </div>
+    <div>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
+          <div className='text-center m-4'>  <h2>Miles Status</h2> </div>
+            <div className="row text-center">
+              <div class="col s12 m6 ">
+              <span className  ="text-bold" > <span>Miles Available </span></span>
+              </div>
+              <div class="col s12 m6 ">
+              <span className  ="text-bold" > <span>Redeemed Miles </span></span>
+              </div>
+            </div>
+            <div className="row text-center">
+              
+              <div class="col s12 m6">
+              <span>{() => getAccMiles(userData)}</span>
+            </div>
+              <div class="col s12 m6">
+                
+              </div>
+            </div>
 
-   
+            <div className="text-center">
+              {" "}
+              <Link to="/BookForm" className="btn btn-outline-primary m-4">
+                Checkout
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 export default Usermiles;
