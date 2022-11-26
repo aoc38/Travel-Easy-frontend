@@ -11,7 +11,6 @@ import FlightList from "./flightlist";
 import Information from "./information";
 import "./searchflight.css";
 
-import { getLocations } from '../../services/flight/amadeus-api-service';
 import { Fab } from '@mui/material';
 import { RateReview } from '@mui/icons-material';
 import { Link } from 'react-router-dom';

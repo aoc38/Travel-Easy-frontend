@@ -48,7 +48,7 @@ export default function Navbar() {
                                 </Link>
                                 <Link className='btn btn-outline-light' to="/flightstatus">Flight Status
                                 </Link>
-                                <Link className='btn btn-outline-light' to="/deals">Deals
+                                <Link className='btn btn-outline-light' to="/deals">Deals</Link>
                                 <Link className='btn btn-outline-light' to="/searchdeals">Deals
                                 </Link>
 
