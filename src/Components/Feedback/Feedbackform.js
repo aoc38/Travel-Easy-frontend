@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import React from 'react';
 import axios from 'axios';
-import Card from '../Common/Card';
-import Button from '../Common/button';
-import './rating.css';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { hover } from '@testing-library/user-event/dist/hover';
+import Card from '../Common/Card';
+import './rating.css';
 
-const colors ={
-  white: "#f4f4f4",
-  blue: "#035efc"
-}
+// const colors ={
+//   white: "#f4f4f4",
+//   blue: "#035efc"
+// }
 
 export default function Feedbackform() {
 
@@ -20,7 +17,7 @@ export default function Feedbackform() {
     comments: "",
     userRating: "" ,
   });
- const { comments, userRating } = feedback;
+ const { comments } = feedback;
  // const {comments} =feedback;
   //const {rating} =feedback.userRating;
   const [selected,setselected] =useState(10);

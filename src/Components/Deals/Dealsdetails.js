@@ -1,9 +1,7 @@
 import React from 'react';
-import Card from "@mui/material/Card";
-import CardContent from '@mui/material/CardContent';
 import { Link, useLocation, useParams } from "react-router-dom";
-import "../Flights/flightdetails.css";
 import { getFlightById } from '../Flights/flight-service';
+import "../Flights/flightdetails.css";
 
 
 function Dealsdetails(props) {
@@ -23,7 +21,7 @@ function Dealsdetails(props) {
     console.log("data in Flight details page: ", id);
     console.log("passenger count in Flight details page: ", pc);
     let data = getFlightById(id);
-    let flight = data.length == 1 ? data[0] : {};
+    let flight = data.length === 1 ? data[0] : {};
     console.log("flight details", flight);
     
     const getPrice = (flight) => {
