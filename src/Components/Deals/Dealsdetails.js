@@ -47,30 +47,58 @@ function Dealsdetails(props) {
                     <div className="row">
                         <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
                            <div className='text-center m-4'>  <h2> Review Deal</h2> </div>
-                            <div className="title">
-                                <span className='text-bold'>Source: </span>
-                                <span className="fromto">{flight.departureCityName}</span>
+                            <div className="row text-center">
+                                <div class="col s12 m6 text-center">
+                                <span className='text-bold'>Source </span>
                             </div>
-                            <div className ="title">
-                                <span className ='text-bold'> Destination:</span>
-                                <span>{flight.arrivalCityName}</span>
+                            <div class="col s12 m6 text-center">
+                                <span className='text-bold'> Destination</span>
                             </div>
-                            <div className="title">
-                                <span className='text-bold'>Departure Date</span>{": "}
-                                <span>{flight.departureDate}</span>
                             </div>
-                            <div className="title">
-                                <span className='text-bold'>Arrival Date: </span><span> {flight.arrivalDate} </span>
+                            <div className="row text-center">
+                            <div class="col s12 m6 text-center">
+                            <span className="fromto">{flight.departureCityName}</span>
+                            </div>
+                            <div class="col s12 m6 text-center">
+                            <span>{flight.arrivalCityName}</span>
+                            </div>
+                            </div>
 
+                            <div className="row">
+                                <div class="col s12 m6 text-center">
+                                <span className='text-bold'>Vacation Start Date </span>
                             </div>
-                            <div className="title">
-                                <span className='text-bold'>Total Price in Dollars</span>{": "}
-                                <span>${getTotalPrice(flight)}</span>
+                            <div class="col s12 m6 text-center">
+                                <span className='text-bold'> Vacation End Date</span>
                             </div>
-                            <div className="title">
-                                <span className='text-bold'>Total Price in Miles</span>{": "}
-                                <span>{getTotalPrice_miles(flight)} miles</span>
                             </div>
+                            <div className="row">
+                            <div class="col s12 m6 text-center">
+                            <span className="fromto">{flight.departureDate}</span>
+                            </div>
+                            <div class="col s12 m6 text-center">
+                            <span>{flight.arrivalDate} </span>
+                            </div>
+                            </div>
+
+                            <div className="row text-center">
+                                <div class="col s12 m6 ">
+                                <span className='text-bold'>Total Price(in $) </span>
+                            </div>
+                            <div class="col s12 m6 ">
+                                <span className='text-bold'> Total Price(in miles)</span>
+                            </div>
+                            </div>
+                            <div className="row text-center">
+                            <div class="col s12 m6 ">
+                            <span className="fromto">${getTotalPrice(flight)}</span>
+                            </div>
+                            <div class="col s12 m6">
+                            <span>{getTotalPrice_miles(flight)} miles</span>
+                            </div>
+                            </div>
+                          
+                            
 
                        
 
@@ -79,7 +107,7 @@ function Dealsdetails(props) {
                             localStorage.getItem("user-info") ?
                                 <>
                                 
-                                    <Link to={{ pathname: `/usermiles/${id}` }} className='btn btn-primary'>Book Now</Link>
+                                <div className='text-center'>   <Link to={{ pathname: `/usermiles/${id}` }} className='btn btn-outline-primary m-4'>Book Now</Link></div>
                                 </>
                                 :
                                 <>
