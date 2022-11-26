@@ -198,8 +198,6 @@ export default function AddUser() {
                 className="form-control"
                 placeholder='Enter credit card number'
                 name='cardNumber'
-                minLength={16}
-                maxLength='16'
                 value={cardNumber}
                 onChange={(e) => onCardInputChange(e)}
               />
@@ -261,8 +259,11 @@ export default function AddUser() {
 
 
             </div>
-            <button type='submit' className='btn btn-outline-primary flt-rt' >Submit</button>
-            <Link type='cancel' className='btn btn-outline-danger mx-2 flt-rt' to={"/"}>Cancel</Link>
+           <div className='text-center'> 
+           <button type='submit' className='btn btn-outline-primary'>Submit</button>
+           <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
+           </div>
+            
           </form>
         </div>
       </div>
