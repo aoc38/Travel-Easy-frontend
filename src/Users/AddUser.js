@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import "./adduser.css"
 
@@ -7,18 +7,16 @@ export default function AddUser() {
 
   let navigate = useNavigate();
   // const [cards,setCards] = useState([]);
-  // const {SetloggedInUser} = useContext(UserContext);
+
   const [user, setUser] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    email: "",
-    username: "",
-    password: "",
-    mailingAddress: "",
-    card: {
-      cardType:'VISA'
-    }
+    firstName: null,
+    middleName: null,
+    lastName: null,
+    email: null,
+    username: null,
+    password: null,
+    mailingAddress: null,
+    card: {}
     // cards:[]
     // cardNumber: null,
     // expiryDate: null,
@@ -51,9 +49,9 @@ export default function AddUser() {
       let response = await axios.post("http://localhost:8080/usersignup", user);
       console.log(response.data);
       console.warn(response.data);
-      //localStorage.setItem("user-info", JSON.stringify(response.data));
-      // SetloggedInUser(JSON.stringify(response.data));
-      sessionStorage.setItem("user-info",JSON.stringify(response.data));
+      localStorage.setItem("user-info", JSON.stringify(response.data));
+      alert("User Registered Successfully!!!");
+      
       navigate('/searchFlight');
     } catch (error) {
       console.log(`ERROR: ${error}`);
@@ -200,6 +198,8 @@ export default function AddUser() {
                 className="form-control"
                 placeholder='Enter credit card number'
                 name='cardNumber'
+                minLength={16}
+                maxLength='16'
                 value={cardNumber}
                 onChange={(e) => onCardInputChange(e)}
               />
@@ -261,8 +261,8 @@ export default function AddUser() {
 
 
             </div>
-            <button type='submit' className='btn btn-outline-primary'>Submit</button>
-            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
+            <button type='submit' className='btn btn-outline-primary flt-rt' >Submit</button>
+            <Link type='cancel' className='btn btn-outline-danger mx-2 flt-rt' to={"/"}>Cancel</Link>
           </form>
         </div>
       </div>

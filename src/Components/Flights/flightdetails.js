@@ -1,39 +1,37 @@
+import React from 'react';
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
-import React from 'react';
 import { Link, useParams } from "react-router-dom";
-import { getFlightById } from './flight-service';
 import "./flightdetails.css";
+import { getFlightById } from './flight-service';
 
 
 function Flightdetails() {
 
     //getting logged in user from local storage
-    // let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
-    // const { loggedinUser } = useContext(UserContext);
-    let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
-    console.log("loggedinUser in Flight details page : ",loggedinUser);
+    let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
+    console.warn(loggedinUser);
 
     //getting id from path 
-    const { id, pc } = useParams()
-
+    const { id,pc } = useParams()
+    
     console.log("data in Flight details page: ", id);
     console.log("passenger count in Flight details page: ", pc);
     let data = getFlightById(id);
-    let flight = data.length === 1 ? data[0] : {};
-    console.log("flight details in js : ", flight);
+    let flight = data.length == 1 ? data[0] : {};
+    console.log("flight details", flight);
     let noOfPassengers = pc;
     // let data = getFlightById(id); //check whether data is valid or not, array should not be empty
     // let flight = data.length == 1 ? data[0] : {};
     // console.log("flight details" , flight);
     const getPrice = (flight) => {
         return flight.price * noOfPassengers;
-    }
+      }
     const taxAmont = (flight) => {
         return (15 / 100) * getPrice(flight);
-    }
+      }
 
-    const getTotalPrice = (flight) => {
+    const getTotalPrice = (flight) =>{
         return getPrice(flight) + taxAmont(flight);
     }
     return (
@@ -91,10 +89,11 @@ function Flightdetails() {
                         </div>
 
                         {
-                            // localStorage.getItem("user-info") ?
-                            loggedinUser ?
+
+                            localStorage.getItem("user-info") ?
                                 <>
-                                    <Link to={{ pathname: `/usermiles/${id}/${noOfPassengers}` }} className='btn btn-primary'>Book Now</Link>
+                                
+                                    <Link to={{ pathname: `/usermiles/${id}` }} className='btn btn-primary'>Book Now</Link>
                                 </>
                                 :
                                 <>
