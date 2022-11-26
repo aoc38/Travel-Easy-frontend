@@ -1,11 +1,8 @@
-import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import React from "react";
 import { Link } from "react-router-dom";
-import { parse } from 'tinyduration';
 import "../Flights/flightlist.css";
-import { getDeals, getAirports, getFilterStrategies } from "./deals-service";
-import SelectDropdown from "../Common/dropdown";
 
 function DealsList(props) {
 

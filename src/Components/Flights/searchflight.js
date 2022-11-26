@@ -1,15 +1,11 @@
-import React from "react";
-import InputSearch from "../Common/searchbar";
-import FlightList from "./flightlist";
+import Card from "@mui/material/Card";
+import React, { useState } from "react";
 import Button from "../Common/button";
 import "./flight-form.css";
 import CustomDatePicker from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
 import Card from "@mui/material/Card";
 import "./searchflight.css";
-import { useState } from "react";
-import { getNoOfPassengers, getFlightBookingTypes, getFilterStrategies } from './flight-service';
-import Information from "./information";
 import { getLocations } from '../../services/flight/amadeus-api-service';
 import { Fab } from '@mui/material';
 import { RateReview } from '@mui/icons-material';
