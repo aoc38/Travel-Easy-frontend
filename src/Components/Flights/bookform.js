@@ -1,17 +1,14 @@
-import React, { useContext } from 'react';
-import { Link,useParams } from 'react-router-dom';
-import "./flight-form.css";
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import "./flight-form.css";
 import { getFlightById } from './flight-service';
-import { UserContext } from '../../Users/UserContext';
 
 function Bookform() {
 
-  //get logged in user info 
-  const {loggedinUser} = useContext(UserContext);
-  //let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
-  console.log("logged data in BookForm : ", loggedinUser);
+  //getting logged in user from local storage
+  let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
+  console.log("logged in user in book form",loggedinUser);
   const userData = (JSON.parse(loggedinUser));
   let userid = userData.id;
 
@@ -191,21 +188,6 @@ function Bookform() {
       </div>
     </div>
   );
-  {/* <div className="mt-2" >
-                <SelectDropdown className="mt-2" value={cardType} label="Card Type"
-                  onChange={onCardTypeChange} /></div>
-              <div className="mt-2" ><BasicTextFields className="mt-2" label="Card Number" /></div>
-              <div className="mt-2" ><DatePickerTravel className="mt-2" label="Expiration date" /></div>
-              <div className='mt-2'><BasicTextFields label="CVV" variant="outlined" id="outline-basic" /></div>
-              <Link className="mt-2 btn btn-primary" to="/Bookinghistory" onClick={showSuccessPopup} label="Continue">Continue</Link> */}
-
-  {/* <Link to="/bookform" className="btn btn-primary">Se</Link> */ }
-  //         </FormControl >
-  //       </CardContent >
-  //     </Card >
-  //   </div >
-  // </div >
-  // );
 }
 
 export default Bookform;
