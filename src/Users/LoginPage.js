@@ -51,6 +51,7 @@ export default function LoginPage() {
                 className="form-control"
                 placeholder='Enter your username'
                 name='username'
+                required
                 value={username}
                 required
                 onChange={(e) => onInputChange(e)}
