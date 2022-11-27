@@ -77,6 +77,7 @@ function Bookform() {
     try {
       //call flight booking api and send flight object data along with user data
       console.log(bookingData);
+      alert("Booking Successful");
       //pc=0 bookdeals
       //pc>0 bookflight
       let response = await axios.post(
