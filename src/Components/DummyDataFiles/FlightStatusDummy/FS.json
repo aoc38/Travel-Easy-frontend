@@ -3,8 +3,8 @@
         {
             "flightNumber":"1252",
             "airline":"American Airlines",
-            "departureDate":"2022-11-26T05:30:00",
-            "arrivalDate":"2022-11-26T08:41:00",
+            "departureDate":"2022-11-28T05:30:00",
+            "arrivalDate":"2022-11-28T08:41:00",
             "departureCityName":"AUSTIN",
             "arrivalCityName":"DENVER",
             "isArrived":false,

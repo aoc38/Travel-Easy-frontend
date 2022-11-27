@@ -1,21 +1,19 @@
-import React from "react";
-import InputSearch from "../Common/searchbar";
-import Button from "../Common/button";
-import "../Flights/flight-form.css";
-import CustomDatePicker from "../Common/date-picker";
 import Card from "@mui/material/Card";
-import "../Flights/searchflight.css";
-import { useState } from "react";
-import BasicTextFields from "../Common/textfield";
-import "../Flights/flightlist.css";
-import DealsList from "./dealslist";
-import SelectDropdown from "../Common/dropdown";
-import { getDeals, getAirports, getFilterStrategies } from "./deals-service";
-import Information from "../Flights/information";
+import React, { useState } from "react";
 import {
-  getLocations,
-  getFlights,
+  getLocations
 } from "../../services/flight/amadeus-api-service";
+import Button from "../Common/button";
+import CustomDatePicker from "../Common/date-picker";
+import SelectDropdown from "../Common/dropdown";
+import InputSearch from "../Common/searchbar";
+import BasicTextFields from "../Common/textfield";
+import "../Flights/flight-form.css";
+import "../Flights/flightlist.css";
+import Information from "../Flights/information";
+import "../Flights/searchflight.css";
+import { getFilterStrategies } from "./deals-service";
+import DealsList from "./dealslist";
 var flightsJsonData = require("../DummyDataFiles/FlightsDummy/FlightSearchData.json");
 
 function SearchDeal() {

@@ -13,6 +13,7 @@ import { getLocations } from '../../services/flight/amadeus-api-service';
 import { Fab } from '@mui/material';
 import { RateReview } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+
 var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
 
 const styles = {
@@ -20,6 +21,7 @@ const styles = {
   bottom: (theme) => theme.spacing(2),
   right: (theme) => theme.spacing(2)
 }
+
 
 
 function SearchFlight() {
@@ -31,14 +33,11 @@ function SearchFlight() {
   const noOfPassengersList = getNoOfPassengers();
   const DATE_FORMAT = "YYYY-MM-DD";
   const [showList, setShowList] = useState(false);
-  // const [airports, setAirports] = useState([]);
   const [fromLocations, setFromLocations] = useState([]);
   const [toLocations, setToLocations] = useState([]);
   const [value] = useState("");
   const [bookReturn, setBookReturn] = useState(false);
   const [bookingType, setBookingType] = useState(bookingTypes[0].id);
-
-
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [noOfPassengers, setNoOfPassengers] = useState(getNoOfPassengers()[0].label);
@@ -47,11 +46,6 @@ function SearchFlight() {
   const [flights, setFlights] = useState([]);
   const [filterBy, setFilterBy] = useState("");
   const [disableButton, setDisableButton] = useState(true);
-  // const [flightType, setFlightType] = useState("");
-
-
-
-
 
   const handleBookType = (id) => {
     setBookingType(id);
@@ -96,23 +90,6 @@ function SearchFlight() {
 
   }
 
-  // const fetchFlights = async() => {
-  //   let request = {
-  //     'source': source,
-  //     'destination': destination,
-  //     'departureDate': departureDate,
-  //     'returnDate': returnDate,
-  //     'bookingType': bookingType,
-  //     'noOfPassengers': noOfPassengers,
-  //     'filterBy' : filterBy
-  //   }
-  //   let response = await getFlights(request);
-  //   console.log(response);
-  //   let flights = response.data;
-  //   setFlights(flights);
-  //   setShowList(true);
-  // };
-
   const fetchFlights = async () => {
     let request = {
       'source': source,
@@ -126,7 +103,7 @@ function SearchFlight() {
 
     let response = await getFlightSearchReq(request);
     console.log("response from 108 in search flight : ", response);
-    let flights = response.data;
+    let flights = response;
     setFlights(flights);
     setShowList(true);
   }
@@ -143,7 +120,11 @@ function SearchFlight() {
     } else if (request.filterBy && request.filterBy === 'Airline') {
       data = data.sort((a, b) => b.company - a.company);
     }
-    return data;
+    return data.data.filter(
+      (obj) =>
+       (obj.departureCityName === request.source.address.cityName) &&
+        (obj.arrivalCityName === request.destination.address.cityName)
+    );
   }
 
 
@@ -190,8 +171,8 @@ function SearchFlight() {
   }
 
   // const disableButton = source == null || destination == null || returnDate == null || departureDate == null;
-
   return (
+
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
@@ -223,6 +204,7 @@ function SearchFlight() {
                       onInputChange={searchSourceLocations}
                       onChange={onSourceSelected}
                       label="Source"
+                      name = "sourceAirport"
                       className="mt-2" />
                   </div>
                   <div className="p-2 mt-2">
