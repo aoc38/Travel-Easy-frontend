@@ -18,6 +18,7 @@ import AddUser from './Users/AddUser';
 import Hoteldetails from './Components/Hotel/hoteldetails';
 import SearchHotel from './Components/Hotel/searchHotel';
 import LoginPage from './Users/LoginPage';
+import Dealsdetails from './Components/Deals/Dealsdetails';
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
             <Route exact path="/flightstatus" element={<FlightStatus />} />
             <Route exact path="/hotels" element={<SearchHotel />} />
           <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} />
+          <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
+
           </Routes>
         </Router>
       {/* </UserContext.Provider> */}
