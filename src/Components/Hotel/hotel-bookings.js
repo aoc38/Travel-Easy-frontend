@@ -15,12 +15,8 @@ function HotelBooking(props) {
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [email, setemail] = useState("");
-    const [cardNumber, setcardNumber] = useState("");
-    const [cardOwnerName, setcardOwnerName] = useState("");
-    const [cvv, setCvv] = useState("");
-    const [expiryDate, setexpiryDate] = useState("");
-    const [cardType, setcardType] = useState("");
-
+    const [card, setCard] = useState({});
+    const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
     const [value, setValue] = useState("Debit/Credit Card");
 
     const onSubmit = async (e) => {
