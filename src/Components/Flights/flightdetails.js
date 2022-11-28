@@ -1,5 +1,3 @@
-import Card from "@mui/material/Card";
-import CardContent from '@mui/material/CardContent';
 import React from 'react';
 import { Link, useParams } from "react-router-dom";
 import { getFlightById } from './flight-service';

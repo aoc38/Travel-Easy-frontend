@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Card from '../Common/Card';
 import './rating.css';
 
@@ -12,39 +12,43 @@ import './rating.css';
 export default function Feedbackform() {
 
   let navigate = useNavigate();
+  
+  let loggedinUser = sessionStorage.getItem("user-info");
+  console.log("logged in user in Search Feedback page", loggedinUser)
+  let id = JSON.parse(loggedinUser).id;
 
   const [feedback, setFeedback] = useState({
     comments: "",
-    userRating: "" ,
+    userRating: "",
   });
- const { comments } = feedback;
- // const {comments} =feedback;
+  const { comments } = feedback;
+  // const {comments} =feedback;
   //const {rating} =feedback.userRating;
-  const [selected,setselected] =useState(10);
+  const [selected, setselected] = useState(10);
 
-const handleChange = (e) =>{
-  setselected(+e.target.value);
-  setFeedback({ ...feedback, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setselected(+e.target.value);
+    setFeedback({ ...feedback, [e.target.name]: e.target.value });
 
- // setFeedback({ ...feedback,...{  [e.target.name]: e.target.value }); 
- // setUser({ ...user, ...{ card: { ...user.card, [e.target.name]: e.target.value } } });
+    // setFeedback({ ...feedback,...{  [e.target.name]: e.target.value }); 
+    // setUser({ ...user, ...{ card: { ...user.card, [e.target.name]: e.target.value } } });
 
-}
-   const onRatingChange = (e) => {
+  }
+  const onRatingChange = (e) => {
     setFeedback({ ...feedback, [e.target.name]: e.target.value });
 
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await axios.post("http://localhost:8080/feedback", feedback)
+    await axios.post(`http://localhost:8080/userrating/${id}`, feedback,)
     navigate('/home');
   };
 
   return (
 
     <Card>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <h2>How would you rate your service with us?</h2>
         <ul className='ratingButton'>
           <li >
@@ -53,10 +57,10 @@ const handleChange = (e) =>{
               id='num1'
               name='userRating'
               value='1'
-              checked = {selected=== 1}
+              checked={selected === 1}
               onChange={handleChange}
 
-              
+
             />
             <label htmlFor='num1'>1</label>
           </li>
@@ -66,7 +70,7 @@ const handleChange = (e) =>{
               id='num2'
               name='userRating'
               value='2'
-              checked={selected=== 2}
+              checked={selected === 2}
               onChange={handleChange}
             />
             <label htmlFor='num2'>2</label>
@@ -77,7 +81,7 @@ const handleChange = (e) =>{
               id='num3'
               name='userRating'
               value='3'
-              checked={selected=== 3}
+              checked={selected === 3}
               onChange={handleChange}
             />
             <label htmlFor='num3'>3</label>
@@ -88,7 +92,7 @@ const handleChange = (e) =>{
               id='num4'
               name='userRating'
               value='4'
-              checked={selected=== 4}
+              checked={selected === 4}
               onChange={handleChange}
             />
             <label htmlFor='num4'>4</label>
@@ -99,7 +103,7 @@ const handleChange = (e) =>{
               id='num5'
               name='userRating'
               value='5'
-              checked={selected=== 5}
+              checked={selected === 5}
               onChange={handleChange}
             />
             <label htmlFor='num5'>5</label>
@@ -110,7 +114,7 @@ const handleChange = (e) =>{
               id='num6'
               name='userRating'
               value='6'
-              checked={selected=== 6}
+              checked={selected === 6}
               onChange={handleChange}
             />
             <label htmlFor='num6'>6</label>
@@ -121,7 +125,7 @@ const handleChange = (e) =>{
               id='num7'
               name='userRating'
               value='7'
-              checked={selected=== 7}
+              checked={selected === 7}
               onChange={handleChange}
             />
             <label htmlFor='num7'>7</label>
@@ -132,7 +136,7 @@ const handleChange = (e) =>{
               id='num8'
               name='userRating'
               value='8'
-              checked={selected=== 8}
+              checked={selected === 8}
               onChange={handleChange}
             />
             <label htmlFor='num8'>8</label>
@@ -143,7 +147,7 @@ const handleChange = (e) =>{
               id='num9'
               name='userRating'
               value='9'
-              checked={selected=== 9}
+              checked={selected === 9}
               onChange={handleChange}
             />
             <label htmlFor='num9'>9</label>
@@ -160,7 +164,7 @@ const handleChange = (e) =>{
             <label htmlFor='num10'>10</label>
           </li>
         </ul>
-         <div className='input-group'>
+        <div className='input-group'>
           <input
             type={"text"}
             placeholder='Write a review'
@@ -169,7 +173,11 @@ const handleChange = (e) =>{
             onChange={onRatingChange}
           />
         </div>
-        <div className='text-center'> <Link to="/feedbacksuccess" className='btn btn-outline-primary m-4'>Submit</Link></div>      </form>
+        <div className='text-center'>
+          {/* <Link to="/feedbacksuccess" className='btn btn-outline-primary m-4'>Submit</Link> */}
+          <button type='submit' className='btn btn-outline-primary m-4'>Submit</button>
+        </div>
+      </form>
     </Card>
 
 

@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function LoginPage() {
   let navigate = useNavigate();
   // const {SetloggedInUser} = useContext(UserContext);
-  
+
   const [loginData, setLoginData] = useState({
     username: "",
     password: ""
@@ -24,15 +24,18 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       let response = await axios.post("http://localhost:8080/userlogin", loginData);
-      console.log(response.data);
-     // localStorage.setItem("user-info", JSON.stringify(response.data));
-    //  SetloggedInUser(JSON.stringify(response.data));
-    sessionStorage.setItem("user-info",JSON.stringify(response.data));
-      
+      if(response.data.message !== undefined ){
+          alert(response.data.message);
+      }
+      else{
+        sessionStorage.setItem("user-info", JSON.stringify(response.data));
+        navigate('/searchFlight');
+      }
+     
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
-    navigate('/searchFlight');
+   
   };
 
   return (
@@ -48,6 +51,7 @@ export default function LoginPage() {
                 className="form-control"
                 placeholder='Enter your username'
                 name='username'
+                required
                 value={username}
                 onChange={(e) => onInputChange(e)}
               />
@@ -57,6 +61,7 @@ export default function LoginPage() {
                 className="form-control"
                 placeholder='Enter your password'
                 name='password'
+                required
                 value={password}
                 onChange={(e) => onInputChange(e)}
               />
