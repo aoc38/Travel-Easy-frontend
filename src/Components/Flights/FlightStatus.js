@@ -11,7 +11,7 @@ import BasicTextFields from "../Common/textfield";
 import { getLocations } from '../../services/flight/amadeus-api-service';
 import FlightStatusList from './FlightStatusList';
 import Information from "./information";
-var flightSearchJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
+var flightStatusJsonData = require('../DummyDataFiles/FlightsDummy/FS.json');
 
 
 
@@ -85,7 +85,7 @@ export default function FlightStatus() {
       'destination': destination,
       'departureDate': departureDate
     }
-    let data = JSON.parse(JSON.stringify(flightSearchJsonData));
+    let data = flightStatusJsonData;
     console.log("data in flight status : ", data);
     data = data.data.filter((obj) =>
       obj.departureCityName === request.source
