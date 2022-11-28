@@ -1,21 +1,24 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import "./adduser.css";
 
 export default function AddUser() {
 
   let navigate = useNavigate();
   // const [cards,setCards] = useState([]);
-
+  // const {SetloggedInUser} = useContext(UserContext);
   const [user, setUser] = useState({
-    firstName: null,
-    middleName: null,
-    lastName: null,
-    email: null,
-    username: null,
-    password: null,
-    mailingAddress: null,
-    card: {}
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
+    mailingAddress: "",
+    card: {
+      cardType:'VISA'
+    }
     // cards:[]
     // cardNumber: null,
     // expiryDate: null,
@@ -48,7 +51,9 @@ export default function AddUser() {
       let response = await axios.post("http://localhost:8080/usersignup", user);
       console.log(response.data);
       console.warn(response.data);
-      localStorage.setItem("user-info", JSON.stringify(response.data));
+      //localStorage.setItem("user-info", JSON.stringify(response.data));
+      // SetloggedInUser(JSON.stringify(response.data));
+      sessionStorage.setItem("user-info",JSON.stringify(response.data));
       navigate('/searchFlight');
     } catch (error) {
       console.log(`ERROR: ${error}`);
@@ -80,7 +85,7 @@ export default function AddUser() {
   };
 
   return (
-    <div className='container'>
+<div className='container'>
       <div className='row'>
         <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
           <h2 className='text-center m-4'> Register User </h2>
@@ -89,10 +94,15 @@ export default function AddUser() {
             <span className="link-primary">
               <Link to={"/loginuser"}>Sign In </Link>
             </span>
+           
           </div>
-
+          <div className='add-space'></div>
+          <div className='add-space'></div>
+          <div className='add-space'></div>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='mb-3'>
+              <div className ="row">
+                <div class="col s12 m6 ">
               <label htmlFor='firstname' className='form-label'> First Name </label>
               <input
                 type={"text"}
@@ -103,7 +113,9 @@ export default function AddUser() {
                 onChange={(e) => onInputChange(e)}
               // onChange = {(e) => setFirstName(e.target.value)}
               />
-              <label htmlFor='middleName' className='form-label'> Middle Name </label>
+              </div>
+              <div class="col s12 m6">
+             <label htmlFor='middleName' className='form-label'> Middle Name </label>
               <input
                 type={"text"}
                 className="form-control"
@@ -112,7 +124,13 @@ export default function AddUser() {
                 value={middleName}
                 onChange={(e) => onInputChange(e)}
               />
-              <label htmlFor='lastName' className='form-label'> Last Name </label>
+              </div>
+            </div>
+            <div className='add-space'></div>
+            <div className ="row">
+                <div class="col s12 m6">
+                
+                <label htmlFor='lastName' className='form-label'> Last Name </label>
               <input
                 type={"text"}
                 className="form-control"
@@ -121,6 +139,8 @@ export default function AddUser() {
                 value={lastName}
                 onChange={(e) => onInputChange(e)}
               />
+              </div>
+              <div class="col s12 m6">
               <label htmlFor='email' className='form-label'> Email </label>
               <input
                 type={"email"}
@@ -130,7 +150,12 @@ export default function AddUser() {
                 value={email}
                 onChange={(e) => onInputChange(e)}
               />
-              <label htmlFor='username' className='form-label'> Username </label>
+              </div>
+              </div>
+              <div className='add-space'></div>
+              <div className ="row">
+                <div class="col s12 m6">
+          <label htmlFor='username' className='form-label'> Username </label>
               <input
                 type={"text"}
                 className="form-control"
@@ -139,6 +164,8 @@ export default function AddUser() {
                 value={username}
                 onChange={(e) => onInputChange(e)}
               />
+              </div>
+              <div class="col s12 m6">
               <label htmlFor='password' className='form-label'> Password </label>
               <input
                 type={"password"}
@@ -148,15 +175,35 @@ export default function AddUser() {
                 value={password}
                 onChange={(e) => onInputChange(e)}
               />
-              <label htmlFor='mailingAddress' className='form-label'>Mailing Address </label>
+              </div>
+              </div>
+              <div className='add-space'></div>
+        <label htmlFor='cardOwnerName' className='form-label'>Name on Card </label>
+             <input
+                type={"text"}
+                className="form-control"
+                placeholder='Enter name on the credit card'
+                name='cardOwnerName'
+                value={cardOwnerName}
+                onChange={(e) => onCardInputChange(e)}
+              />
+              
+            <div className='add-space'></div>
+              <div className ="row">
+                <div class="col s12 m6">
+               
+              <label htmlFor='cardNumber' className='form-label'>Card Number </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder='Enter your mailing address'
-                name='mailingAddress'
-                value={mailingAddress}
-                onChange={(e) => onInputChange(e)}
+                placeholder='Enter credit card number'
+                name='cardNumber'
+                value={cardNumber}
+                onChange={(e) => onCardInputChange(e)}
               />
+              </div>
+              <div class="col s12 m6">
+              
               <label htmlFor='cardType' className='form-label'>Card Type</label>
               <select value={cardType}
                 className="form-control"
@@ -166,20 +213,15 @@ export default function AddUser() {
                 <option value="VISA">VISA</option>
                 <option value="MASTERCARD">MASTER CARD</option>
               </select>
-
-              <label htmlFor='cardNumber' className='form-label'>Credit Card Number </label>
-              <input
-                type={"number"}
-                className="form-control"
-                placeholder='Enter credit card number'
-                name='cardNumber'
-                minLength={16}
-                maxLength='16'
-                value={cardNumber}
-                onChange={(e) => onCardInputChange(e)}
-              />
-              <label htmlFor='expiryDate' className='form-label'>Credit Card Expiry </label>
-              <input
+              </div>
+              </div>
+              
+            <div className='add-space'></div>
+              <div className ="row">
+               
+                <div class="col s12 m6">
+              <label htmlFor='expiryDate' className='form-label'>Expiry Date </label>
+               <input
                 type={"month"}
                 className="form-control"
                 placeholder='Enter credit card expiry in mm/yy format'
@@ -187,8 +229,11 @@ export default function AddUser() {
                 value={expiryDate}
                 onChange={(e) => onCardInputChange(e)}
               />
-              <label htmlFor='cvv' className='form-label'>Credit Card CVV </label>
-              <input
+                  
+                </div>
+                <div class="col s12 m6">
+                 <label htmlFor='cvv' className='form-label'>CVV </label>
+               <input
                 type={"number"}
                 minLength={3}
                 maxLength='3'
@@ -198,18 +243,27 @@ export default function AddUser() {
                 value={cvv}
                 onChange={(e) => onCardInputChange(e)}
               />
-              <label htmlFor='cardOwnerName' className='form-label'>Name on Credit Card </label>
+                  
+                </div>
+                </div>
+                <div className='add-space'></div>
+         <label htmlFor='mailingAddress' className='form-label'>Mailing Address </label> 
               <input
                 type={"text"}
                 className="form-control"
-                placeholder='Enter name on the credit card'
-                name='cardOwnerName'
-                value={cardOwnerName}
-                onChange={(e) => onCardInputChange(e)}
+                placeholder='Enter your mailing address'
+                name='mailingAddress'
+                value={mailingAddress}
+                onChange={(e) => onInputChange(e)}
               />
+
+
             </div>
-            <button type='submit' className='btn btn-outline-primary'>Submit</button>
-            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/"}>Cancel</Link>
+           <div className='text-center'> 
+           <button type='submit' className='btn btn-outline-primary'>Submit</button>
+           <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
+           </div>
+            
           </form>
         </div>
       </div>

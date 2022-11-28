@@ -1,11 +1,8 @@
-import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import React from "react";
 import { Link } from "react-router-dom";
-import { parse } from 'tinyduration';
 import "../Flights/flightlist.css";
-import { getDeals, getAirports, getFilterStrategies } from "./deals-service";
-import SelectDropdown from "../Common/dropdown";
 
 function DealsList(props) {
 
@@ -26,6 +23,16 @@ function DealsList(props) {
   const getPriceinMiles = (flight) => {
     return flight.miles;
   };
+
+  const getStartTime = (flight) => {
+    //return flight.segments[0].departure.at;
+    return flight.departureTime;
+  }
+
+  const getEndTime = (flight) => {
+   // return flight.segments[flight.segments.length - 1].arrival.at;
+   return flight.arrivalTime;
+  }
 
   const isValid = () => {
     if (props.hasOwnProperty("deals") && props.deals.length !== 0) {
@@ -48,9 +55,11 @@ function DealsList(props) {
               <div className="flex-container">
                 <div>
                   <h5>{getSource(flight)}</h5>
+                  <p>{getStartTime(flight)}</p>
                 </div>
                 <div>
                   <h5>{getDestination(flight)}</h5>
+                  <p>{getEndTime(flight)}</p>
                 </div>
               <div>
                   <h5>${getPrice(flight)}</h5>

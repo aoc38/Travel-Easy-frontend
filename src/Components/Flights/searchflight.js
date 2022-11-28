@@ -1,19 +1,19 @@
-import React from "react";
-import InputSearch from "../Common/searchbar";
-import FlightList from "./flightlist";
+import Card from "@mui/material/Card";
+import React, { useState } from "react";
 import Button from "../Common/button";
-import "./flight-form.css";
 import CustomDatePicker from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
-import Card from "@mui/material/Card";
-import "./searchflight.css";
-import { useState } from "react";
-import { getNoOfPassengers, getFlightBookingTypes, getFilterStrategies } from './flight-service';
+import InputSearch from "../Common/searchbar";
+import "./flight-form.css";
+import { getFilterStrategies, getFlightBookingTypes, getNoOfPassengers } from './flight-service';
+import FlightList from "./flightlist";
 import Information from "./information";
+import "./searchflight.css";
 import { getLocations } from '../../services/flight/amadeus-api-service';
 import { Fab } from '@mui/material';
 import { RateReview } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+
 var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
 
 const styles = {
@@ -23,19 +23,21 @@ const styles = {
 }
 
 
+
 function SearchFlight() {
+
+  // const {loggedinUser,SetloggedInUser} = useContext(UserContext);
+
+
   const bookingTypes = getFlightBookingTypes();
   const noOfPassengersList = getNoOfPassengers();
   const DATE_FORMAT = "YYYY-MM-DD";
   const [showList, setShowList] = useState(false);
-  // const [airports, setAirports] = useState([]);
   const [fromLocations, setFromLocations] = useState([]);
   const [toLocations, setToLocations] = useState([]);
-  const [value, setValue] = useState("");
+  const [value] = useState("");
   const [bookReturn, setBookReturn] = useState(false);
   const [bookingType, setBookingType] = useState(bookingTypes[0].id);
-
-
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [noOfPassengers, setNoOfPassengers] = useState(getNoOfPassengers()[0].label);
@@ -44,9 +46,6 @@ function SearchFlight() {
   const [flights, setFlights] = useState([]);
   const [filterBy, setFilterBy] = useState("");
   const [disableButton, setDisableButton] = useState(true);
-  const [flightType,setFlightType] = useState("");
-
-
 
   const handleBookType = (id) => {
     setBookingType(id);
@@ -58,6 +57,11 @@ function SearchFlight() {
       case "return":
         setBookReturn(true);
         break;
+      default:
+        setBookReturn(false);
+        setReturnDate("");
+        break;
+
     }
   };
 
@@ -86,23 +90,6 @@ function SearchFlight() {
 
   }
 
-  // const fetchFlights = async() => {
-  //   let request = {
-  //     'source': source,
-  //     'destination': destination,
-  //     'departureDate': departureDate,
-  //     'returnDate': returnDate,
-  //     'bookingType': bookingType,
-  //     'noOfPassengers': noOfPassengers,
-  //     'filterBy' : filterBy
-  //   }
-  //   let response = await getFlights(request);
-  //   console.log(response);
-  //   let flights = response.data;
-  //   setFlights(flights);
-  //   setShowList(true);
-  // };
-
   const fetchFlights = async () => {
     let request = {
       'source': source,
@@ -113,10 +100,10 @@ function SearchFlight() {
       'noOfPassengers': noOfPassengers,
       'filterBy': filterBy
     }
-    
+
     let response = await getFlightSearchReq(request);
-    console.log("response from 108 in search flight : ",response);
-    let flights = response.data;
+    console.log("response from 108 in search flight : ", response);
+    let flights = response;
     setFlights(flights);
     setShowList(true);
   }
@@ -133,7 +120,11 @@ function SearchFlight() {
     } else if (request.filterBy && request.filterBy === 'Airline') {
       data = data.sort((a, b) => b.company - a.company);
     }
-    return data;
+    return data.data.filter(
+      (obj) =>
+       (obj.departureCityName === request.source.address.cityName) &&
+        (obj.arrivalCityName === request.destination.address.cityName)
+    );
   }
 
 
@@ -160,7 +151,7 @@ function SearchFlight() {
   }
 
   const canLocationBeSearched = (value, reason) => {
-    return value && value.length >= 3 && reason != 'reset';
+    return value && value.length >= 3 && reason !== 'reset';
   }
 
   const searchSourceLocations = async (event, value, reason) => {
@@ -180,8 +171,8 @@ function SearchFlight() {
   }
 
   // const disableButton = source == null || destination == null || returnDate == null || departureDate == null;
-
   return (
+
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
@@ -213,6 +204,7 @@ function SearchFlight() {
                       onInputChange={searchSourceLocations}
                       onChange={onSourceSelected}
                       label="Source"
+                      name = "sourceAirport"
                       className="mt-2" />
                   </div>
                   <div className="p-2 mt-2">
@@ -269,17 +261,14 @@ function SearchFlight() {
           </Card>
         </div>
         <div className="col-md-12 mt-3">
-
           {showList ? <div>
             {/* <SearchFilter value={getFilterStrategies()} onChange={onFilterSelected}/> */}
-
             <SelectDropdown
               label="Sort By"
               value={getFilterStrategies()}
               onChange={onFilterSelected}
             />
-
-            <FlightList flights={flights} noOfPassengers = {noOfPassengers}  />
+            <FlightList flights={flights} noOfPassengers={noOfPassengers} />
           </div> : <Information />}
         </div>
       </div>

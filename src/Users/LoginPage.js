@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   let navigate = useNavigate();
+  // const {SetloggedInUser} = useContext(UserContext);
 
   const [loginData, setLoginData] = useState({
-    username: null,
-    password: null
+    username: "",
+    password: ""
   });
 
   const { username, password } = loginData;
@@ -22,12 +24,18 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       let response = await axios.post("http://localhost:8080/userlogin", loginData);
-      console.log(response.data);
-      localStorage.setItem("user-info", JSON.stringify(response.data));
+      if(response.data.message !== undefined ){
+          alert(response.data.message);
+      }
+      else{
+        sessionStorage.setItem("user-info", JSON.stringify(response.data));
+        navigate('/searchFlight');
+      }
+     
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
-    navigate('/searchFlight');
+   
   };
 
   return (
@@ -43,7 +51,9 @@ export default function LoginPage() {
                 className="form-control"
                 placeholder='Enter your username'
                 name='username'
+                required
                 value={username}
+                required
                 onChange={(e) => onInputChange(e)}
               />
               <label htmlFor='password' className='form-label'> Password </label>
@@ -52,12 +62,13 @@ export default function LoginPage() {
                 className="form-control"
                 placeholder='Enter your password'
                 name='password'
+                required
                 value={password}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
             <button type='submit' className='btn btn-outline-primary'>Submit</button>
-            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/"}>Cancel</Link>
+            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
 
             <div className="text-center">
               Not registered yet?{" "}
