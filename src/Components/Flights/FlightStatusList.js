@@ -4,10 +4,13 @@ import { CardContent } from '@mui/material';
 
 export default function FlightStatusList(props) {
 
-
+  // let currentDateTime = new Date().toLocaleString();
   const isValid = () => {
-    console.log("flights data", props.fsdata);
-    if (props.hasOwnProperty("fsdata") && props.fsdata !== null) {
+    console.log("flightstatus data", props.fsdata);
+    if (props.hasOwnProperty("fsdata") 
+    && props.fsdata !== null
+    && props.fsdata !== undefined
+    ) {
       return true;
     }
     return false;
@@ -29,8 +32,11 @@ export default function FlightStatusList(props) {
                   {/* <p>{getTimings(flight)}</p> */}
                 </div>
                 <div>
-                  <h5>{props.fsdata.airline}</h5>
-                  {/* <p>{getTimings(flight)}</p> */}
+                  <h5>
+                    {props.fsdata.isInflight ? "In Flight" : ""}
+                    {props.fsdata.isDelayed ? "Delayed" : ""}
+                    {props.fsdata.isArrived ? "Arrived" : ""}
+                  </h5>
                 </div>
 
                 {/* <div>

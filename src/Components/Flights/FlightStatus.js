@@ -8,7 +8,6 @@ import Button from "../Common/button";
 import BasicTextFields from "../Common/textfield";
 // import InputSearch from "../Common/searchbar";
 // import CustomDatePicker from "../Common/date-picker";
-import { getLocations } from '../../services/flight/amadeus-api-service';
 import FlightStatusList from './FlightStatusList';
 import Information from "./information";
 var flightStatusJsonData = require('../DummyDataFiles/FlightStatusDummy/FS.json');
@@ -17,12 +16,12 @@ var flightStatusJsonData = require('../DummyDataFiles/FlightStatusDummy/FS.json'
 
 export default function FlightStatus() {
   const DATE_FORMAT = "YYYY-MM-DD";
-  const [flightNumber,setFlightNumber] =  useState("");
+  const [flightNumber, setFlightNumber] = useState("");
   const [airlineName, setAirlineName] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [disableButton, setDisableButton] = useState(true);
   const [showList, setShowList] = useState(false);
-  const [value,setValue] = useState("");
+  const [value, setValue] = useState("");
   const [flightStatus, setFlightStatus] = useState({
   })
 
@@ -41,6 +40,15 @@ export default function FlightStatus() {
     return true;
   }
 
+  const onFlightNumberChange = (data) => {
+    setFlightNumber(data.target.value);
+  }
+
+  const onAirlineNameChange = (data) => {
+    setAirlineName(data.target.value);
+  }
+
+
   const fetchFlightStatus = async () => {
     let request = {
       'flightNumber': flightNumber,
@@ -58,7 +66,8 @@ export default function FlightStatus() {
     // console.log("response from 108 in search flight : ",response);
     // let flights = response.data;
     // setFlight(flights);
-    // setFlightStatus(data[0]);
+    console.log(data[0]);
+    setFlightStatus(data[0]);
     setShowList(true);
   }
 
@@ -75,28 +84,22 @@ export default function FlightStatus() {
                     <BasicTextFields
                       label="Flight Number"
                       variant="outlined"
-                      id="outline-basic"
+                      name="flightNumber"
+                      // id="outline-basic"
+                      value ={flightNumber}
+                      onChange={onFlightNumberChange}
                     />
                   </div>
                   <div className="p-2 mt-2">
                     <BasicTextFields
                       label="Airline Name"
                       variant="outlined"
-                      id="outline-basic"
+                      // id="outline-basic"
+                      name="airlineName"
+                      value = {airlineName}
+                      onChange={onAirlineNameChange}
                     />
                   </div>
-
-                  {/* <div className="p-2 mt-2">
-                    <InputSearch
-                      value={destination}
-                      input={toLocations}
-                      onChange={onDestinationSelected}
-                      onInputChange={searchDestinationLocations}
-                      label="Destination"
-                      className="mt-2"
-                    />
-                  </div> */}
-
                   <div className="p-2 mt-2">
                     <CustomDatePicker
                       value={value}
