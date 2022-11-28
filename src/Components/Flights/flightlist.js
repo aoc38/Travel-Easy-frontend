@@ -18,12 +18,12 @@ function FlightList(props) {
 
   const getStartTime = (flight) => {
     //return flight.segments[0].departure.at;
-    return flight.departureTime;
+    return flight.departureDate +" "+ flight.departureTime;
   }
 
   const getEndTime = (flight) => {
    // return flight.segments[flight.segments.length - 1].arrival.at;
-   return flight.arrivalTime;
+   return flight.arrivalDate+" "+flight.arrivalTime;
   }
 
   const getTimings = (flight) => {
@@ -33,20 +33,16 @@ function FlightList(props) {
   //   return getStartTime(flight) - getEndTime(flight);
   // }
   const getDuration = (flight) => {
-    // let arrivalTime = flight.arrivalTime; // mm:ss
-    // let ms = Number(arrivalTime.split(':')[0]) * 60 * 1000 + Number(arrivalTime.split(':')[1]) * 1000;
-    // return ms;
-    // var diff = Math.abs(new Date(flight.departureDate + flight.departureTime) - new Date(`${flight.arrivalDate + flight.arrivalTime}`));
-    // let departureTime = new Date(flight.departureTime);
-    // const diffTime = Math.abs(arrivalTime - departureTime);
-    // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    // console.log(diffTime + " milliseconds");
-    // console.log(diffDays + " days");
-    let start = new Date(getStartTime(flight));
-    let end = new Date(getEndTime(flight));
-    return Math.round(Math.abs(end - start) / 36e5);
-    // var minutes = Math.floor((diff/1000)/60);
-    // return minutes;
+    let start = new Date(getStartTime(flight)).valueOf();
+    let end = new Date(getEndTime(flight)).valueOf();
+    var delta = Math.abs(end - start) / 1000;
+    var days = Math.floor(delta / 86400);
+    delta -= days * 86400;
+    var hours = Math.floor(delta / 3600) % 24;
+    delta -= hours * 3600;
+    var minutes = Math.floor(delta / 60) % 60;
+    delta -= minutes * 60;
+    return hours +" hours "+minutes+" minutes";
 
   }
 
