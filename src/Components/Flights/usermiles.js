@@ -87,7 +87,24 @@ function Usermiles() {
             <div className="add-space"></div>
             <div className="add-space"></div>
             <div className="add-space"></div>
-            <div className="text-center">
+
+            {(pc=0) ?
+            (
+            <>
+                <div className="text-center">
+          <Link
+            to={{ pathname: `/bookForm/${id}` }}
+            className="btn btn-outline-primary m-4"
+          >
+            Checkout
+          </Link>
+          </div>
+            
+            </>
+            ):
+            (
+              <>
+                <div className="text-center">
           <Link
             to={{ pathname: `/bookForm/${id}/${pc}` }}
             className="btn btn-outline-primary m-4"
@@ -95,6 +112,11 @@ function Usermiles() {
             Checkout
           </Link>
           </div>
+              </>
+              )
+
+            }
+          
         </div>
       </div>
     </div>

@@ -103,19 +103,20 @@ export default function AddUser() {
             <div className='mb-3'>
               <div className ="row">
                 <div class="col s12 m6 ">
-              <label htmlFor='firstname' className='form-label'> First Name </label>
+              <label htmlFor='firstname' className='form-label required-field'> First Name </label>
               <input
                 type={"text"}
                 className="form-control"
                 placeholder='Enter your First Name'
                 name='firstName'
+                required
                 value={firstName}
                 onChange={(e) => onInputChange(e)}
               // onChange = {(e) => setFirstName(e.target.value)}
               />
               </div>
               <div class="col s12 m6">
-             <label htmlFor='middleName' className='form-label'> Middle Name </label>
+             <label htmlFor='middleName' className='form-label '> Middle Name </label>
               <input
                 type={"text"}
                 className="form-control"
@@ -130,23 +131,25 @@ export default function AddUser() {
             <div className ="row">
                 <div class="col s12 m6">
                 
-                <label htmlFor='lastName' className='form-label'> Last Name </label>
+                <label htmlFor='lastName' className='form-label required-field'> Last Name </label>
               <input
                 type={"text"}
                 className="form-control"
                 placeholder='Enter your Last Name'
                 name='lastName'
+                required
                 value={lastName}
                 onChange={(e) => onInputChange(e)}
               />
               </div>
               <div class="col s12 m6">
-              <label htmlFor='email' className='form-label'> Email </label>
+              <label htmlFor='email' className='form-label required-field'> Email </label>
               <input
                 type={"email"}
                 className="form-control"
                 placeholder='Enter your email '
                 name='email'
+                required
                 value={email}
                 onChange={(e) => onInputChange(e)}
               />
@@ -155,35 +158,38 @@ export default function AddUser() {
               <div className='add-space'></div>
               <div className ="row">
                 <div class="col s12 m6">
-          <label htmlFor='username' className='form-label'> Username </label>
+          <label htmlFor='username' className='form-label required-field'> Username </label>
               <input
                 type={"text"}
                 className="form-control"
                 placeholder='Enter your username'
                 name='username'
+                required
                 value={username}
                 onChange={(e) => onInputChange(e)}
               />
               </div>
               <div class="col s12 m6">
-              <label htmlFor='password' className='form-label'> Password </label>
+              <label htmlFor='password' className='form-label required-field'> Password </label>
               <input
                 type={"password"}
                 className="form-control"
                 placeholder='Enter your password'
                 name='password'
+                required
                 value={password}
                 onChange={(e) => onInputChange(e)}
               />
               </div>
               </div>
               <div className='add-space'></div>
-        <label htmlFor='cardOwnerName' className='form-label'>Name on Card </label>
+        <label htmlFor='cardOwnerName' className='form-label required-field'>Name on Card </label>
              <input
                 type={"text"}
                 className="form-control"
                 placeholder='Enter name on the credit card'
                 name='cardOwnerName'
+                required
                 value={cardOwnerName}
                 onChange={(e) => onCardInputChange(e)}
               />
@@ -192,22 +198,24 @@ export default function AddUser() {
               <div className ="row">
                 <div class="col s12 m6">
                
-              <label htmlFor='cardNumber' className='form-label'>Card Number </label>
+              <label htmlFor='cardNumber' className='form-label required-field'>Card Number </label>
               <input
                 type={"text"}
                 className="form-control"
                 placeholder='Enter credit card number'
                 name='cardNumber'
+                required
                 value={cardNumber}
                 onChange={(e) => onCardInputChange(e)}
               />
               </div>
               <div class="col s12 m6">
               
-              <label htmlFor='cardType' className='form-label'>Card Type</label>
+              <label htmlFor='cardType' className='form-label required-field'>Card Type</label>
               <select value={cardType}
                 className="form-control"
                 name='cardType'
+                required
                 onChange={(e) => onCardInputChange(e)}
               >
                 <option value="VISA">VISA</option>
@@ -220,24 +228,26 @@ export default function AddUser() {
               <div className ="row">
                
                 <div class="col s12 m6">
-              <label htmlFor='expiryDate' className='form-label'>Expiry Date </label>
+              <label htmlFor='expiryDate' className='form-label required-field'>Expiry Date </label>
                <input
                 type={"month"}
                 className="form-control"
                 placeholder='Enter credit card expiry in mm/yy format'
                 name='expiryDate'
+                required
                 value={expiryDate}
                 onChange={(e) => onCardInputChange(e)}
               />
                   
                 </div>
                 <div class="col s12 m6">
-                 <label htmlFor='cvv' className='form-label'>CVV </label>
+                 <label htmlFor='cvv' className='form-label required-field'>CVV </label>
                <input
                 type={"number"}
                 minLength={3}
                 maxLength='3'
                 className="form-control"
+                required
                 placeholder='Enter cvv'
                 name='cvv'
                 value={cvv}
@@ -247,7 +257,7 @@ export default function AddUser() {
                 </div>
                 </div>
                 <div className='add-space'></div>
-         <label htmlFor='mailingAddress' className='form-label'>Mailing Address </label> 
+         <label htmlFor='mailingAddress' className='form-label required-field'>Mailing Address </label> 
               <input
                 type={"text"}
                 className="form-control"

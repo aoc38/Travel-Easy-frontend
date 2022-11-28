@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import "./flight-form.css";
 import { getFlightById } from "./flight-service";
 
-function Bookform() {
+function Dealsbookform() {
   //getting logged in user from local storage
   let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
   console.log("logged in user in book form", loggedinUser);
@@ -17,28 +17,28 @@ function Bookform() {
   let data = getFlightById(id);
   let flight = data.length === 1 ? data[0] : {};
 
-  flight.price = pc * flight.price;
-  flight.miles = pc * flight.miles;
-  console.log("flight details in book form : ", flight);
+   flight.price = pc * flight.price;
+ /* flight.miles = pc * flight.miles;
+  console.log("flight details in book form : ", flight); */
 
   const [card, setCard] = useState({});
   const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
 
-  const [bookingData, setBookingData] = useState({
+ /* \ const [bookingData, setBookingData] = useState({
     flightData: flight,
     passengerData: passengerlist,
-  });
+  }); */
 
-  const handleinputchange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...passengerlist];
-    list[index][name] = value;
+ // const handleinputchange = (e, index) => {
+  //  const { name, value } = e.target;
+   // const list = [...passengerlist];
+//    list[index][name] = value;
 
-    setBookingData({
+/*     setBookingData({
       ...bookingData,
       ...{ passengerData: { ...bookingData.passengerData, list } },
     });
-  };
+  }; */
 
   //on load of form
   useEffect(() => {
@@ -185,4 +185,4 @@ function Bookform() {
   );
 }
 
-export default Bookform;
+export default Dealsbookform;
