@@ -29,6 +29,26 @@ function FlightList(props) {
   const getTimings = (flight) => {
     return getStartTime(flight) + " - " + getEndTime(flight);
   }
+  // const getDuration = (flight) => {
+  //   return getStartTime(flight) - getEndTime(flight);
+  // }
+  const getDuration = (flight) => {
+    // let arrivalTime = flight.arrivalTime; // mm:ss
+    // let ms = Number(arrivalTime.split(':')[0]) * 60 * 1000 + Number(arrivalTime.split(':')[1]) * 1000;
+    // return ms;
+    // var diff = Math.abs(new Date(flight.departureDate + flight.departureTime) - new Date(`${flight.arrivalDate + flight.arrivalTime}`));
+    // let departureTime = new Date(flight.departureTime);
+    // const diffTime = Math.abs(arrivalTime - departureTime);
+    // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    // console.log(diffTime + " milliseconds");
+    // console.log(diffDays + " days");
+    let start = new Date(getStartTime(flight));
+    let end = new Date(getEndTime(flight));
+    return Math.round(Math.abs(end - start) / 36e5);
+    // var minutes = Math.floor((diff/1000)/60);
+    // return minutes;
+
+  }
 
   const getPrice = (flight) => {
     return flight.price * props.noOfPassengers;
@@ -67,18 +87,21 @@ function FlightList(props) {
         <div>No Flights Found</div> :
         props.flights.map((flight, i) => {
           return (
-            <Card style={{ margin: "10px" }} className="card-list">
-              <CardContent key={flight.id}>
+            <Card style={{ margin: "10px" }} className="card-list" key={i} id={i}>
+              <CardContent key={i}>
                 <div className="flex-container">
                   <div>
-                    <h5>{getSource(flight)}</h5>
-                    <p>{getTimings(flight)}</p>
+                    <h5 id={i}>{getSource(flight)}</h5>
+                    <p>{getStartTime(flight)}</p>
                   </div>
                   <div>
-                    <h5>{flight.airline}</h5>
+                  <h5>{getDestination(flight)}</h5>
+                    <p>{getEndTime(flight)}</p>
+                    
                   </div>
                   <div>
-                    <h5>{getDestination(flight)}</h5>
+                  <h5>{flight.airline}</h5>
+                  <p>{getDuration(flight)}</p>
                     {/* <div>{getStops(flight)} stop's {getDuration(flight)}</div> */}
                   </div>
                   <div>

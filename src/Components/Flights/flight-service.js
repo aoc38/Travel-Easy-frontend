@@ -7,7 +7,7 @@ var flightsJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.j
 
 export function getNoOfPassengers() {
     let ages = [];
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 5; i++) {
         ages.push({ "label": i });
     }
     return ages;
