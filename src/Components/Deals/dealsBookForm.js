@@ -29,7 +29,10 @@ function DealsBookForm() {
   const [card, setCard] = useState({});
   const { firstName, lastName } = user;
   const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
-
+  const [bookingData, setBookingData] = useState({
+    userData: user,
+    cardData: card,
+  });
   /* \ const [bookingData, setBookingData] = useState({
      flightData: flight,
      passengerData: passengerlist,
@@ -68,6 +71,7 @@ function DealsBookForm() {
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+    // need to set booking data here
   };
   const showSuccessPopup = async (e) => {
     e.preventDefault();
@@ -102,7 +106,7 @@ function DealsBookForm() {
             name='firstName'
             required
             value={firstName}
-          onChange={(e) => onInputChange(e)}
+            onChange={(e) => onInputChange(e)}
           // onChange = {(e) => setFirstName(e.target.value)}
           />
         </div>
@@ -115,7 +119,7 @@ function DealsBookForm() {
             name='lastName'
             required
             value={lastName}
-          onChange={(e) => onInputChange(e)}
+            onChange={(e) => onInputChange(e)}
           />
         </div>
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
