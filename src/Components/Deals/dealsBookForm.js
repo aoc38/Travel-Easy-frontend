@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./flight-form.css";
-import { getFlightById } from "./flight-service";
+import "../Flights/flight-form";
+import { getFlightById } from "../Flights/flight-service";
 
-function Dealsbookform() {
+function DealsBookForm() {
   //getting logged in user from local storage
   let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
   console.log("logged in user in book form", loggedinUser);
@@ -13,32 +13,38 @@ function Dealsbookform() {
 
   //getting params from url
   const { id } = useParams();
-  console.log("data in Flight details page: ", id);
+  console.log("user id data in Book Deal page: ", id);
   let data = getFlightById(id);
-  let flight = data.length === 1 ? data[0] : {};
+  let dealData = data.length === 1 ? data[0] : {};
 
-   flight.price = pc * flight.price;
- /* flight.miles = pc * flight.miles;
-  console.log("flight details in book form : ", flight); */
 
+
+  //  flight.price = pc * flight.price;
+  /* flight.miles = pc * flight.miles;
+   console.log("flight details in book form : ", flight); */
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: ""
+  })
   const [card, setCard] = useState({});
+  const { firstName, lastName } = user;
   const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
 
- /* \ const [bookingData, setBookingData] = useState({
-    flightData: flight,
-    passengerData: passengerlist,
-  }); */
+  /* \ const [bookingData, setBookingData] = useState({
+     flightData: flight,
+     passengerData: passengerlist,
+   }); */
 
- // const handleinputchange = (e, index) => {
+  // const handleinputchange = (e, index) => {
   //  const { name, value } = e.target;
-   // const list = [...passengerlist];
-//    list[index][name] = value;
+  // const list = [...passengerlist];
+  //    list[index][name] = value;
 
-/*     setBookingData({
-      ...bookingData,
-      ...{ passengerData: { ...bookingData.passengerData, list } },
-    });
-  }; */
+  /*     setBookingData({
+        ...bookingData,
+        ...{ passengerData: { ...bookingData.passengerData, list } },
+      });
+    }; */
 
   //on load of form
   useEffect(() => {
@@ -51,38 +57,67 @@ function Dealsbookform() {
   // }
 
   const loadUser = async () => {
-    //const result = await axios.get(`http://localhost:8080/user/${id}`);
-    // console.log("logged in user card info : ",userData.cards.filter((obj) => obj.default === true));
+    const result = await axios.get(`http://localhost:8080/user/${id}`);
+    console.log("logged in user card info : ", userData.cards.filter((obj) => obj.default === true));
     setCard(userData.cards.filter((obj) => obj.default === true)[0]);
   };
 
   const onCardInputChange = (e) => {
     setCard({ ...card, [e.target.name]: e.target.value });
   };
+
+  const onInputChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
   const showSuccessPopup = async (e) => {
     e.preventDefault();
     try {
       //call flight booking api and send flight object data along with user data
-      console.log(bookingData);
+      // console.log(bookingData);
       //pc=0 bookdeals
       //pc>0 bookflight
-      let response = await axios.post(
-        `http://localhost:8080/bookdeals/${userid}`,
-        bookingData
-      );
-      console.log("response in book flight ", response);
+      // let response = await axios.post(
+      //   `http://localhost:8080/bookdeals/${userid}`,
+      //   bookingData
+      // );
+      // console.log("response in book flight ", response);
       // let response = await axios.post("http://localhost:8080/usersignup", userData  );
       // console.log(response.data);
       // console.warn(response.data);
       // localStorage.setItem("user-info", JSON.stringify(response.data));
     } catch (error) {
-      console.log(`ERROR: ${error}`);
+      // console.log(`ERROR: ${error}`);
     }
   };
 
   return (
     <div className="container">
       <div className="row">
+        <div class="col s12 m6 ">
+          <label htmlFor='firstname' className='form-label required-field'> First Name </label>
+          <input
+            type={"text"}
+            className="form-control"
+            placeholder='Enter your First Name'
+            name='firstName'
+            required
+            value={firstName}
+          onChange={(e) => onInputChange(e)}
+          // onChange = {(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div class="col s12 m6">
+          <label htmlFor='lastName' className='form-label '> Last Name </label>
+          <input
+            type={"text"}
+            className="form-control"
+            placeholder='Enter your Last Name'
+            name='lastName'
+            required
+            value={lastName}
+          onChange={(e) => onInputChange(e)}
+          />
+        </div>
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <div>
             {" "}
@@ -181,8 +216,8 @@ function Dealsbookform() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
-export default Dealsbookform;
+export default DealsBookForm;

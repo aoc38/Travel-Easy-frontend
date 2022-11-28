@@ -126,7 +126,7 @@ function SearchDeal() {
   };
 
   const canLocationBeSearched = (value, reason) => {
-    return value && value.length >= 5 && reason != "reset";
+    return value && value.length >= 3 && reason != "reset";
   };
 
   const searchSourceLocations = async (event, value, reason) => {
