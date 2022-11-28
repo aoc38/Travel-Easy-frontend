@@ -11,7 +11,7 @@ import BasicTextFields from "../Common/textfield";
 import { getLocations } from '../../services/flight/amadeus-api-service';
 import FlightStatusList from './FlightStatusList';
 import Information from "./information";
-var flightStatusJsonData = require('../DummyDataFiles/FlightsDummy/FS.json');
+var flightStatusJsonData = require('../DummyDataFiles/FlightStatusDummy/FS.json');
 
 
 
