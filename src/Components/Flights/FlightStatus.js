@@ -17,86 +17,48 @@ var flightStatusJsonData = require('../DummyDataFiles/FlightStatusDummy/FS.json'
 
 export default function FlightStatus() {
   const DATE_FORMAT = "YYYY-MM-DD";
-  const [source, setSource] = useState("");
-  const [fromLocations, setFromLocations] = useState([]);
-  const [toLocations, setToLocations] = useState([]);
-  const [destination, setDestination] = useState("");
-  const [value, setValue] = useState("");
+  const [flightNumber,setFlightNumber] =  useState("");
+  const [airlineName, setAirlineName] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [disableButton, setDisableButton] = useState(true);
   const [showList, setShowList] = useState(false);
+  const [value,setValue] = useState("");
   const [flightStatus, setFlightStatus] = useState({
   })
 
-
-  const onSourceSelected = (location) => {
-    //setSource(location != null && location.id);
-    setSource(location.name);
-    let buttonVal = disableSearchBtn();
-    console.log(`button val = ${buttonVal}`);
-    setDisableButton(buttonVal);
-  }
-  const onDestinationSelected = (location) => {
-    // setDestination(location != null && location.id);
-    setDestination(location.name);
-    let buttonVal = disableSearchBtn();
-    console.log(`button val = ${buttonVal}`);
-    setDisableButton(buttonVal);
-  }
   const handleDepartureDate = (deptDate) => {
     setDepartureDate(deptDate);
-
     let buttonVal = disableSearchBtn();
     console.log(`button val = ${buttonVal}`);
     setDisableButton(buttonVal);
   }
 
   const disableSearchBtn = () => {
-    // debugger;
-    console.log("search button");
-    if (source !== '' && destination !== '' && departureDate !== '') {
+    // console.log("search button");
+    if (flightNumber !== '' && airlineName !== '' && departureDate !== '') {
       return false;
     }
     return true;
   }
 
-  const canLocationBeSearched = (value, reason) => {
-    return value && value.length >= 3 && reason !== 'reset';
-  }
-
-  const searchSourceLocations = async (event, value, reason) => {
-    if (canLocationBeSearched(value, reason)) {
-      let results = await getLocations(value);
-      let data = results.data.data;
-      setFromLocations(data);
-    }
-  }
-  const searchDestinationLocations = async (event, value, reason) => {
-    if (canLocationBeSearched(value, reason)) {
-      let results = await getLocations(value);
-      let data = results.data.data;
-      setToLocations(data);
-    }
-  }
-
   const fetchFlightStatus = async () => {
     let request = {
-      'source': source,
-      'destination': destination,
+      'flightNumber': flightNumber,
+      'airlineName': airlineName,
       'departureDate': departureDate
     }
     let data = flightStatusJsonData;
     console.log("data in flight status : ", data);
     data = data.data.filter((obj) =>
-      obj.departureCityName === request.source
-      && obj.arrivalCityName === request.destination
+      obj.flightNumber === request.flightNumber
+      && obj.airline === request.airlineName
       && obj.departureDate === request.departureDate);
     console.log("data per request flight status : ", data);
     // let response = await getFlightStatusReq(request);
     // console.log("response from 108 in search flight : ",response);
     // let flights = response.data;
     // setFlight(flights);
-    setFlightStatus(data[0]);
+    // setFlightStatus(data[0]);
     setShowList(true);
   }
 

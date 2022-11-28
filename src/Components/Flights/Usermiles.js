@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getFlightById } from "./flight-service";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 
 function Usermiles() {
   //getting params from url

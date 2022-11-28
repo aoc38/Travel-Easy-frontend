@@ -53,7 +53,6 @@ export default function LoginPage() {
                 name='username'
                 required
                 value={username}
-                required
                 onChange={(e) => onInputChange(e)}
               />
               <label htmlFor='password' className='form-label'> Password </label>
