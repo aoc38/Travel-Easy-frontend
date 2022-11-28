@@ -101,10 +101,10 @@ function Flightdetails() {
   
             <div className="row ">
               <div class="col s12 m6 ">
-                <span className="text-bold">Flight Price </span>
+                <span className="text-bold">Price </span>
               </div>
               <div class="col s12 m6 ">
-                <span className="text-bold"> Tax Fee</span>
+                <span className="text-bold"> Tax</span>
               </div>
               
             </div>
@@ -137,10 +137,7 @@ function Flightdetails() {
                   >
                    Proceed
                   </Link>
-                  <Link to="/searchFlight" className="btn btn-outline-primary m-4 flt-rt">
-                    Edit
-                  </Link>
-                </div>
+                                  </div>
               </>
             ) : (
               <>
@@ -149,9 +146,7 @@ function Flightdetails() {
                   <Link to="/loginuser" className="btn btn-outline-primary m-4 flt-rt">
                     Proceed
                   </Link>
-                  <Link to="/searchFlight" className="btn btn-outline-primary m-4 flt-rt">
-                    Edit
-                  </Link>
+                  
                 </div>
               </>
             )}
