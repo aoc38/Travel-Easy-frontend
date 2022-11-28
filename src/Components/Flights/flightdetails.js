@@ -4,6 +4,9 @@ import React from 'react';
 import { Link, useParams } from "react-router-dom";
 import { getFlightById } from './flight-service';
 import "./flightdetails.css";
+import {AirlinesIcon} from '@mui/icons-material/AirlinesOutlined';
+import { AirlinesOutlined,FlightTakeoff, FlightLand } from "@mui/icons-material";
+
 
 
 function Flightdetails() {
@@ -32,82 +35,96 @@ function Flightdetails() {
     const taxAmont = (flight) => {
         return (15 / 100) * getPrice(flight);
     }
+    const getStartTime = (flight) => {
+    //return flight.segments[0].departure.at;
+    return flight.departureTime;
+  }
+
+  const getEndTime = (flight) => {
+   // return flight.segments[flight.segments.length - 1].arrival.at;
+   return flight.arrivalTime;
+  }
+
 
     const getTotalPrice = (flight) => {
         return getPrice(flight) + taxAmont(flight);
     }
+
+    const getTimings = (flight) => {
+      return getStartTime(flight) + " - " + getEndTime(flight);
+    }
     return (
         <div className="container">
         <div className="row">
-          <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-            <div className="text-center m-4">
-              {" "}
-              <h2> Review Flight Booking</h2>{" "}
-            </div>
-            <div className="row text-center">
-              <div class="col s12 m6 text-center">
-                <span className="text-bold">Source </span>
-              </div>
-              <div class="col s12 m6 text-center">
-                <span className="text-bold"> Destination</span>
-              </div>
-              <div class="col s12 m6 text-center">
+          <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow ">
+           
+            
+                
+                <div class="col s12 m6">
+                <AirlinesOutlined/>
                 <span className="text-bold"> Airline</span>
               </div>
-            </div>
-            <div className="row text-center">
-              <div class="col s12 m6 text-center">
-                <span className="fromto">{flight.departureCityName}</span>
-              </div>
-              <div class="col s12 m6 text-center">
-                <span>{flight.arrivalCityName}</span>
-              </div>
-              <div class="col s12 m6 text-center">
+              <div class="col s12 m6 ">
                 <span>{flight.airline}</span>
               </div>
-            </div>
-            <div className="add-space"></div>
-            <div className="row">
-              <div class="col s12 m6 text-center">
-                <span className="text-bold">Departure time </span>
+              <div className ="add-space"></div>
+              <div className="row">
+              <div class="col s12 m6">
+                <FlightTakeoff/>
+                <span className="text-bold"> From </span>
               </div>
-              <div class="col s12 m6 text-center">
-                <span className="text-bold"> Arrival Time</span>
+              <div class="col s12 m6">
+                <FlightLand/>
+                <span className="text-bold"> To </span>
               </div>
-            </div>
-            <div className="row">
-              <div class="col s12 m6 text-center">
-                <span className="fromto">{flight.departureTime}</span>
               </div>
-              <div class="col s12 m6 text-center">
+              <div className="row">
+              <div class="col s12 m6 ">
+                <span>{flight.departureCityName}</span>
+              </div>
+              <div class="col s12 m6 ">
+                <span>{flight.arrivalCityName}</span>
+              </div>
+              </div>
+              <div className="row">
+              <div class="col s12 m6 ">
+                <span>{flight.departureTime}</span>
+              </div>
+              <div class="col s12 m6 ">
                 <span>{flight.arrivalTime}</span>
               </div>
-            </div>
+              </div>
+            
+        
 
             <div className="add-space"></div>
   
-            <div className="row text-center">
+            <div className="row ">
               <div class="col s12 m6 ">
                 <span className="text-bold">Flight Price </span>
               </div>
               <div class="col s12 m6 ">
                 <span className="text-bold"> Tax Fee</span>
               </div>
-              <div class="col s12 m6 ">
-                <span className="text-bold">Total Price</span>
-              </div>
+              
             </div>
-            <div className="row text-center">
+            
+            <div className="row">
               <div class="col s12 m6 ">
                 <span className="fromto">{getPrice(flight)}$</span>
               </div>
               <div class="col s12 m6">
                 <span> {taxAmont(flight)}$</span>
               </div>
+             
+            </div>
+
+            <div class="col s12 m6 ">
+                <span className="text-bold">Total Price</span>
+              </div>
               <div class="col s12 m6">
                 <span>{getTotalPrice(flight)}$</span>
               </div>
-            </div>
   
             {loggedinUser ? (
               <>
@@ -116,9 +133,12 @@ function Flightdetails() {
                   {" "}
                   <Link
                     to={{ pathname: `/usermiles/${id}/${noOfPassengers}` }}
-                    className="btn btn-outline-primary m-4"
+                    className="btn btn-outline-primary m-4 flt-rt"
                   >
-                    Book Now
+                   Proceed
+                  </Link>
+                  <Link to="/searchFlight" className="btn btn-outline-primary m-4 flt-rt">
+                    Edit
                   </Link>
                 </div>
               </>
@@ -126,8 +146,11 @@ function Flightdetails() {
               <>
                 <div className="text-center">
                   {" "}
-                  <Link to="/loginuser" className="btn btn-outline-primary m-4">
+                  <Link to="/loginuser" className="btn btn-outline-primary m-4 flt-rt">
                     Proceed
+                  </Link>
+                  <Link to="/searchFlight" className="btn btn-outline-primary m-4 flt-rt">
+                    Edit
                   </Link>
                 </div>
               </>
