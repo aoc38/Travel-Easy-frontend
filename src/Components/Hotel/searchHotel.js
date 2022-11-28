@@ -1,3 +1,12 @@
+import {
+  faBed,
+  faCalendarDays,
+  faCar,
+  faPerson,
+  faPlane,
+  faTaxi,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import InputSearch from "../Common/searchbar";
 import Button from "../Common/button";
@@ -117,11 +126,13 @@ function SearchHotel() {
             <div className="col-md-12">
             <div className="d-flex">
               <div className="p-2 mt-2">
+             
                   <InputSearch
                     value={destination}
                     input={toLocations}
                     onInputChange={searchDestinationLocations}
                     onChange={onDestinationSelected}
+                    //placeholder="Where are you going?"
                     label="Going to"
                     className="mt-2"
                   />

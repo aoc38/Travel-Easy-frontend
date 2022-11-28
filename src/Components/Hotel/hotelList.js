@@ -2,15 +2,15 @@ import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import { Link } from "react-router-dom";
-import { parse } from 'tinyduration';
 import "./hotelList.css";
 import {getHotelOffers} from '../../services/hotel/amadeus-api-service'
 import HotelDetails from "./hoteldetails";
+import { useState } from "react";
 
 function HotelList(props) {
 
-  
-
+ 
+  const [hotelOffer, setHotelOffer] = useState([]);
   const getDestination = (hotel) => {
     return hotel.iataCode;
   }
@@ -19,6 +19,7 @@ function HotelList(props) {
     return hotel.name;
   }
 
+  
   const getHotelId = (hotel) => {
     return hotel.hotelId;
   }
@@ -41,7 +42,9 @@ function HotelList(props) {
     <div className="list-hotel">
       {
         props.hotels.data.map((hotel, i) => {
+    
           return (
+            
             <Card style={{ margin: "10px" }} className="card-list">
                 <CardContent key={hotel.hotelId}>
                 <div className="flex-container">
@@ -49,9 +52,10 @@ function HotelList(props) {
                     <h5>{getHotelName(hotel)}</h5>
                   </div>
                   <div>
-                   
+                    
                     {/* <Link to={{ pathname: "/flightdetails/'${this.props.testvalue}", state: { flight } }} className="btn btn-primary">Select</Link> */}
-                    <Link to={{ pathname: `/hoteldetails/${hotel.hotelId}`, state: hotel.hotelId }} className="btn btn-primary" >Select</Link>
+                   
+                    <Link to={{ pathname: `/hoteldetails/${hotel.hotelId}`}} className="btn btn-primary" >Select</Link>
 
                   </div>
                  

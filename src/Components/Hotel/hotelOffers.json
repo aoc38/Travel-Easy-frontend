@@ -2,6 +2,371 @@
     "data": [
       {
         "type": "hotel-offers",
+        "hotelId": "QIHOU599",
+        "hotel": {
+          "type": "hotel",
+          "hotelId": "QIHOU599",
+          "chainCode": "MC",
+          "dupeId": "700031300",
+          "name": "Quality Inn Hobby Airport",
+          "cityCode": "Houston",
+          "photo1": "http://pix3.agoda.net/hotelimages/15/0/59a863c3a6e93b759faf2beea910d516.jpg?s=312x",
+          "photo2": "http://pix5.agoda.net/hotelimages/15/15/15_13072409510013984463.jpg?s=312x",
+          "photo3": "http://pix2.agoda.net/hotelimages/15/15/15_17091312040056285473.jpg?s=312x",
+          "photo4": "http://pix4.agoda.net/hotelimages/15/15/15_17091312040056285476.jpg?s=312x",
+          "photo5": "http://pix5.agoda.net/hotelimages/15/15/15_17091312040056285477.jpg?s=312x",
+          "latitude": 51.50988,
+          "longitude": -0.15509
+        },
+        "available": true,
+        "offers": [
+          {
+            "id": "1FV3EH6OPV",
+            "checkInDate": "2022-11-22",
+            "checkOutDate": "2022-11-23",
+            "rateCode": "S9R",
+            "rateFamilyEstimated": {
+              "code": "SRS",
+              "type": "C"
+            },
+            "room": {
+              "type": "XMI",
+              "typeEstimated": {
+                "category": "DELUXE_ROOM",
+                "beds": 1,
+                "bedType": "QUEEN"
+              },
+              "description": {
+                "text": "Set in a prime location of Houston, Quality Inn Hobby Airport puts everything the city has to offer just outside your doorstep. Featuring a complete list of amenities, guests will find their stay at the property a comfortable one. 24-hour room service, free Wi-Fi in all rooms, Wi-Fi in public areas, valet parking, car park are on the list of things guests can enjoy. Television LCD/plasma screen, linens, mirror, closet, internet access – wireless can be found in selected guestrooms. The hotel offers various recreational opportunities. Discover all Santa Margherita Ligure has to offer by making Quality Inn Hobby Airport your base.",
+                "lang": "EN"
+              }
+            },
+            "guests": {
+              "adults": 1
+            },
+            "price": {
+              "currency": "$",
+              "base": "200",
+              "total": "200",
+              "variations": {
+                "average": {
+                  "base": "200"
+                },
+                "changes": [
+                  {
+                    "startDate": "2022-11-22",
+                    "endDate": "2022-11-23",
+                    "total": "200"
+                  }
+                ]
+              }
+            },
+            "policies": {
+              "paymentType": "guarantee",
+              "cancellation": {
+                "amount": "552.00",
+                "deadline": "2022-11-21T23:59:00Z"
+              }
+            },
+            "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+          }
+        ],
+        "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+      },
+      {
+        "type": "hotel-offers",
+        "hotelId": "ILBOM129",
+        "hotel": {
+          "type": "hotel",
+          "hotelId": "ILBOM129",
+          "chainCode": "MC",
+          "dupeId": "700031300",
+          "name": "Hotel Fortune",
+          "cityCode": "CBOM",
+          "photo1": "http://pix3.agoda.net/hotelimages/25/-1/8dad037385fd554a85e013f931a8a1d5.jpg?s=312x",
+          "photo2": "http://pix2.agoda.net/hotelimages/25/25/25_15062308450030331242.jpg?s=312x",
+          "photo3": "http://pix5.agoda.net/hotelimages/25/25/25_15062308460030331423.jpg?s=312x",
+          "photo4": "http://pix2.agoda.net/hotelimages/25/25/25_15062308460030331424.jpg?s=312x",
+          "photo5": "http://pix2.agoda.net/hotelimages/25/25/25_15062308460030331425.jpg?s=312x",
+          "latitude": 51.50988,
+          "longitude": -0.15509
+        },
+        "available": true,
+        "offers": [
+          {
+            "id": "1FV3EH6OPV",
+            "checkInDate": "2022-11-22",
+            "checkOutDate": "2022-11-23",
+            "rateCode": "S9R",
+            "rateFamilyEstimated": {
+              "code": "SRS",
+              "type": "C"
+            },
+            "room": {
+              "type": "XMI",
+              "typeEstimated": {
+                "category": "DELUXE_ROOM",
+                "beds": 1,
+                "bedType": "QUEEN"
+              },
+              "description": {
+                "text": "Marriott Senior Discount, 62 years and older valid ID required\nDeluxe Queen Room, 1 Queen(s), 20sqm/215sqft-29\nsqm/312sqft, Wireless internet, for a fee, Wire",
+                "lang": "EN"
+              }
+            },
+            "guests": {
+              "adults": 1
+            },
+            "price": {
+              "currency": "GBP",
+              "base": "552.00",
+              "total": "552.00",
+              "variations": {
+                "average": {
+                  "base": "552.00"
+                },
+                "changes": [
+                  {
+                    "startDate": "2022-11-22",
+                    "endDate": "2022-11-23",
+                    "total": "552.00"
+                  }
+                ]
+              }
+            },
+            "policies": {
+              "paymentType": "guarantee",
+              "cancellation": {
+                "amount": "552.00",
+                "deadline": "2022-11-21T23:59:00Z"
+              }
+            },
+            "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+          }
+        ],
+        "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+      },
+      {
+        "type": "hotel-offers",
+        "hotelId": "HGDFW780",
+        "hotel": {
+          "type": "hotel",
+          "hotelId": "HGDFW780",
+          "chainCode": "MC",
+          "dupeId": "700031300",
+          "name": "HOMEWOOD STES IRVING DFW ARPT",
+          "cityCode": "Dallas",
+          "photo1": "http://pix4.agoda.net/hotelimages/18/-1/91c5a3c5d5cc7189b0099fab9a2fbb64.jpg?s=312x",
+          "photo2": "http://pix1.agoda.net/hotelimages/18/18/18_15060216180028256873.jpg?s=312x",
+          "photo3": "http://pix4.agoda.net/hotelimages/18/18/18_121122143051695.jpg?s=312x",
+          "photo4": "http://pix2.agoda.net/hotelimages/18/18/18_121122143052132.jpg?s=312x",
+          "photo5": "http://pix2.agoda.net/hotelimages/18/18/18_121122143052678.jpg?s=312x",
+          "latitude": 51.50988,
+          "longitude": -0.15509
+        },
+        "available": true,
+        "offers": [
+          {
+            "id": "1FV3EH6OPV",
+            "checkInDate": "2022-11-22",
+            "checkOutDate": "2022-11-23",
+            "rateCode": "S9R",
+            "rateFamilyEstimated": {
+              "code": "SRS",
+              "type": "C"
+            },
+            "room": {
+              "type": "XMI",
+              "typeEstimated": {
+                "category": "DELUXE_ROOM",
+                "beds": 1,
+                "bedType": "QUEEN"
+              },
+              "description": {
+                "text": "The 4-star Homewood Stes Irving Dfw Arpt offers comfort and convenience whether you're on business or holiday in Koh Samet. The property features a wide range of facilities to make your stay a pleasant experience. Free Wi-Fi in all rooms, daily housekeeping, gift/souvenir shop, 24-hour front desk, Wi-Fi in public areas are just some of the facilities on offer. Some of the well-appointed guestrooms feature slippers, separate living room, television LCD/plasma screen, mirror, internet access – wireless. Take a break from a long day and make use of fitness center, sauna, outdoor pool, spa, massage. No matter what your reasons are for visiting Koh Samet, Sai Kaew Beach Resort will make you feel instantly at home.",
+                "lang": "EN"
+              }
+            },
+            "guests": {
+              "adults": 1
+            },
+            "price": {
+              "currency": "GBP",
+              "base": "552.00",
+              "total": "552.00",
+              "variations": {
+                "average": {
+                  "base": "552.00"
+                },
+                "changes": [
+                  {
+                    "startDate": "2022-11-22",
+                    "endDate": "2022-11-23",
+                    "total": "552.00"
+                  }
+                ]
+              }
+            },
+            "policies": {
+              "paymentType": "guarantee",
+              "cancellation": {
+                "amount": "552.00",
+                "deadline": "2022-11-21T23:59:00Z"
+              }
+            },
+            "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+          }
+        ],
+        "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+      },
+      {
+        "type": "hotel-offers",
+        "hotelId": "MCLONGHM",
+        "hotel": {
+          "type": "hotel",
+          "hotelId": "MCLONGHM",
+          "chainCode": "MC",
+          "dupeId": "700031300",
+          "name": "Red Fox Hotel Aerocity",
+          "cityCode": "Delhi",
+          "photo1": "http://pix5.agoda.net/hotelimages/17/17/17_16051513410042341853.jpg?s=312x",
+          "photo2": "https://q-xx.bstatic.com/xdata/images/hotel/max500/106650431.jpg?k=5a97e1aef0eef91b1a38caa55387f33ddc2c7e7990291682f4b2928f5b9d7e48&o=",
+          "photo3": "http://pix3.agoda.net/hotelimages/17/17/17_0912182150001859572.jpg?s=312x",
+          "photo4": "http://pix3.agoda.net/hotelimages/17/17/17_0912182150001859573.jpg?s=312x",
+          "photo5": "http://pix5.agoda.net/hotelimages/17/17/17_0912182150001859577.jpg?s=312x",
+          "latitude": 51.50988,
+          "longitude": -0.15509
+        },
+        "available": true,
+        "offers": [
+          {
+            "id": "1FV3EH6OPV",
+            "checkInDate": "2022-11-22",
+            "checkOutDate": "2022-11-23",
+            "rateCode": "S9R",
+            "rateFamilyEstimated": {
+              "code": "SRS",
+              "type": "C"
+            },
+            "room": {
+              "type": "XMI",
+              "typeEstimated": {
+                "category": "DELUXE_ROOM",
+                "beds": 1,
+                "bedType": "QUEEN"
+              },
+              "description": {
+                "text": "The 5-star Hotel Red Fox Hotel Aerocity offers comfort and convenience whether you're on business or holiday in Medellin. Both business travelers and tourists can enjoy the hotel's facilities and services. Facilities like 24-hour front desk, facilities for disabled guests, luggage storage, room service, airport transfer are readily available for you to enjoy. Some of the well-appointed guestrooms feature air conditioning, wake-up service, desk, mini bar, alarm clock. Recuperate from a full day of sightseeing in the comfort of your room or take advantage of the hotel's recreational facilities, including fitness center, outdoor pool, spa, massage, steamroom. Friendly staff, great facilities and close proximity to all that Medellin has to offer are three great reasons you should stay at Hotel Dann Carlton Medellín.",
+                "lang": "EN"
+              }
+            },
+            "guests": {
+              "adults": 1
+            },
+            "price": {
+              "currency": "GBP",
+              "base": "552.00",
+              "total": "552.00",
+              "variations": {
+                "average": {
+                  "base": "552.00"
+                },
+                "changes": [
+                  {
+                    "startDate": "2022-11-22",
+                    "endDate": "2022-11-23",
+                    "total": "552.00"
+                  }
+                ]
+              }
+            },
+            "policies": {
+              "paymentType": "guarantee",
+              "cancellation": {
+                "amount": "552.00",
+                "deadline": "2022-11-21T23:59:00Z"
+              }
+            },
+            "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+          }
+        ],
+        "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+      },
+      {
+        "type": "hotel-offers",
+        "hotel": {
+          "type": "hotel",
+          "hotelId": "MCLONGHM",
+          "chainCode": "MC",
+          "dupeId": "700031300",
+          "name": "JW Marriott Grosvenor House London",
+          "cityCode": "LON",
+          "photo1": "http://pix3.agoda.net/hotelimages/15/0/59a863c3a6e93b759faf2beea910d516.jpg?s=312x",
+          "photo2": "http://pix5.agoda.net/hotelimages/15/15/15_13072409510013984463.jpg?s=312x",
+          "photo3": "http://pix2.agoda.net/hotelimages/15/15/15_17091312040056285473.jpg?s=312x",
+          "photo4": "http://pix4.agoda.net/hotelimages/15/15/15_17091312040056285476.jpg?s=312x",
+          "photo5": "http://pix5.agoda.net/hotelimages/15/15/15_17091312040056285477.jpg?s=312x",
+          "latitude": 51.50988,
+          "longitude": -0.15509
+        },
+        "available": true,
+        "offers": [
+          {
+            "id": "1FV3EH6OPV",
+            "checkInDate": "2022-11-22",
+            "checkOutDate": "2022-11-23",
+            "rateCode": "S9R",
+            "rateFamilyEstimated": {
+              "code": "SRS",
+              "type": "C"
+            },
+            "room": {
+              "type": "XMI",
+              "typeEstimated": {
+                "category": "DELUXE_ROOM",
+                "beds": 1,
+                "bedType": "QUEEN"
+              },
+              "description": {
+                "text": "Marriott Senior Discount, 62 years and older valid ID required\nDeluxe Queen Room, 1 Queen(s), 20sqm/215sqft-29\nsqm/312sqft, Wireless internet, for a fee, Wire",
+                "lang": "EN"
+              }
+            },
+            "guests": {
+              "adults": 1
+            },
+            "price": {
+              "currency": "GBP",
+              "base": "552.00",
+              "total": "552.00",
+              "variations": {
+                "average": {
+                  "base": "552.00"
+                },
+                "changes": [
+                  {
+                    "startDate": "2022-11-22",
+                    "endDate": "2022-11-23",
+                    "total": "552.00"
+                  }
+                ]
+              }
+            },
+            "policies": {
+              "paymentType": "guarantee",
+              "cancellation": {
+                "amount": "552.00",
+                "deadline": "2022-11-21T23:59:00Z"
+              }
+            },
+            "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+          }
+        ],
+        "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+      },
+      {
+        "type": "hotel-offers",
+        "hotelId": "MCLONGHM",
         "hotel": {
           "type": "hotel",
           "hotelId": "MCLONGHM",

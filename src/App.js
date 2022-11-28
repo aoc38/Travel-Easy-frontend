@@ -5,10 +5,10 @@ import Home from './pages/Home';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AddUser from './Users/AddUser';
 import SearchFlight from './Components/Flights/searchflight';
-import Flightdetails from './Components/Flights/Flightdetails';
+import Flightdetails from './Components/Flights/flightdetails';
 import BookForm from './Components/Flights/bookform';
 import EditUser from './Users/EditUser';
-import Usermiles from './Components/Flights/Usermiles';
+import Usermiles from './Components/Flights/usermiles';
 import Bookinghistory from './Components/Flights/bookinghistory';
 import React from 'react';
 import Feedback from './Components/Feedback/Feedbackform';
@@ -18,6 +18,7 @@ import FlightStatus from './Components/Flights/FlightStatus';
 import Dealsdetails from './Components/Deals/Dealsdetails';
 import SearchHotel from './Components/Hotel/searchHotel';
 import Hoteldetails from './Components/Hotel/hoteldetails';
+import HotelBooking from './Components/Hotel/hotel-bookings';
 
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
           <Route exact path="/flightstatus" element={<FlightStatus />} />
           <Route exact path="/hotels" element={<SearchHotel />} />
           <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} />
-
+          <Route exact path="/hotelbooking/:id" element={<HotelBooking />} />
         </Routes>
 
       </Router>

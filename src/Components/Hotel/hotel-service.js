@@ -1,5 +1,5 @@
 
-
+var hotels = require('./hotelOffers.json');
 
 export function getNoOfGuest() {
     let guest = [];
@@ -30,5 +30,14 @@ export function getFilterStrategies() {
             id: "htl",
         }
     ]
+}
+
+export function getHotelById(id){
+    // TODO make a REST call to backend and get data for testing using JSON file
+    let jsondata =  JSON.parse(JSON.stringify(hotels));
+    console.log("json data = ",jsondata);
+    let result = jsondata.data.filter((obj) => obj.hotelId === id);
+    console.log("result = ",result);
+    return result;
 }
 
