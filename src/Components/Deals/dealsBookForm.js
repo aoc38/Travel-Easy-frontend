@@ -17,15 +17,13 @@ function DealsBookForm() {
   let data = getFlightById(id);
   let dealData = data.length === 1 ? data[0] : {};
 
-
-
   //  flight.price = pc * flight.price;
   /* flight.miles = pc * flight.miles;
    console.log("flight details in book form : ", flight); */
   const [user, setUser] = useState({
     firstName: "",
-    lastName: ""
-  })
+    lastName: "",
+  });
   const [card, setCard] = useState({});
   const { firstName, lastName } = user;
   const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
@@ -33,21 +31,6 @@ function DealsBookForm() {
     userData: user,
     cardData: card,
   });
-  /* \ const [bookingData, setBookingData] = useState({
-     flightData: flight,
-     passengerData: passengerlist,
-   }); */
-
-  // const handleinputchange = (e, index) => {
-  //  const { name, value } = e.target;
-  // const list = [...passengerlist];
-  //    list[index][name] = value;
-
-  /*     setBookingData({
-        ...bookingData,
-        ...{ passengerData: { ...bookingData.passengerData, list } },
-      });
-    }; */
 
   //on load of form
   useEffect(() => {
@@ -61,7 +44,10 @@ function DealsBookForm() {
 
   const loadUser = async () => {
     const result = await axios.get(`http://localhost:8080/user/${id}`);
-    console.log("logged in user card info : ", userData.cards.filter((obj) => obj.default === true));
+    console.log(
+      "logged in user card info : ",
+      userData.cards.filter((obj) => obj.default === true)
+    );
     setCard(userData.cards.filter((obj) => obj.default === true)[0]);
   };
 
@@ -72,6 +58,7 @@ function DealsBookForm() {
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
     // need to set booking data here
+    setBookingData(...bookingData.cardData, card);
   };
   const showSuccessPopup = async (e) => {
     e.preventDefault();
@@ -97,49 +84,64 @@ function DealsBookForm() {
   return (
     <div className="container">
       <div className="row">
-        <div class="col s12 m6 ">
-          <label htmlFor='firstname' className='form-label required-field'> First Name </label>
-          <input
-            type={"text"}
-            className="form-control"
-            placeholder='Enter your First Name'
-            name='firstName'
-            required
-            value={firstName}
-            onChange={(e) => onInputChange(e)}
-          // onChange = {(e) => setFirstName(e.target.value)}
-          />
-        </div>
-        <div class="col s12 m6">
-          <label htmlFor='lastName' className='form-label '> Last Name </label>
-          <input
-            type={"text"}
-            className="form-control"
-            placeholder='Enter your Last Name'
-            name='lastName'
-            required
-            value={lastName}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <div>
-            {" "}
+          <div className="m-4">
+            <h5> User Information</h5>
+            <div className="row">
+              <div className="col s12 m6 ">
+                <label
+                  htmlFor="firstname"
+                  className="form-label required-field"
+                >
+                  First Name{" "}
+                </label>
+                <input
+                  type={"text"}
+                  className="form-control"
+                  placeholder="Enter your First Name"
+                  name="firstName"
+                  required
+                  value={firstName}
+                  onChange={(e) => onInputChange(e)}
+                  // onChange = {(e) => setFirstName(e.target.value)}
+                />
+              </div>
+              <div className="col s12 m6">
+                <label htmlFor="lastName" className="form-label required-field ">
+                  {" "}
+                  Last Name{" "}
+                </label>
+                <input
+                  type={"text"}
+                  className="form-control required-field"
+                  placeholder="Enter your Last Name"
+                  name="lastName"
+                  required
+                  value={lastName}
+                  onChange={(e) => onInputChange(e)}
+                />
+              </div>
+            </div>
+            
+            <div className="add-space"></div>
+            
             <h5> Card Information </h5>
+          <div className="row">
+            <div class="col s12 m6">
+              <label htmlFor="cardOwnerName" className="form-label">
+                Name on Card{" "}
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Enter name on the credit card"
+                name="cardOwnerName"
+                disabled
+                value={cardOwnerName}
+                onChange={(e) => onCardInputChange(e)}
+              />
+            </div>
           </div>
-          <label htmlFor="cardOwnerName" className="form-label">
-            Name on Card{" "}
-          </label>
-          <input
-            type={"text"}
-            className="form-control"
-            placeholder="Enter name on the credit card"
-            name="cardOwnerName"
-            disabled
-            value={cardOwnerName}
-            onChange={(e) => onCardInputChange(e)}
-          />
-
           <div className="add-space"></div>
           <div className="row">
             <div class="col s12 m6">
@@ -220,7 +222,8 @@ function DealsBookForm() {
           </div>
         </div>
       </div>
-    </div >
+    </div>  
+    </div>
   );
 }
 
