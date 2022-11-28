@@ -1,18 +1,16 @@
-import React from 'react'
+import React from 'react';
 // import Card from '../Common/Card';
-import InputSearch from "../Common/searchbar";
-import CustomDatePicker from "../Common/date-picker";
 import { useState } from "react";
+import CustomDatePicker from "../Common/date-picker";
 // import Button from "../Common/button";
 import { Card } from '@mui/material';
 import Button from "../Common/button";
 import BasicTextFields from "../Common/textfield";
 // import InputSearch from "../Common/searchbar";
 // import CustomDatePicker from "../Common/date-picker";
+import { getLocations } from '../../services/flight/amadeus-api-service';
 import FlightStatusList from './FlightStatusList';
 import Information from "./information";
-import { getLocations } from '../../services/flight/amadeus-api-service'
-import { CardContent } from '@mui/material';
 var flightSearchJsonData = require('../DummyDataFiles/FlightsDummy/FlightSearchData.json');
 
 
@@ -116,12 +114,17 @@ export default function FlightStatus() {
                       label="Flight Number"
                       variant="outlined"
                       id="outline-basic"
-                      
-
+                    />
+                  </div>
+                  <div className="p-2 mt-2">
+                    <BasicTextFields
+                      label="Airline Name"
+                      variant="outlined"
+                      id="outline-basic"
                     />
                   </div>
 
-                  <div className="p-2 mt-2">
+                  {/* <div className="p-2 mt-2">
                     <InputSearch
                       value={destination}
                       input={toLocations}
@@ -130,7 +133,7 @@ export default function FlightStatus() {
                       label="Destination"
                       className="mt-2"
                     />
-                  </div>
+                  </div> */}
 
                   <div className="p-2 mt-2">
                     <CustomDatePicker
