@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getFlightById } from "./flight-service";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 
 function Usermiles() {
   //getting params from url
@@ -12,10 +10,11 @@ function Usermiles() {
   let data = getFlightById(id);
   let flight = data.length === 1 ? data[0] : {};
   console.log("flight details in user miles : ", flight);
-
-  if (pc != 0) {
+  let noOfPassengers = pc;
+  if (pc !== 0) {
     flight.miles = pc * flight.miles;
   }
+  let isDeal = (noOfPassengers === '0') ? true : false;
 
   // const [accumulatedMiles, setAccumulatedMiles] = useState(0);
   // const [redeemedMiles, setRedeemedMiles] = useState(0);
@@ -44,17 +43,17 @@ function Usermiles() {
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <div className="text-center m-4">
-            <h2>User Miles</h2>
+            <h2> Miles</h2>
           </div>
 
           <div className="row text-center">
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold">
                 {" "}
                 <span> Available Miles </span>
               </span>
             </div>
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold">
                 {" "}
                 <span>Required Miles </span>
@@ -62,39 +61,61 @@ function Usermiles() {
             </div>
           </div>
           <div className="row text-center">
-            <div class="col s12 m6">
+            <div className="col s12 m6">
               <span>{getAccMiles(flight)}</span>
             </div>
-            <div class="col s12 m6">
+            <div className="col s12 m6">
               <span>{getReqMiles(flight)}</span>
             </div>
           </div>
-          <div className ="add-space"></div>
-          <div className ="add-space"></div>
-        
-         <div className="text-center text-bold"> <label>Do you want to use miles?</label>
-        
-          <input
-            type="checkbox"
-            //  disabled={usermilesCheckbox}
-            checked={isUserMilesChecked}
-            onChange={(e) => {
-              setIsUserMilesChecked(e.target.checked);
-            }}
-          />
-          
-            </div>
-            <div className="add-space"></div>
-            <div className="add-space"></div>
-            <div className="add-space"></div>
-            <div className="text-center">
-          <Link
-            to={{ pathname: `/bookForm/${id}/${pc}` }}
-            className="btn btn-outline-primary m-4"
-          >
-            Checkout
-          </Link>
+          <div className="add-space"></div>
+          <div className="add-space"></div>
+
+          <div className="text-center text-bold"> <label>Do you want to use miles?</label>
+
+            <input
+              type="checkbox"
+              //  disabled={usermilesCheckbox}
+              checked={isUserMilesChecked}
+              onChange={(e) => {
+                setIsUserMilesChecked(e.target.checked);
+              }}
+            />
+
           </div>
+          <div className="add-space"></div>
+          <div className="add-space"></div>
+          <div className="add-space"></div>
+
+          {isDeal ?
+            (
+              <>
+                <div className="text-center">
+                  <Link
+                    to={{ pathname: `/bookdealform/${id}` }}
+                    className="btn btn-outline-primary m-4"
+                  >
+                    Checkout
+                  </Link>
+                </div>
+
+              </>
+            ) :
+            (
+              <>
+                <div className="text-center">
+                  <Link
+                    to={{ pathname: `/bookForm/${id}/${pc}` }}
+                    className="btn btn-outline-primary m-4"
+                  >
+                    Checkout
+                  </Link>
+                </div>
+              </>
+            )
+
+          }
+
         </div>
       </div>
     </div>

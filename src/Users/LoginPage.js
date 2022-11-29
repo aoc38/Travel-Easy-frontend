@@ -24,18 +24,36 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       let response = await axios.post("http://localhost:8080/userlogin", loginData);
-      if(response.data.message !== undefined ){
-          alert(response.data.message);
+      if (response.data.message !== undefined) {
+        alert(response.data.message);
       }
-      else{
+      else {
         sessionStorage.setItem("user-info", JSON.stringify(response.data));
-        navigate('/searchFlight');
+        // console.log(sessionStorage.getItem("flight-data"));
+        let flightdata = JSON.parse(sessionStorage.getItem("flight-data"));
+        let dealdata = JSON.parse(sessionStorage.getItem("deal-data"));
+        let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
+        if (flightdata !== null) {
+          //go to flight details page
+          navigate(`/flightdetails/${flightdata.id}/${passengerCount}`);
+          sessionStorage.removeItem("flight-data");
+          sessionStorage.removeItem("passenger-count");
+        } else if (dealdata !== null) {
+          //go to deal details page
+          navigate(`/usermiles/${dealdata.id}/${passengerCount}`);
+          sessionStorage.removeItem("deal-data");
+          sessionStorage.removeItem("passenger-count");
+        }
+        else {
+          navigate('/searchFlight');
+        }
+
       }
-     
+
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
-   
+
   };
 
   return (
@@ -53,7 +71,6 @@ export default function LoginPage() {
                 name='username'
                 required
                 value={username}
-                required
                 onChange={(e) => onInputChange(e)}
               />
               <label htmlFor='password' className='form-label'> Password </label>
@@ -67,8 +84,8 @@ export default function LoginPage() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <button type='submit' className='btn btn-outline-primary'>Submit</button>
-            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
+            <button type='submit' className='btn btn-outline-primary' >Submit</button>
+            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/searchFlight"}>Cancel</Link>
 
             <div className="text-center">
               Not registered yet?{" "}

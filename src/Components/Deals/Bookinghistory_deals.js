@@ -2,13 +2,15 @@ import React from 'react';
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import "../Flights/bookinghistory.css";
-import { getFlightById } from '../Flights/flight-service';
+import { getDealsById } from '../Deals/deals-service';
+import { useParams } from "react-router-dom";
 
 
-function BookinghistoryDeals(props) {
+function BookinghistoryDeals() {
 
-    let data = getFlightById(id);
-    let flight = data.length == 1 ? data[0] : {};
+    const { id } = useParams()
+    let data = getDealsById(id);
+    let deals = data.length == 1 ? data[0] : {};
 
     return (
         <div>
@@ -22,9 +24,9 @@ function BookinghistoryDeals(props) {
 
                     <div className="col-md-12">
                             <div className="title">
-                                <span className="fromto">{flight.departureCityName}</span>
+                                <span className="fromto">{deals.departureCityName}</span>
                                 {"-"}
-                                <span>{flight.arrivalCityName}</span>
+                                <span>{deals.arrivalCityName}</span>
                                 </div>
 
                         </div>
@@ -34,8 +36,8 @@ function BookinghistoryDeals(props) {
                             <div className="brdr-btm">
                                 <span>Departure</span>{": "}
                                 
-                                <span>{flight.departureTime}</span>
-                                <span>{"("}</span><span>arrives {flight.arrivalTime} </span><span>{")"}</span>
+                                <span>{deals.departureTime}</span>
+                                <span>{"("}</span><span>arrives {deals.deals_price} </span><span>{")"}</span>
 
                             </div>
                         </div>

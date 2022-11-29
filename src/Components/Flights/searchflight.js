@@ -27,7 +27,8 @@ const styles = {
 function SearchFlight() {
 
   // const {loggedinUser,SetloggedInUser} = useContext(UserContext);
-
+  let loggedinUser = sessionStorage.getItem("user-info");
+  console.log("logged in user in Search Flight page", loggedinUser)
 
   const bookingTypes = getFlightBookingTypes();
   const noOfPassengersList = getNoOfPassengers();
@@ -114,7 +115,7 @@ function SearchFlight() {
     let data = JSON.parse(JSON.stringify(flightsJsonData));
     let resultList = data.data.filter(
       (obj) =>
-       (obj.departureCityName === request.source.address.cityName) &&
+        (obj.departureCityName === request.source.address.cityName) &&
         (obj.arrivalCityName === request.destination.address.cityName)
     );
     if (request.filterBy && request.filterBy === 'Price: High to Low') {
@@ -204,7 +205,7 @@ function SearchFlight() {
                       onInputChange={searchSourceLocations}
                       onChange={onSourceSelected}
                       label="Source"
-                      name = "sourceAirport"
+                      name="sourceAirport"
                       className="mt-2" />
                   </div>
                   <div className="p-2 mt-2">
@@ -272,11 +273,15 @@ function SearchFlight() {
           </div> : <Information />}
         </div>
       </div>
-      <div id='bottom'>
-             <Link className='btn btn-outline-light' to="/feedbackform"><Fab sx={styles}><RateReview /></Fab></Link>
-            </div>
+      {
+        loggedinUser ?
+          <div id='bottom'>
+            <Link className='btn btn-outline-light' to="/feedbackform"><Fab sx={styles}><RateReview /></Fab></Link>
+          </div>
+          : null
+      }
     </div>
-    
+
   );
 }
 
