@@ -24,18 +24,29 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       let response = await axios.post("http://localhost:8080/userlogin", loginData);
-      if(response.data.message !== undefined ){
-          alert(response.data.message);
+      if (response.data.message !== undefined) {
+        alert(response.data.message);
       }
-      else{
+      else {
         sessionStorage.setItem("user-info", JSON.stringify(response.data));
-        navigate('/searchFlight');
+        console.log(sessionStorage.getItem("flight-data"));
+        let flightdata = JSON.parse(sessionStorage.getItem("flight-data"));
+        let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
+        if (flightdata !== null) {
+          //go to flight details page
+          navigate(`/flightdetails/${flightdata.id}/${passengerCount}`);
+          // <Link to={{ pathname: `/flightdetails/${flightdata.id}/${passengerCount}` }} className="btn btn-primary"></Link>
+        }
+        else {
+          navigate('/searchFlight');
+        }
+
       }
-     
+
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
-   
+
   };
 
   return (
@@ -53,7 +64,6 @@ export default function LoginPage() {
                 name='username'
                 required
                 value={username}
-                required
                 onChange={(e) => onInputChange(e)}
               />
               <label htmlFor='password' className='form-label'> Password </label>

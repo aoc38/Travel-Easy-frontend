@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getFlightById } from "./flight-service";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 
 function Usermiles() {
   //getting params from url
@@ -13,7 +11,7 @@ function Usermiles() {
   let flight = data.length === 1 ? data[0] : {};
   console.log("flight details in user miles : ", flight);
 
-  if (pc != 0) {
+  if (pc !== 0) {
     flight.miles = pc * flight.miles;
   }
 
@@ -48,13 +46,13 @@ function Usermiles() {
           </div>
 
           <div className="row text-center">
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold">
                 {" "}
                 <span> Available Miles </span>
               </span>
             </div>
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold">
                 {" "}
                 <span>Required Miles </span>
@@ -62,10 +60,10 @@ function Usermiles() {
             </div>
           </div>
           <div className="row text-center">
-            <div class="col s12 m6">
+            <div className="col s12 m6">
               <span>{getAccMiles(flight)}</span>
             </div>
-            <div class="col s12 m6">
+            <div className="col s12 m6">
               <span>{getReqMiles(flight)}</span>
             </div>
           </div>

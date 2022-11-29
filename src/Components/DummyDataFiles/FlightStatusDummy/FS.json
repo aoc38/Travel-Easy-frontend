@@ -1,12 +1,15 @@
 {
     "data": [
         {
-            "flightNumber":"1252",
+            "id" : 1,
+            "flightNumber":"AA1252",
             "airline":"American Airlines",
-            "departureDate":"2022-11-28T05:30:00",
-            "arrivalDate":"2022-11-28T08:41:00",
             "departureCityName":"AUSTIN",
             "arrivalCityName":"DENVER",
+            "departureTime":"05:30:00",
+            "arrivalTime":"08:41:00",
+            "departureDate":"2022-11-28",
+            "arrivalDate":"2022-11-28",
             "isArrived":false,
             "isInflight":true,
             "isDelayed":false
