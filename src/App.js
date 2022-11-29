@@ -20,6 +20,7 @@ import Hoteldetails from './Components/Hotel/hoteldetails';
 import SearchHotel from './Components/Hotel/searchHotel';
 import LoginPage from './Users/LoginPage';
 import Dealsdetails from './Components/Deals/Dealsdetails';
+import UserBookinghistory from './Users/UserBookinghistory';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/bookdealform/:id" element={<DealsBookForm />} />
           <Route exact path="/usermiles/:id/:pc" element={<Usermiles />} />
           <Route exact path="/bookinghistory" element={<Bookinghistory />} />
+          <Route exact path="/userbookinghistory" element={<UserBookinghistory />} />
           <Route exact path="/feedbackform" element={<Feedback />} />
           <Route exact path="/deals" element={<SearchDeals />} />
           <Route exact path="/flightstatus" element={<FlightStatus />} />

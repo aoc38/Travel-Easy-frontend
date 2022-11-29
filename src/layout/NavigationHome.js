@@ -8,9 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function NavigationHome() {
     // const { loggedinUser, SetloggedInUser } = useContext(UserContext);
     let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
-    console.log("Logged in user in Navigation bar ",loggedinUser);
+    console.log("Logged in user in Navigation bar ", loggedinUser);
     let navigate = useNavigate();
-    
+
     function logOut() {
         //SetloggedInUser(null);
         sessionStorage.removeItem("user-info");
@@ -18,6 +18,12 @@ export default function NavigationHome() {
         sessionStorage.removeItem("deal-data");
         sessionStorage.removeItem("passenger-count");
         navigate("/searchFlight");
+    }
+
+    function bookingHistory() {
+
+        navigate("/userbookinghistory");
+
     }
 
     return (
@@ -50,6 +56,9 @@ export default function NavigationHome() {
                             <Nav>
                                 <Navbar.Collapse className="justify-content-end">
                                     <NavDropdown title={loggedinUser && ((loggedinUser).firstName)}>
+                                        <NavDropdown.Item onClick={bookingHistory}>
+                                            Booking History
+                                        </NavDropdown.Item>
                                         <NavDropdown.Item onClick={logOut}>
                                             Logout
                                         </NavDropdown.Item>
