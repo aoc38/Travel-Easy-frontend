@@ -46,13 +46,13 @@ function Usermiles() {
           </div>
 
           <div className="row text-center">
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold">
                 {" "}
                 <span> Available Miles </span>
               </span>
             </div>
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold">
                 {" "}
                 <span>Required Miles </span>
@@ -60,10 +60,10 @@ function Usermiles() {
             </div>
           </div>
           <div className="row text-center">
-            <div class="col s12 m6">
+            <div className="col s12 m6">
               <span>{getAccMiles(flight)}</span>
             </div>
-            <div class="col s12 m6">
+            <div className="col s12 m6">
               <span>{getReqMiles(flight)}</span>
             </div>
           </div>
