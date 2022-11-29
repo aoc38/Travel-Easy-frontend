@@ -53,8 +53,8 @@ function Flightdetails() {
     }
     return (
         <div className="container">
-        <div className="row">
-          <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow ">
+        <div className="row ">
+          <div className="col-md-4 offset-md-4 border rounded p-4 mt-4 shadow ">
            
             
                 
@@ -131,7 +131,7 @@ function Flightdetails() {
                   {" "}
                   <Link
                     to={{ pathname: `/usermiles/${id}/${noOfPassengers}` }}
-                    className="btn btn-outline-primary m-4 flt-rt"
+                    className="btn btn-outline-primary m-4 text-center"
                   >
                    Proceed
                   </Link>
@@ -141,7 +141,7 @@ function Flightdetails() {
               <>
                 <div className="text-center">
                   {" "}
-                  <Link to="/loginuser" className="btn btn-outline-primary m-4 flt-rt">
+                  <Link to="/loginuser" className="btn btn-outline-primary m-4 text-center">
                     Proceed
                   </Link>
                   

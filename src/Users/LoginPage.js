@@ -66,8 +66,8 @@ export default function LoginPage() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <button type='submit' className='btn btn-outline-primary'>Submit</button>
-            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
+            <button type='submit' className='btn btn-outline-primary' >Submit</button>
+            <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/searchFlight"}>Cancel</Link>
 
             <div className="text-center">
               Not registered yet?{" "}

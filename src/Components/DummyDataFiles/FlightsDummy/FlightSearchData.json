@@ -42,22 +42,8 @@
             "airline":"American Airlines" ,
             "departureTime":"08:30:00",
             "arrivalTime":"10:41:00"
-        },
-        {
-            "id":"4",
-            "departureDate":"2022-11-30",
-            "arrivalDate":"2022-11-30",
-            "departureCityName":"AUSTIN",
-            "arrivalCityName":"DENVER",
-            "flightType":"DOMESTIC",
-            "price":300,
-            "deals_price":500,
-            "miles":15000,
-            "airline":"American Airlines" ,
-            "departureTime":"05:30:00",
-            "arrivalTime":"08:30:00"
-            
         }
+ 
 
 
     ]

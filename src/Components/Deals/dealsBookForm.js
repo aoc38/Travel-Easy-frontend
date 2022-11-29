@@ -70,7 +70,7 @@ function DealsBookForm() {
       //pc=0 bookdeals
       //pc>0 bookflight
       let response = await axios.post(
-        `http://localhost:8080/bookdeal/${userid}`,
+        `http://localhost:8080/bookinghistorydeals/${userid}`,
         bookingData
       );
       console.log(response);
@@ -219,7 +219,7 @@ function DealsBookForm() {
               {" "}
               <Link
                 className="mt-2 btn  btn btn-outline-primary"
-                to="/Bookinghistory"
+                to="/bookinghistorydeals"
                 onClick={showSuccessPopup}
                 label="Continue"
               >

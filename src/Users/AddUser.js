@@ -271,7 +271,7 @@ export default function AddUser() {
             </div>
             <div className='text-center'>
               <button type='submit' className='btn btn-outline-primary'>Submit</button>
-              <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/home"}>Cancel</Link>
+              <Link type='cancel' className='btn btn-outline-danger mx-2' to={"/searchFlight"}>Cancel</Link>
             </div>
 
           </form>

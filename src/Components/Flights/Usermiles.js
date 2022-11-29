@@ -43,7 +43,7 @@ function Usermiles() {
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <div className="text-center m-4">
-            <h2>User Miles</h2>
+            <h2> Miles</h2>
           </div>
 
           <div className="row text-center">
