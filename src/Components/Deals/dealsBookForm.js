@@ -29,7 +29,8 @@ function DealsBookForm() {
   const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
   const [bookingData, setBookingData] = useState({
     userData: user,
-    cardData: userData.cards.filter((obj) => obj.default === true)[0]
+    cardData: userData.cards.filter((obj) => obj.default === true)[0],
+    deal:dealData
   });
 
   //on load of form
@@ -48,8 +49,8 @@ function DealsBookForm() {
       "logged in user card info : ",
       userData.cards.filter((obj) => obj.default === true)
     );
-    //setCard(userData.cards.filter((obj) => obj.default === true)[0]);
-    
+    setCard(userData.cards.filter((obj) => obj.default === true)[0]);
+    setUser(userData);
   };
 
   const onCardInputChange = (e) => {
@@ -59,7 +60,7 @@ function DealsBookForm() {
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
     // need to set booking data here
-    setBookingData({ ...user, ...{ card: { ...user.card, [e.target.name]: e.target.value } } });
+    setBookingData({ ...bookingData, ...{ userData: { ...bookingData.userData, [e.target.name]: e.target.value } } });
   };
   const showSuccessPopup = async (e) => {
     e.preventDefault();
@@ -69,10 +70,10 @@ function DealsBookForm() {
       //pc=0 bookdeals
       //pc>0 bookflight
       let response = await axios.post(
-        `http://localhost:8080/bookdeals/${userid}`,
+        `http://localhost:8080/bookdeal/${userid}`,
         bookingData
       );
-      console.log(bookingData);
+      console.log(response);
       // console.log("response in book flight ", response);
       // let response = await axios.post("http://localhost:8080/usersignup", userData  );
       // console.log(response.data);
