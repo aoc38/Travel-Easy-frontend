@@ -22,6 +22,8 @@ function Flightdetails() {
     console.log("passenger count in Flight details page: ", pc);
     let data = getFlightById(id);
     let flight = data.length === 1 ? data[0] : {};
+    sessionStorage.setItem("flight-data",JSON.stringify(flight));
+    sessionStorage.setItem("passenger-count",(pc));
     console.log("flight details in js : ", flight);
     let noOfPassengers = pc;
     // let data = getFlightById(id); //check whether data is valid or not, array should not be empty
@@ -55,9 +57,6 @@ function Flightdetails() {
         <div className="container">
         <div className="row ">
           <div className="col-md-4 offset-md-4 border rounded p-4 mt-4 shadow ">
-           
-            
-                
                 <div class="col s12 m6">
                 <AirlinesOutlined/>
                 <span className="text-bold"> Airline</span>
@@ -89,6 +88,7 @@ function Flightdetails() {
                 <span>{flight.departureTime}</span>
               </div>
               <div class="col s12 m6 ">
+
                 <span>{flight.arrivalTime}</span>
               </div>
               </div>
@@ -103,15 +103,17 @@ function Flightdetails() {
               </div>
               <div class="col s12 m6 ">
                 <span className="text-bold"> Tax</span>
+
               </div>
               
             </div>
             
             <div className="row">
               <div class="col s12 m6 ">
+
                 <span className="fromto">{getPrice(flight)}$</span>
               </div>
-              <div class="col s12 m6">
+              <div className="col s12 m6">
                 <span> {taxAmont(flight)}$</span>
               </div>
              
@@ -121,6 +123,7 @@ function Flightdetails() {
                 <span className="text-bold">Total Price</span>
               </div>
               <div class="col s12 m6">
+
                 <span>{getTotalPrice(flight)}$</span>
               </div>
   
@@ -139,6 +142,7 @@ function Flightdetails() {
               </>
             ) : (
               <>
+              
                 <div className="text-center">
                   {" "}
                   <Link to="/loginuser" className="btn btn-outline-primary m-4 text-center">
