@@ -113,19 +113,19 @@ function SearchFlight() {
     // TODO make a REST call to backend and get data for testing using JSON file
 
     let data = JSON.parse(JSON.stringify(flightsJsonData));
-    console.log(data);
-    if (request.filterBy && request.filterBy === 'Price: High to Low') {
-      data = data.sort((a, b) => a.price - b.price)
-    } else if (request.filterBy && request.filterBy === 'Price: Low to high') {
-      data = data.sort((a, b) => b.price - a.price);
-    } else if (request.filterBy && request.filterBy === 'Airline') {
-      data = data.sort((a, b) => b.company - a.company);
-    }
-    return data.data.filter(
+    let resultList = data.data.filter(
       (obj) =>
         (obj.departureCityName === request.source.address.cityName) &&
         (obj.arrivalCityName === request.destination.address.cityName)
     );
+    if (request.filterBy && request.filterBy === 'Price: High to Low') {
+      resultList = resultList.sort((a, b) => a.price - b.price)
+    } else if (request.filterBy && request.filterBy === 'Price: Low to high') {
+      resultList = resultList.sort((a, b) => b.price - a.price);
+    } else if (request.filterBy && request.filterBy === 'Airline') {
+      resultList = resultList.sort((a, b) => b.company - a.company);
+    }
+    return resultList;
   }
 
 
