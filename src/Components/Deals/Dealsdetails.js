@@ -43,52 +43,52 @@ function Dealsdetails(props) {
             <h2> Review Deal</h2>{" "}
           </div>
           <div className="row text-center">
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="text-bold">Source </span>
             </div>
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="text-bold"> Destination</span>
             </div>
           </div>
           <div className="row text-center">
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="fromto">{flight.departureCityName}</span>
             </div>
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span>{flight.arrivalCityName}</span>
             </div>
           </div>
 
           <div className="row">
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="text-bold">Vacation Start Date </span>
             </div>
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="text-bold"> Vacation End Date</span>
             </div>
           </div>
           <div className="row">
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="fromto">{flight.departureDate}</span>
             </div>
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span>{flight.arrivalDate} </span>
             </div>
           </div>
 
           <div className="row text-center">
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold">Total Price(in $) </span>
             </div>
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold"> Total Price(in miles)</span>
             </div>
           </div>
           <div className="row text-center">
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="fromto">${getTotalPrice(flight)}</span>
             </div>
-            <div class="col s12 m6">
+            <div className="col s12 m6">
               <span>{getTotalPrice_miles(flight)} miles</span>
             </div>
           </div>

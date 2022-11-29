@@ -104,21 +104,23 @@ export default function FlightStatus() {
                     <CustomDatePicker
                       value={value}
                       onChange={handleDepartureDate}
+                      disablePast
                       format={DATE_FORMAT}
                       label="Departure"
                       className="mt-2"
                     />
+                  
                   </div>
                 </div>
               </div>
-              <div className='col-md-12'>
+              
                 <div className="p-2 mt-2 text-center">
                   <Button
                     disabled={disableButton}
                     onClick={fetchFlightStatus}
                     btname="Search" />
                 </div>
-              </div>
+              
             </div>
           </Card>
         </div>

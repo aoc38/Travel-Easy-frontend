@@ -47,9 +47,12 @@ export default function Feedbackform() {
 
   return (
 
-    <Card>
+    <div className='container'>
+    <div className='row'>
+      <div className='col-md-6 offset-md-3 border rounded p-5 mt-5 shadow'>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <h2>How would you rate your service with us?</h2>
+        <span className='text-center'>
+        <h4>How would you rate your service with us?</h4></span>
         <ul className='ratingButton'>
           <li >
             <input
@@ -178,7 +181,9 @@ export default function Feedbackform() {
           <button type='submit' className='btn btn-outline-primary m-4'>Submit</button>
         </div>
       </form>
-    </Card>
+    </div>
+    </div>
+    </div>
 
 
 
