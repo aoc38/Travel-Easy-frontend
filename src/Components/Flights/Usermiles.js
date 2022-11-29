@@ -11,7 +11,7 @@ function Usermiles() {
   let flight = data.length === 1 ? data[0] : {};
   console.log("flight details in user miles : ", flight);
 
-  if (pc != 0) {
+  if (pc !== 0) {
     flight.miles = pc * flight.miles;
   }
 
