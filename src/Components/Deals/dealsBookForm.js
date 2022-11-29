@@ -29,7 +29,7 @@ function DealsBookForm() {
   const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
   const [bookingData, setBookingData] = useState({
     userData: user,
-    cardData: card,
+    cardData: userData.cards.filter((obj) => obj.default === true)[0]
   });
 
   //on load of form
@@ -48,7 +48,8 @@ function DealsBookForm() {
       "logged in user card info : ",
       userData.cards.filter((obj) => obj.default === true)
     );
-    setCard(userData.cards.filter((obj) => obj.default === true)[0]);
+    //setCard(userData.cards.filter((obj) => obj.default === true)[0]);
+    
   };
 
   const onCardInputChange = (e) => {
@@ -58,7 +59,7 @@ function DealsBookForm() {
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
     // need to set booking data here
-    setBookingData(...bookingData.cardData, card);
+    setBookingData({ ...user, ...{ card: { ...user.card, [e.target.name]: e.target.value } } });
   };
   const showSuccessPopup = async (e) => {
     e.preventDefault();
@@ -67,17 +68,18 @@ function DealsBookForm() {
       // console.log(bookingData);
       //pc=0 bookdeals
       //pc>0 bookflight
-      // let response = await axios.post(
-      //   `http://localhost:8080/bookdeals/${userid}`,
-      //   bookingData
-      // );
+      let response = await axios.post(
+        `http://localhost:8080/bookdeals/${userid}`,
+        bookingData
+      );
+      console.log(bookingData);
       // console.log("response in book flight ", response);
       // let response = await axios.post("http://localhost:8080/usersignup", userData  );
       // console.log(response.data);
       // console.warn(response.data);
-      // localStorage.setItem("user-info", JSON.stringify(response.data));
+      // sessionStorage.setItem("user-info", JSON.stringify(response.data));
     } catch (error) {
-      // console.log(`ERROR: ${error}`);
+       console.log(`ERROR: ${error}`);
     }
   };
 
@@ -107,7 +109,10 @@ function DealsBookForm() {
                 />
               </div>
               <div className="col s12 m6">
-                <label htmlFor="lastName" className="form-label required-field ">
+                <label
+                  htmlFor="lastName"
+                  className="form-label required-field "
+                >
                   {" "}
                   Last Name{" "}
                 </label>
@@ -122,107 +127,107 @@ function DealsBookForm() {
                 />
               </div>
             </div>
-            
-            <div className="add-space"></div>
-            
-            <h5> Card Information </h5>
-          <div className="row">
-            <div class="col s12 m6">
-              <label htmlFor="cardOwnerName" className="form-label">
-                Name on Card{" "}
-              </label>
-              <input
-                type={"text"}
-                className="form-control"
-                placeholder="Enter name on the credit card"
-                name="cardOwnerName"
-                disabled
-                value={cardOwnerName}
-                onChange={(e) => onCardInputChange(e)}
-              />
-            </div>
-          </div>
-          <div className="add-space"></div>
-          <div className="row">
-            <div class="col s12 m6">
-              <label htmlFor="cardNumber" className="form-label">
-                Card Number{" "}
-              </label>
-              <input
-                type={"number"}
-                className="form-control"
-                placeholder="Enter credit card number"
-                name="cardNumber"
-                disabled
-                value={cardNumber}
-                onChange={(e) => onCardInputChange(e)}
-              />
-            </div>
-            <div class="col s12 m6">
-              <label htmlFor="cardType" className="form-label">
-                Card Type
-              </label>
-              <select
-                value={cardType}
-                className="form-control"
-                disabled
-                name="cardType"
-                onChange={(e) => onCardInputChange(e)}
-              >
-                <option value="VISA">VISA</option>
-                <option value="MASTERCARD">MASTER CARD</option>
-              </select>
-            </div>
-          </div>
 
-          <div className="add-space"></div>
-          <div className="row">
-            <div class="col s12 m6">
-              <label htmlFor="expiryDate" className="form-label">
-                Expiry Date{" "}
-              </label>
-              <input
-                type={"month"}
-                className="form-control"
-                placeholder="Enter credit card expiry in mm/yy format"
-                name="expiryDate"
-                value={expiryDate}
-                disabled
-                onChange={(e) => onCardInputChange(e)}
-              />
+            <div className="add-space"></div>
+
+            <h5> Card Information </h5>
+            <div className="row">
+              <div class="col s12 m6">
+                <label htmlFor="cardOwnerName" className="form-label">
+                  Name on Card{" "}
+                </label>
+                <input
+                  type={"text"}
+                  className="form-control"
+                  placeholder="Enter name on the credit card"
+                  name="cardOwnerName"
+                  disabled
+                  value={cardOwnerName}
+                  onChange={(e) => onCardInputChange(e)}
+                />
+              </div>
             </div>
-            <div class="col s12 m6">
-              <label htmlFor="cvv" className="form-label">
-                CVV{" "}
-              </label>
-              <input
-                type={"number"}
-                minLength={3}
-                maxLength="3"
-                className="form-control"
-                placeholder="Enter cvv"
-                name="cvv"
-                value={cvv}
-                disabled
-                onChange={(e) => onCardInputChange(e)}
-              />
+            <div className="add-space"></div>
+            <div className="row">
+              <div class="col s12 m6">
+                <label htmlFor="cardNumber" className="form-label">
+                  Card Number{" "}
+                </label>
+                <input
+                  type={"number"}
+                  className="form-control"
+                  placeholder="Enter credit card number"
+                  name="cardNumber"
+                  disabled
+                  value={cardNumber}
+                  onChange={(e) => onCardInputChange(e)}
+                />
+              </div>
+              <div class="col s12 m6">
+                <label htmlFor="cardType" className="form-label">
+                  Card Type
+                </label>
+                <select
+                  value={cardType}
+                  className="form-control"
+                  disabled
+                  name="cardType"
+                  onChange={(e) => onCardInputChange(e)}
+                >
+                  <option value="VISA">VISA</option>
+                  <option value="MASTERCARD">MASTER CARD</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div className="add-space"></div>
-          <div className="text-center">
-            {" "}
-            <Link
-              className="mt-2 btn  btn btn-outline-primary"
-              to="/Bookinghistory"
-              onClick={showSuccessPopup}
-              label="Continue"
-            >
-              Continue
-            </Link>
+
+            <div className="add-space"></div>
+            <div className="row">
+              <div class="col s12 m6">
+                <label htmlFor="expiryDate" className="form-label">
+                  Expiry Date{" "}
+                </label>
+                <input
+                  type={"month"}
+                  className="form-control"
+                  placeholder="Enter credit card expiry in mm/yy format"
+                  name="expiryDate"
+                  value={expiryDate}
+                  disabled
+                  onChange={(e) => onCardInputChange(e)}
+                />
+              </div>
+              <div class="col s12 m6">
+                <label htmlFor="cvv" className="form-label">
+                  CVV{" "}
+                </label>
+                <input
+                  type={"number"}
+                  minLength={3}
+                  maxLength="3"
+                  className="form-control"
+                  placeholder="Enter cvv"
+                  name="cvv"
+                  value={cvv}
+                  disabled
+                  onChange={(e) => onCardInputChange(e)}
+                />
+              </div>
+            </div>
+            <div className="add-space"></div>
+            <div className="text-center">
+              {" "}
+              <Link
+                className="mt-2 btn  btn btn-outline-primary"
+                to="/Bookinghistory"
+                onClick={showSuccessPopup}
+                label="Continue"
+              >
+                Continue
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>  
     </div>
   );
 }
