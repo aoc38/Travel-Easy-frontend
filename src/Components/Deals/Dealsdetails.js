@@ -13,12 +13,16 @@ function Dealsdetails(props) {
   //getting id from path
   const { id, pc } = useParams();
   let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
-  console.log("data in Flight details page: ", id);
+  console.log("data in Deal details page: ", id);
   console.log("passenger count in Flight details page: ", pc);
   let data = getFlightById(id);
   let flight = data.length === 1 ? data[0] : {};
-  console.log("flight details", flight);
-    let noOfPassengers=0;
+  console.log("deal details", flight);
+  let noOfPassengers = 0;
+  //to come back here after login 
+  sessionStorage.setItem("deal-data", JSON.stringify(flight));
+  sessionStorage.setItem("passenger-count", (noOfPassengers));
+
   const getPrice = (flight) => {
     return flight.deals_price;
   };
@@ -95,7 +99,7 @@ function Dealsdetails(props) {
 
           {loggedinUser ? (
             <>
-            
+
               <div className="text-center">
                 {" "}
                 <Link

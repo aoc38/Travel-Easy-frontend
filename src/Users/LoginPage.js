@@ -29,13 +29,20 @@ export default function LoginPage() {
       }
       else {
         sessionStorage.setItem("user-info", JSON.stringify(response.data));
-        console.log(sessionStorage.getItem("flight-data"));
+        // console.log(sessionStorage.getItem("flight-data"));
         let flightdata = JSON.parse(sessionStorage.getItem("flight-data"));
+        let dealdata = JSON.parse(sessionStorage.getItem("deal-data"));
         let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
         if (flightdata !== null) {
           //go to flight details page
           navigate(`/flightdetails/${flightdata.id}/${passengerCount}`);
-          // <Link to={{ pathname: `/flightdetails/${flightdata.id}/${passengerCount}` }} className="btn btn-primary"></Link>
+          sessionStorage.removeItem("flight-data");
+          sessionStorage.removeItem("passenger-count");
+        } else if (dealdata !== null) {
+          //go to deal details page
+          navigate(`/usermiles/${dealdata.id}/${passengerCount}`);
+          sessionStorage.removeItem("deal-data");
+          sessionStorage.removeItem("passenger-count");
         }
         else {
           navigate('/searchFlight');

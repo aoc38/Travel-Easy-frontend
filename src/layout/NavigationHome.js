@@ -14,6 +14,9 @@ export default function NavigationHome() {
     function logOut() {
         //SetloggedInUser(null);
         sessionStorage.removeItem("user-info");
+        sessionStorage.removeItem("flight-data");
+        sessionStorage.removeItem("deal-data");
+        sessionStorage.removeItem("passenger-count");
         navigate("/searchFlight");
     }
 

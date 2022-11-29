@@ -53,8 +53,27 @@ export default function AddUser() {
       console.warn(response.data);
       //localStorage.setItem("user-info", JSON.stringify(response.data));
       // SetloggedInUser(JSON.stringify(response.data));
+      //set user data in session
       sessionStorage.setItem("user-info", JSON.stringify(response.data));
-      navigate('/searchFlight');
+      // fetch if coming from flight or deal or 
+      let flightdata = JSON.parse(sessionStorage.getItem("flight-data"));
+      let dealdata = JSON.parse(sessionStorage.getItem("deal-data"));
+      let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
+      if (flightdata !== null) {
+        //go to flight details page
+        navigate(`/flightdetails/${flightdata.id}/${passengerCount}`);
+        sessionStorage.removeItem("flight-data");
+        sessionStorage.removeItem("passenger-count");
+      } else if (dealdata !== null) {
+        //go to deal details page
+        navigate(`/usermiles/${dealdata.id}/${passengerCount}`);
+        sessionStorage.removeItem("deal-data");
+        sessionStorage.removeItem("passenger-count");
+      }
+      else {
+        // go to search page
+        navigate('/searchFlight');
+      }
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
