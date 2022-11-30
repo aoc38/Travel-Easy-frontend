@@ -18,16 +18,32 @@ function FlightList(props) {
 
   const getStartTime = (flight) => {
     //return flight.segments[0].departure.at;
-    return flight.departureTime;
+    return flight.departureDate +" "+ flight.departureTime;
   }
 
   const getEndTime = (flight) => {
    // return flight.segments[flight.segments.length - 1].arrival.at;
-   return flight.arrivalTime;
+   return flight.arrivalDate+" "+flight.arrivalTime;
   }
 
   const getTimings = (flight) => {
     return getStartTime(flight) + " - " + getEndTime(flight);
+  }
+  // const getDuration = (flight) => {
+  //   return getStartTime(flight) - getEndTime(flight);
+  // }
+  const getDuration = (flight) => {
+    let start = new Date(getStartTime(flight)).valueOf();
+    let end = new Date(getEndTime(flight)).valueOf();
+    var delta = Math.abs(end - start) / 1000;
+    var days = Math.floor(delta / 86400);
+    delta -= days * 86400;
+    var hours = Math.floor(delta / 3600) % 24;
+    delta -= hours * 3600;
+    var minutes = Math.floor(delta / 60) % 60;
+    delta -= minutes * 60;
+    return hours +" hours "+minutes+" minutes";
+
   }
 
   const getPrice = (flight) => {
@@ -67,18 +83,21 @@ function FlightList(props) {
         <div>No Flights Found</div> :
         props.flights.map((flight, i) => {
           return (
-            <Card style={{ margin: "10px" }} className="card-list">
-              <CardContent key={flight.id}>
+            <Card style={{ margin: "10px" }} className="card-list" key={i} id={i}>
+              <CardContent key={i}>
                 <div className="flex-container">
                   <div>
-                    <h5>{getSource(flight)}</h5>
-                    <p>{getTimings(flight)}</p>
+                    <h5 id={i}>{getSource(flight)}</h5>
+                    <p>{getStartTime(flight)}</p>
                   </div>
                   <div>
-                    <h5>{flight.airline}</h5>
+                  <h5>{getDestination(flight)}</h5>
+                    <p>{getEndTime(flight)}</p>
+                    
                   </div>
                   <div>
-                    <h5>{getDestination(flight)}</h5>
+                  <h5>{flight.airline}</h5>
+                  <p>{getDuration(flight)}</p>
                     {/* <div>{getStops(flight)} stop's {getDuration(flight)}</div> */}
                   </div>
                   <div>

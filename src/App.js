@@ -6,6 +6,7 @@ import './App.css';
 import SearchDeals from './Components/Deals/SearchDeals';
 import Feedback from './Components/Feedback/Feedbackform';
 import BookForm from './Components/Flights/bookform';
+import DealsBookForm from './Components/Deals/dealsBookForm';
 import Bookinghistory from './Components/Flights/bookinghistory';
 import Flightdetails from './Components/Flights/flightdetails';
 import FlightStatus from './Components/Flights/FlightStatus';
@@ -14,37 +15,47 @@ import Usermiles from './Components/Flights/Usermiles';
 import NavigationHome from './layout/NavigationHome';
 import Home from './pages/Home';
 import AddUser from './Users/AddUser';
+
+import BookinghistoryDeals from './Components/Deals/Bookinghistory_deals';
+
 import Hoteldetails from './Components/Hotel/hoteldetails';
 import SearchHotel from './Components/Hotel/searchHotel';
 import LoginPage from './Users/LoginPage';
 import Dealsdetails from './Components/Deals/Dealsdetails';
 import HotelBooking from './Components/Hotel/hotel-bookings';
+import UserBookinghistory from './Users/UserBookinghistory';
+
 
 function App() {
   return (
     <div className='TRAVEL EASY'>
       {/* <UserContext.Provider value={value}> */}
-        <Router>
-          <NavigationHome />
-          <Routes>
-            <Route exact path="/home" element={<Home />} />
-            <Route exact path="/register" element={<AddUser />} />
-            <Route exact path="/loginuser" element={<LoginPage />} />
-            <Route exact path="/searchFlight" element = {<SearchFlight/>}/>
-            <Route exact path="/flightdetails/:id/:pc" element={<Flightdetails />} />
-            <Route exact path="/bookform/:id/:pc" element={<BookForm />} />
-            <Route exact path="/usermiles/:id/:pc" element={<Usermiles />} />
-            <Route exact path="/bookinghistory" element={<Bookinghistory />} />
-            <Route exact path="/feedbackform" element={<Feedback />} />
-            <Route exact path="/deals" element={<SearchDeals />} />
-            <Route exact path="/flightstatus" element={<FlightStatus />} />
-            <Route exact path="/hotels" element={<SearchHotel />} />
-          <Route exact path="/hoteldetails/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<Hoteldetails />} />
+      <Router>
+        <NavigationHome />
+        <Routes>
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/register" element={<AddUser />} />
+          <Route exact path="/loginuser" element={<LoginPage />} />
+          <Route exact path="/searchFlight" element={<SearchFlight />} />
+          <Route exact path="/flightdetails/:id/:pc" element={<Flightdetails />} />
+          <Route exact path="/bookform/:id/:pc" element={<BookForm />} />
+          <Route exact path="/bookdealform/:id" element={<DealsBookForm />} />
+          <Route exact path="/usermiles/:id/:pc" element={<Usermiles />} />
+          <Route exact path="/bookinghistory" element={<Bookinghistory />} />
+          <Route exact path="/userbookinghistory" element={<UserBookinghistory />} />
+          <Route exact path="/feedbackform" element={<Feedback />} />
+          <Route exact path="/deals" element={<SearchDeals />} />
+          <Route exact path="/flightstatus" element={<FlightStatus />} />
+          <Route exact path="/hotels" element={<SearchHotel />} />
+          <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} />
+          <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
+          <Route exact path="/bookinghistorydeals/:id" element={<BookinghistoryDeals />} />
+           <Route exact path="/hoteldetails/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<Hoteldetails />} />
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
 		      <Route exact path="/hotelbooking/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<HotelBooking />} />
 
-          </Routes>
-        </Router>
+        </Routes>
+      </Router>
       {/* </UserContext.Provider> */}
 
     </div>

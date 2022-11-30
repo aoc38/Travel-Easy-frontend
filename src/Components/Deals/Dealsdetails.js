@@ -13,12 +13,16 @@ function Dealsdetails(props) {
   //getting id from path
   const { id, pc } = useParams();
   let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
-  console.log("data in Flight details page: ", id);
+  console.log("data in Deal details page: ", id);
   console.log("passenger count in Flight details page: ", pc);
   let data = getFlightById(id);
   let flight = data.length === 1 ? data[0] : {};
-  console.log("flight details", flight);
-    let noOfPassengers=0;
+  console.log("deal details", flight);
+  let noOfPassengers = 0;
+  //to come back here after login 
+  sessionStorage.setItem("deal-data", JSON.stringify(flight));
+  sessionStorage.setItem("passenger-count", (noOfPassengers));
+
   const getPrice = (flight) => {
     return flight.deals_price;
   };
@@ -43,59 +47,59 @@ function Dealsdetails(props) {
             <h2> Review Deal</h2>{" "}
           </div>
           <div className="row text-center">
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="text-bold">Source </span>
             </div>
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="text-bold"> Destination</span>
             </div>
           </div>
           <div className="row text-center">
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="fromto">{flight.departureCityName}</span>
             </div>
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span>{flight.arrivalCityName}</span>
             </div>
           </div>
 
           <div className="row">
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="text-bold">Vacation Start Date </span>
             </div>
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="text-bold"> Vacation End Date</span>
             </div>
           </div>
           <div className="row">
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span className="fromto">{flight.departureDate}</span>
             </div>
-            <div class="col s12 m6 text-center">
+            <div className="col s12 m6 text-center">
               <span>{flight.arrivalDate} </span>
             </div>
           </div>
 
           <div className="row text-center">
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold">Total Price(in $) </span>
             </div>
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="text-bold"> Total Price(in miles)</span>
             </div>
           </div>
           <div className="row text-center">
-            <div class="col s12 m6 ">
+            <div className="col s12 m6 ">
               <span className="fromto">${getTotalPrice(flight)}</span>
             </div>
-            <div class="col s12 m6">
+            <div className="col s12 m6">
               <span>{getTotalPrice_miles(flight)} miles</span>
             </div>
           </div>
 
           {loggedinUser ? (
             <>
-            
+
               <div className="text-center">
                 {" "}
                 <Link

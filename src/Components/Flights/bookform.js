@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./flight-form.css";
 import { getFlightById } from "./flight-service";
+import {AddBox, Delete} from '@mui/icons-material';
+import "./flight-form.css";
+
 
 function Bookform() {
   //getting logged in user from local storage
@@ -104,20 +107,22 @@ function Bookform() {
             return (
               <div key={i} className="row mb-3">
                 <div className="form-group col-md-4">
-                  <label>First Name</label>
+                  <label className="required-field">First Name</label>
                   <input
                     type="text"
                     name="firstName"
+                    required
                     className="form-control"
                     placeholder="Enter First Name"
                     onChange={(e) => handleinputchange(e, i)}
                   />
                 </div>
                 <div className="form-group col-md-4">
-                  <label>Last Name</label>
+                  <label className="required-field">Last Name</label>
                   <input
                     type="text"
                     name="lastName"
+                    required
                     className="form-control"
                     placeholder="Enter Last Name"
                     onChange={(e) => handleinputchange(e, i)}
@@ -130,7 +135,7 @@ function Bookform() {
                       onClick={() => handleremove(i)}
                       style={{ marginBottom: 10 }}
                     >
-                      Remove
+                      <Delete/>
                     </button>
                   )}
                   {passengerlist.length - 1 === i && (
@@ -138,7 +143,7 @@ function Bookform() {
                       className="btn btn-success"
                       onClick={handleaddclick}
                     >
-                      +
+                      <AddBox/>
                     </button>
                   )}
                 </div>
@@ -162,83 +167,83 @@ function Bookform() {
             onChange={(e) => onCardInputChange(e)}
           />
 
-<div className='add-space'></div>
-            <div className ="row">
+          <div className="add-space"></div>
+          <div className="row">
             <div class="col s12 m6">
-          <label htmlFor="cardNumber" className="form-label">
-            Card Number{" "}
-          </label>
-          <input
-            type={"number"}
-            className="form-control"
-            placeholder="Enter credit card number"
-            name="cardNumber"
-            disabled
-            value={cardNumber}
-            onChange={(e) => onCardInputChange(e)}
-          />
-          </div>
-                <div class="col s12 m6">
-          <label htmlFor="cardType" className="form-label">
-            Card Type
-          </label>
-          <select
-            value={cardType}
-            className="form-control"
-            disabled
-            name="cardType"
-            onChange={(e) => onCardInputChange(e)}
-          >
-
-            <option value="VISA">VISA</option>
-            <option value="MASTERCARD">MASTER CARD</option>
-          </select>
-          </div>
-       
+              <label htmlFor="cardNumber" className="form-label">
+                Card Number{" "}
+              </label>
+              <input
+                type={"number"}
+                className="form-control"
+                placeholder="Enter credit card number"
+                name="cardNumber"
+                disabled
+                value={cardNumber}
+                onChange={(e) => onCardInputChange(e)}
+              />
+            </div>
+            <div class="col s12 m6">
+              <label htmlFor="cardType" className="form-label">
+                Card Type
+              </label>
+              <select
+                value={cardType}
+                className="form-control"
+                disabled
+                name="cardType"
+                onChange={(e) => onCardInputChange(e)}
+              >
+                <option value="VISA">VISA</option>
+                <option value="MASTERCARD">MASTER CARD</option>
+              </select>
+            </div>
           </div>
 
-          <div className='add-space'></div>
-            <div className ="row">
-                <div class="col s12 m6">
-          <label htmlFor="expiryDate" className="form-label">
-             Expiry Date{" "}
-          </label>
-          <input
-            type={"month"}
-            className="form-control"
-            placeholder="Enter credit card expiry in mm/yy format"
-            name="expiryDate"
-            value={expiryDate}
-            disabled
-            onChange={(e) => onCardInputChange(e)}
-          />
+          <div className="add-space"></div>
+          <div className="row">
+            <div class="col s12 m6">
+              <label htmlFor="expiryDate" className="form-label">
+                Expiry Date{" "}
+              </label>
+              <input
+                type={"month"}
+                className="form-control"
+                placeholder="Enter credit card expiry in mm/yy format"
+                name="expiryDate"
+                value={expiryDate}
+                disabled
+                onChange={(e) => onCardInputChange(e)}
+              />
+            </div>
+            <div class="col s12 m6">
+              <label htmlFor="cvv" className="form-label">
+                CVV{" "}
+              </label>
+              <input
+                type={"number"}
+                minLength={3}
+                maxLength="3"
+                className="form-control"
+                placeholder="Enter cvv"
+                name="cvv"
+                value={cvv}
+                disabled
+                onChange={(e) => onCardInputChange(e)}
+              />
+            </div>
           </div>
-          <div class="col s12 m6">
-          <label htmlFor="cvv" className="form-label">
-             CVV{" "}
-          </label>
-          <input
-            type={"number"}
-            minLength={3}
-            maxLength="3"
-            className="form-control"
-            placeholder="Enter cvv"
-            name="cvv"
-            value={cvv}
-            disabled
-            onChange={(e) => onCardInputChange(e)}
-          />
-          </div></div>
-          <div className='add-space'></div>
-          <div className='text-center'>  <Link
-            className="mt-2 btn  btn btn-outline-primary"
-            to="/Bookinghistory"
-            onClick={showSuccessPopup}
-            label="Continue"
-          >
-            Continue
-          </Link>
-         
+          <div className="add-space"></div>
+          <div className="text-center">
+            {" "}
+            <Link
+              className="mt-2 btn  btn btn-outline-primary"
+              to="/Bookinghistory"
+              onClick={showSuccessPopup}
+              label="Continue"
+            >
+              Continue
+            </Link>
           </div>
         </div>
       </div>
