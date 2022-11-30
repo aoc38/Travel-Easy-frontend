@@ -24,6 +24,7 @@ import LoginPage from './Users/LoginPage';
 import Dealsdetails from './Components/Deals/Dealsdetails';
 import HotelBooking from './Components/Hotel/hotel-bookings';
 import UserBookinghistory from './Users/UserBookinghistory';
+import BookFlightMilesForm from './Components/Flights/BookFlightMilesForm';
 
 
 function App() {
@@ -53,6 +54,8 @@ function App() {
            <Route exact path="/hoteldetails/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<Hoteldetails />} />
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
 		      <Route exact path="/hotelbooking/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<HotelBooking />} />
+          <Route exact path="/bookFlightMiles/:id/:pc" element={<BookFlightMilesForm />} />
+
 
         </Routes>
       </Router>

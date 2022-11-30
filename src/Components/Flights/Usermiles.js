@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getFlightById } from "./flight-service";
+import axios from "axios";
 
 
 function Usermiles() {
@@ -25,8 +26,8 @@ function Usermiles() {
       // setIsUserMilesCheckbox(true);
       return 0;
     }
-    else{
-     return data.userMiles.milesRemaining;
+    else {
+      return data.userMiles.milesRemaining;
     }
     //need to get from user object
   };
@@ -40,6 +41,23 @@ function Usermiles() {
 
   //checkbox for user miles
   const [isUserMilesChecked, setIsUserMilesChecked] = useState(false);
+
+  // const showSuccessPopup = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     let data = JSON.parse(sessionStorage.getItem("user-info"));
+  //     let userid = data.id;
+  //     if (data !== null && data) {
+  //       let response = await axios.post(
+  //         `http://localhost:8080/bookflightmiles/${userid}`,
+  //         bookingFlightWithMilesData
+  //       );
+  //       console.log(response);
+  //     }
+  //   } catch (error) {
+  //     console.log(`ERROR: ${error}`);
+  //   }
+  // };
 
   return (
     <div className="container">
@@ -105,15 +123,29 @@ function Usermiles() {
               </>
             ) :
             (
+
+              //add one more case for isUserMilesChecked
               <>
-                <div className="text-center">
-                  <Link
-                    to={{ pathname: `/bookForm/${id}/${pc}` }}
-                    className="btn btn-outline-primary m-4"
-                  >
-                    Checkout
-                  </Link>
-                </div>
+                {isUserMilesChecked ?
+                  <div className="text-center">
+                    <Link
+                      to={{ pathname: `/bookFlightMiles/${id}/${pc}` }}
+                      className="btn btn-outline-primary m-4"
+                    >
+                      Checkout
+                    </Link>
+                  </div>
+                  :
+                  <div className="text-center">
+                    <Link
+                      to={{ pathname: `/bookForm/${id}/${pc}` }}
+                      className="btn btn-outline-primary m-4"
+                    >
+                      Checkout
+                    </Link>
+                  </div>
+                }
+
               </>
             )
 

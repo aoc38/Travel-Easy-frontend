@@ -1,17 +1,14 @@
-import React from 'react';
+import TabContext from '@mui/lab/TabContext';
+import TabPanel from '@mui/lab/TabPanel';
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
-import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
-import "./hoteldetails.css";
-import { getHotelOffers } from '../../services/hotel/amadeus-api-service';
 import Paper from "@mui/material/Paper";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import TabPanel from '@mui/lab/TabPanel';
-import TabContext from '@mui/lab/TabContext';
+import React, { useState } from 'react';
+import { Link, useParams } from "react-router-dom";
 import { getHotelById } from './hotel-service';
-import HotelBooking from "./hotel-bookings";
+import "./hoteldetails.css";
 
 
 function HotelDetails(props) {

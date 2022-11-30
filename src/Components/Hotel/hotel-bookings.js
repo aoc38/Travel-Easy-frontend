@@ -1,15 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import TabContext from '@mui/lab/TabContext';
+import TabPanel from '@mui/lab/TabPanel';
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
-import axios from 'axios';
-import React, { useState } from 'react'
-import { Link, useNavigate, useParams} from 'react-router-dom';
 import Paper from "@mui/material/Paper";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import TabPanel from '@mui/lab/TabPanel';
-import TabContext from '@mui/lab/TabContext';
+import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./hotel-bookings.css";
 import { getHotelById } from './hotel-service';
 
