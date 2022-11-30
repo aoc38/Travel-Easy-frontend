@@ -13,12 +13,17 @@ import TabContext from '@mui/lab/TabContext';
 import { getHotelById } from './hotel-service';
 import HotelBooking from "./hotel-bookings";
 
+
 function HotelDetails(props) {
 
     //getting logged in user from local storage
     let loggedinUser = JSON.parse(localStorage.getItem("user-info"));
 
-    const { id } = useParams()
+    const { id } = useParams();
+    const { checkindate } = useParams();
+    const { checkoutdate } = useParams();
+    const { guestcount } = useParams();
+    const { roomcount } = useParams();
     
     console.log("Hotel Id : ", id);
     //console.log("No of guests : ");
@@ -44,7 +49,8 @@ function HotelDetails(props) {
     
     return (
         <div className='container'>
-            <Card style={{ margin: 10 }}>
+            <div className='row'>
+            <Card>
                 <CardContent>
                 <div className="row">
                         <div className="column">
@@ -57,13 +63,15 @@ function HotelDetails(props) {
                             <img src = {hotel.hotel.photo4}  alt = "image3"/>
                         </div>
                 </div>
-                  
                 </CardContent>
             </Card>
+                    
+            </div>
+            
             <div>
     
         <h2>{hotel.hotel.name}</h2>
-        <Link to={{ pathname: `/hotelbooking/${id}` }} style={{ float: 'right', margin: '10px'}} className='btn btn-primary'>Reserve</Link>
+        <Link to={{ pathname: `/hotelbooking/${checkindate}/${checkoutdate}/${roomcount}/${guestcount}/${id}` }} style={{ float: 'right', margin: '10px'}} className='btn btn-primary'>Reserve</Link>
         <TabContext value={value}>
         <Paper square>
             <Tabs

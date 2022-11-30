@@ -14,12 +14,27 @@
     float: right;
     margin: 10px;
   }
-  .row {
-    display: flex;
+
+  * {
+    box-sizing: border-box;
   }
   
-  /* Create three equal columns that sits next to each other */
   .column {
-    flex: 33.33%;
-   
+    float: left;
+    width: 33.33%;
+    padding: 5px;
   }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 500px) {
+    .column {
+      width: 100%;
+  }
+}

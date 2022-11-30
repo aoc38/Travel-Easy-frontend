@@ -1,12 +1,3 @@
-import {
-  faBed,
-  faCalendarDays,
-  faCar,
-  faPerson,
-  faPlane,
-  faTaxi,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import InputSearch from "../Common/searchbar";
 import Button from "../Common/button";
@@ -36,7 +27,10 @@ function SearchHotel() {
     const [roomCount, setroomCount] = useState(getNoOfRoom()[0].label);
     const [roomPrice, setroomPrice] = useState("");
     const [hotels, setHotels] = useState([]);
+   
     
+   
+   
 
     const [toLocations, setToLocations] = useState([]);
     const [filterBy, setFilterBy] = useState("");
@@ -107,6 +101,7 @@ function SearchHotel() {
           'checkInDate': checkInDate,
           'checkOutDate': checkOutDate,
           'guestsCount': guestsCount,
+          'roomCount': roomCount,
           'roomPrice': roomPrice
           
         }
@@ -114,6 +109,7 @@ function SearchHotel() {
         let hotels = response.data;
         setHotels(hotels);
         setShowList(true);
+        
       }
 
       return (
@@ -193,7 +189,7 @@ function SearchHotel() {
                 value={getFilterStrategies()}
                 onChange={onFilterSelected}
               />
-            <HotelList hotels={hotels} />  
+            <HotelList hotels={hotels} checkInDate={checkInDate} checkOutDate={checkOutDate} guestsCount={guestsCount} roomCount={roomCount}/>  
             </div> : <Information/>}
             </div>
             </div>

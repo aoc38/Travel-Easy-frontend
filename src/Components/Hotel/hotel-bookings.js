@@ -1,14 +1,17 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams} from 'react-router-dom';
 import Paper from "@mui/material/Paper";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
 import "./hotel-bookings.css";
+import { getHotelById } from './hotel-service';
 
 function HotelBooking(props) {
 
@@ -16,8 +19,34 @@ function HotelBooking(props) {
     const [lastName, setlastName] = useState("");
     const [email, setemail] = useState("");
     const [card, setCard] = useState({});
+    const { id } = useParams();
+    const { checkindate } = useParams();
+    const { checkoutdate } = useParams();
+    const { guestcount } = useParams();
+    const { roomcount } = useParams();
     const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
     const [value, setValue] = useState("Debit/Credit Card");
+    // Use Navigate
+    const navigate = useNavigate();
+    let data = getHotelById(id);
+    let hotel = data.length == 1 ? data[0] : {};
+    const MILISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+
+    
+
+    
+    function dayDifference(checkindate, checkoutdate) {
+      const timeDiff = Math.abs(checkoutdate.getTime() - checkindate.getTime());
+      const diffDays = Math.ceil(timeDiff / MILISECONDS_PER_DAY);
+      return diffDays;
+    }
+  
+    // get days using actual date define function
+    //const days = dayDifference(checkoutdate, checkindate);
+    //const total = days * roomcount * hotel.offers[0].price.base;
+
+    const days = 1;
+    const total_price = days * roomcount * hotel.offers[0].price.base;
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -28,18 +57,24 @@ function HotelBooking(props) {
         }
     }
 
+    const handleClick = () => {
+        
+    };
+
    
 
     return (
         <div className='container'>
-            <Card style={{ margin: 10 }}>
-                <CardContent>
-                <div className="row">
-                    <h2>Secure booking — only takes 2 minutes!</h2>   
-                </div> 
-                </CardContent>
-            </Card>
-            <Card style={{ margin: 10 }}>
+            <div className="hotelDetails">
+                <div className="hotelDetailsTexts">
+                    <Card style={{ margin: 10 }}>
+                        <CardContent>
+                        <div className="row">
+                            <h2>Secure booking — only takes 2 minutes!</h2>   
+                        </div> 
+                        </CardContent>
+                    </Card>
+                    <Card style={{ margin: 10 }}>
                 <CardContent>
                 <form onSubmit={(e) => onSubmit(e)}>
                     <div className='mb-3'>
@@ -55,7 +90,7 @@ function HotelBooking(props) {
                         name='firstName'
                         value={firstName}
                        // onChange={setfirstName(firstName)}
-                    // onChange = {(e) => setFirstName(e.target.value)}
+                    
                     />
                     <div class='required-field'>
                         <label htmlFor='lastName' className='form-label'> Last name </label>
@@ -81,11 +116,10 @@ function HotelBooking(props) {
                        // onChange={setmobile(mobile)}
                     />
                     </div>
-          </form>
+                </form>
                 </CardContent>
-            </Card>
-
-        <TabContext value={value}>
+                </Card>
+                <TabContext value={value}>
         <Paper square>
             <Tabs
             initialSelectedIndex="Debit/Credit Card"
@@ -98,8 +132,6 @@ function HotelBooking(props) {
             >
             <Tab label="Debit/Credit Card" value="Debit/Credit Card"/>
             </Tabs>
-
-            
                 <TabPanel value="Debit/Credit Card">
                 <form onSubmit={(e) => onSubmit(e)}>
                     <div className='mb-3'>
@@ -163,17 +195,24 @@ function HotelBooking(props) {
                         value={cvv}
                        // onChange={(e) => onCardInputChange(e)}
                     />
-                    
-                    </div>
-            
-                </form>
-                    
-                </TabPanel>
-            
-            
+                </div>
+            </form>
+            </TabPanel>
         </Paper>
         </TabContext>
-            
+            </div>
+            <div className="hotelDetailsPrice">
+                  <h1>{hotel.hotel.name}</h1>
+                  <span>{hotel.hotel.distance}</span>
+                  <span>Property 1: {hotel.offers[0].room.typeEstimated.category}, {hotel.offers[0].room.typeEstimated.bedType}</span>
+                  <span>Check-in: {checkindate}</span>
+                  <span>Check-out: {checkoutdate}</span>
+                  <span>Travelers: {guestcount}</span>
+                  <h1>Price Details</h1>
+                  <span>{roomcount} room * {days} night : ${total_price}</span>
+                  <button onClick={handleClick}>Reserve or Book Now!</button>
+             </div>
+            </div>
         </div>
         
     );

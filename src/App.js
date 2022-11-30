@@ -39,9 +39,9 @@ function App() {
             <Route exact path="/deals" element={<SearchDeals />} />
             <Route exact path="/flightstatus" element={<FlightStatus />} />
             <Route exact path="/hotels" element={<SearchHotel />} />
-          <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} />
+          <Route exact path="/hoteldetails/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<Hoteldetails />} />
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
-		  <Route exact path="/hotelbooking/:id" element={<HotelBooking />} />
+		      <Route exact path="/hotelbooking/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<HotelBooking />} />
 
           </Routes>
         </Router>
