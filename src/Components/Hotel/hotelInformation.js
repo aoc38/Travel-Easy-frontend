@@ -3,11 +3,10 @@ import "./hotel-information.css";
 
 function Information(props) {
     return (
-       
-            <div>
-                Loads the Pre Search information
-            </div>
-        
+        <div>
+            {/* Loads the Pre Search information */}
+        </div>
+
     );
 }
 

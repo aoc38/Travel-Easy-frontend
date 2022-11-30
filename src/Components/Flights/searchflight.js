@@ -269,6 +269,7 @@ function SearchFlight() {
               value={getFilterStrategies()}
               onChange={onFilterSelected}
             />
+            
             <FlightList flights={flights} noOfPassengers={noOfPassengers} />
           </div> : <Information />}
         </div>

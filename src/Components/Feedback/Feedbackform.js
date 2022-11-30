@@ -41,8 +41,9 @@ export default function Feedbackform() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await axios.post(`http://localhost:8080/userrating/${id}`, feedback,)
-    navigate('/home');
+    await axios.post(`http://localhost:8080/userrating/${id}`, feedback,);
+    alert("Thank you for your feedback!");
+    navigate('/searchFlight');
   };
 
   return (
