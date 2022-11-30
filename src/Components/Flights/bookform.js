@@ -1,11 +1,9 @@
+import { AddBox, Delete } from '@mui/icons-material';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./flight-form.css";
 import { getFlightById } from "./flight-service";
-import {AddBox, Delete} from '@mui/icons-material';
-import "./flight-form.css";
-import { useNavigate } from "react-router-dom";
 
 
 function Bookform() {
@@ -82,14 +80,13 @@ function Bookform() {
     try {
       //call flight booking api and send flight object data along with user data
       console.log(bookingData);
-      alert("Booking Successful!");
-      //pc=0 bookdeals
-      //pc>0 bookflight
       let response = await axios.post(
         `http://localhost:8080/bookflight/${userid}`,
         bookingData
       );
       console.log("response in book flight ", response.data);
+      alert("Booking Successful!");
+      sessionStorage.setItem("user-info",JSON.stringify(response.data.user));
       navigate('/searchFlight');
       // let response = await axios.post("http://localhost:8080/usersignup", userData  );
       // console.log(response.data);

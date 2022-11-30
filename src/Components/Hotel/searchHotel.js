@@ -1,16 +1,14 @@
-import React from "react";
-import InputSearch from "../Common/searchbar";
+import Card from "@mui/material/Card";
+import React, { useState } from "react";
+import { getLocation } from '../../services/hotel/amadeus-api-service';
 import Button from "../Common/button";
 import CustomDatePicker from "../Common/date-picker";
 import SelectDropdown from "../Common/dropdown";
-import Card from "@mui/material/Card";
-import CardContent from '@mui/material/CardContent';
-import "./searchHotel.css";
-import { useState } from "react";
-import { getNoOfGuest, getNoOfRoom, getFilterStrategies } from './hotel-service';
+import InputSearch from "../Common/searchbar";
+import { getFilterStrategies, getHotelByRequest, getNoOfGuest, getNoOfRoom } from './hotel-service';
 import Information from "./hotelInformation";
-import {getLocation, getHotels} from '../../services/hotel/amadeus-api-service'
 import HotelList from "./hotelList";
+import "./searchHotel.css";
 
 function SearchHotel() {
 
@@ -81,7 +79,7 @@ function SearchHotel() {
         }
 
       const canLocationBeSearched = (value, reason) => {
-        return value && value.length >=5 && reason !== 'reset';
+        return value && value.length >=3 && reason !== 'reset';
       }
     
       const searchDestinationLocations = async (event, value, reason) => {
@@ -105,8 +103,10 @@ function SearchHotel() {
           'roomPrice': roomPrice
           
         }
-        let response = await getHotels(request);
+        // let response = await getHotels(request);
+        let response = await getHotelByRequest(request);
         let hotels = response.data;
+        console.log("hotels data", hotels);
         setHotels(hotels);
         setShowList(true);
         
