@@ -10,8 +10,8 @@
             "arrivalTime":"08:41:00",
             "departureDate":"2022-11-28",
             "arrivalDate":"2022-11-28",
-            "isArrived":false,
-            "isInflight":true,
+            "isArrived":true,
+            "isInflight":false,
             "isDelayed":false
         }
     ]

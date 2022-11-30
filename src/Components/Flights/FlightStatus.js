@@ -42,10 +42,16 @@ export default function FlightStatus() {
 
   const onFlightNumberChange = (data) => {
     setFlightNumber(data.target.value);
+    let buttonVal = disableSearchBtn();
+    console.log(`button val = ${buttonVal}`);
+    setDisableButton(buttonVal);
   }
 
   const onAirlineNameChange = (data) => {
     setAirlineName(data.target.value);
+    let buttonVal = disableSearchBtn();
+    console.log(`button val = ${buttonVal}`);
+    setDisableButton(buttonVal);
   }
 
 
@@ -102,9 +108,8 @@ export default function FlightStatus() {
                   </div>
                   <div className="p-2 mt-2">
                     <CustomDatePicker
-                      value={value}
+                      value={departureDate}
                       onChange={handleDepartureDate}
-                      disablePast
                       format={DATE_FORMAT}
                       label="Departure"
                       className="mt-2"

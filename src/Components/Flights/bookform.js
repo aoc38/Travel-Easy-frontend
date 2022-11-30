@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import "./flight-form.css";
 import { getFlightById } from "./flight-service";
 import {AddBox, Delete} from '@mui/icons-material';
 import "./flight-form.css";
+import { useNavigate } from "react-router-dom";
 
 
 function Bookform() {
+  let navigate = useNavigate();
   //getting logged in user from local storage
   let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
   console.log("logged in user in book form", loggedinUser);
@@ -80,14 +82,15 @@ function Bookform() {
     try {
       //call flight booking api and send flight object data along with user data
       console.log(bookingData);
-      alert("Booking Successful");
+      alert("Booking Successful!");
       //pc=0 bookdeals
       //pc>0 bookflight
       let response = await axios.post(
         `http://localhost:8080/bookflight/${userid}`,
         bookingData
       );
-      console.log("response in book flight ", response);
+      console.log("response in book flight ", response.data);
+      navigate('/searchFlight');
       // let response = await axios.post("http://localhost:8080/usersignup", userData  );
       // console.log(response.data);
       // console.warn(response.data);
@@ -105,7 +108,8 @@ function Bookform() {
 
           {passengerlist.map((x, i) => {
             return (
-              <div key={i} className="row mb-3">
+              <div key={i} className="row mb-3"><span><h6>Passenger {i+1}</h6>
+                </span> 
                 <div className="form-group col-md-4">
                   <label className="required-field">First Name</label>
                   <input
@@ -162,7 +166,7 @@ function Bookform() {
             className="form-control"
             placeholder="Enter name on the credit card"
             name="cardOwnerName"
-            disabled
+            
             value={cardOwnerName}
             onChange={(e) => onCardInputChange(e)}
           />
@@ -178,7 +182,7 @@ function Bookform() {
                 className="form-control"
                 placeholder="Enter credit card number"
                 name="cardNumber"
-                disabled
+                
                 value={cardNumber}
                 onChange={(e) => onCardInputChange(e)}
               />
@@ -190,7 +194,7 @@ function Bookform() {
               <select
                 value={cardType}
                 className="form-control"
-                disabled
+                
                 name="cardType"
                 onChange={(e) => onCardInputChange(e)}
               >
@@ -212,7 +216,7 @@ function Bookform() {
                 placeholder="Enter credit card expiry in mm/yy format"
                 name="expiryDate"
                 value={expiryDate}
-                disabled
+                // disabled
                 onChange={(e) => onCardInputChange(e)}
               />
             </div>
@@ -228,7 +232,7 @@ function Bookform() {
                 placeholder="Enter cvv"
                 name="cvv"
                 value={cvv}
-                disabled
+                // disabled
                 onChange={(e) => onCardInputChange(e)}
               />
             </div>

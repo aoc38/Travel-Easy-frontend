@@ -51,6 +51,7 @@ export default function AddUser() {
       let response = await axios.post("http://localhost:8080/usersignup", user);
       console.log(response.data);
       console.warn(response.data);
+      alert("Registered Succesfully!");
       //localStorage.setItem("user-info", JSON.stringify(response.data));
       // SetloggedInUser(JSON.stringify(response.data));
       //set user data in session
