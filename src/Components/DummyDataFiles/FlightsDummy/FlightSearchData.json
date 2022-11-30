@@ -24,6 +24,7 @@
             "price":400,
             "deals_price":2000,
             "miles":15000,
+            "timeperiod":2,
             "airline":"American Airlines" ,
             "departureTime":"08:30:00",
             "arrivalTime":"10:41:00"

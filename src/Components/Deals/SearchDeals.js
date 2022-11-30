@@ -55,7 +55,7 @@ function SearchDeal() {
     setDepartureDate(deptDate);
     validateForm();
   };
-
+//Added timeperiod
   const handleTimePeriod = (timePeriod) => {
     setTimePeriod(timePeriod.target.value);
     validateForm();
