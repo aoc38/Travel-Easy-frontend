@@ -27,6 +27,8 @@ function SearchDeal() {
   const [maxPrice, setMaxPrice] = useState(0);
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+  const [timeperiod, setTimePeriod] = useState(1);
+
   const [value, setValue] = useState("");
   const DATE_FORMAT = "YYYY-MM-DD";
   const [deals, setDeals] = useState([]);
@@ -53,11 +55,13 @@ function SearchDeal() {
     setDepartureDate(deptDate);
     validateForm();
   };
-
-  const handleReturnDate = (rtDate) => {
-    setReturnDate(rtDate);
+//Added timeperiod
+  const handleTimePeriod = (timePeriod) => {
+    setTimePeriod(timePeriod.target.value);
     validateForm();
   };
+
+
 
   const handleMinPrice = (minPrice) => {
     setMinPrice(minPrice.target.value);
@@ -78,8 +82,7 @@ function SearchDeal() {
     let request = {
       source: source,
       destination: destination,
-      departureDate: departureDate,
-      returnDate: returnDate,
+      timeperiod:timeperiod,
       minPrice: minPrice,
       maxPrice: maxPrice,
       filterBy: filterBy,
@@ -115,8 +118,7 @@ function SearchDeal() {
     if (
       source !== "" &&
       destination !== "" &&
-      departureDate !== "" &&
-      returnDate !== "" &&
+      timeperiod !== "" &&
       minPrice !== "" &&
       maxPrice !== ""
     ) {
@@ -173,34 +175,19 @@ function SearchDeal() {
                       className="mt-2"
                     />
                   </div>
-
                   <div className="p-2 mt-2">
-                    <CustomDatePicker
-                      value={value}
-                      onChange={handleDepartureDate}
-                      disablePast
-                      format={DATE_FORMAT}
-                      label="Departure"
-                      className="mt-2"
+                    <BasicTextFields
+                    label="Time Period"
+                    variant="outlined"
+                    name="timeperiod"
+                      value={timeperiod}
+                      onChange={handleTimePeriod}
+                      
+                      
+                      id="outline-basic"
+                     
                     />
                   </div>
-                  <div className="p-2 mt-2">
-                    <CustomDatePicker
-                      value={value}
-                      onChange={handleReturnDate}
-                      disablePast
-                      format={DATE_FORMAT}
-                      label="Return"
-                      className="mt-2"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d-flex">
                   <div className="p-2 mt-2">
                     <BasicTextFields
                       value={minPrice}
@@ -210,6 +197,7 @@ function SearchDeal() {
                       id="outline-basic"
                     />
                   </div>
+                 
                   <div className="p-2 mt-2">
                     <BasicTextFields
                       value={maxPrice}
@@ -222,6 +210,8 @@ function SearchDeal() {
                 </div>
               </div>
             </div>
+
+            
             <div className="flt-rt">
               <Button
                 disabled={disableButton}
