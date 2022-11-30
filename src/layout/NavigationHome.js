@@ -55,6 +55,12 @@ export default function NavigationHome() {
                         loggedinUser ?
                             <Nav>
                                 <Navbar.Collapse className="justify-content-end">
+                                    <span className='bg-primary'>Miles Remaining {(loggedinUser
+                                        && (loggedinUser.userMiles)
+                                        && (loggedinUser.userMiles.milesRemaining)) ?
+                                        loggedinUser.userMiles.milesRemaining
+                                        : 0
+                                    }</span>
                                     <NavDropdown title={loggedinUser && ((loggedinUser).firstName)}>
                                         <NavDropdown.Item onClick={bookingHistory}>
                                             Booking History

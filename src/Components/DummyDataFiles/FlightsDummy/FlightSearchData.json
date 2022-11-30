@@ -9,7 +9,7 @@
             "flightType":"DOMESTIC",
             "price":400,
             "deals_price":110,
-            "miles":15000,
+            "miles":25000,
             "airline":"American Airlines" ,
             "departureTime":"05:40:00",
             "arrivalTime":"08:41:00"

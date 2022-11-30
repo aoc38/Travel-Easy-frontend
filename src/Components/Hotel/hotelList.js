@@ -1,12 +1,9 @@
-import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./hotelList.css";
-import {getHotelOffers} from '../../services/hotel/amadeus-api-service'
-import HotelDetails from "./hoteldetails";
-import { useState } from "react";
 import { getHotelById } from './hotel-service';
+import "./hotelList.css";
 
 function HotelList(props) {
 
@@ -25,14 +22,16 @@ function HotelList(props) {
       {
         props.hotels.data.map((hotel, i) => {
           let result = getHotelById(hotel.hotelId);
+          console.log("hotel data in hotel list ", result);
           let hotelOffer = result.length == 1 ? result[0] : {};
+          console.log("hotel offer data in hotel list ", hotelOffer);
          // console.log("Booking details : " + props.hotelBookingDetails[0].destination);
           return (
             
             <Card style={{ margin: "10px" }} className="card-list">
                 <CardContent key={hotel.hotelId}>
                 <div className="searchItem">
-                    <img src={hotelOffer.hotel.photo1} alt="" className="isImg" />
+                    {/* <img src={hotelOffer.hotel.photo1} alt="" className="isImg" /> */}
                     <div className="isDesc">
                       <h1 className="isTitle">{getHotelName(hotel)}</h1>
                       <span className="isDistance">{hotelOffer.hotel.distance}</span>

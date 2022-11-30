@@ -41,3 +41,17 @@ export function getHotelById(id){
     return result;
 }
 
+export function getHotelByRequest(request){
+    // TODO make a REST call to backend and get data for testing using JSON file
+    let jsondata =  JSON.parse(JSON.stringify(hotels));
+    let resultList = jsondata.data.filter(
+        (obj) =>
+          (obj.departureCityName === request.source.address.cityName) &&
+          (obj.arrivalCityName === request.destination.address.cityName)
+      );
+    // console.log("json data = ",jsondata);
+    // let result = jsondata.data.filter((obj) => obj.hotelId === id);
+    // console.log("result = ",result);
+    return resultList;
+}
+
