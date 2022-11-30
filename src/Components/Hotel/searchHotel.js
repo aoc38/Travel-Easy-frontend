@@ -27,7 +27,10 @@ function SearchHotel() {
     const [roomCount, setroomCount] = useState(getNoOfRoom()[0].label);
     const [roomPrice, setroomPrice] = useState("");
     const [hotels, setHotels] = useState([]);
+   
     
+   
+   
 
     const [toLocations, setToLocations] = useState([]);
     const [filterBy, setFilterBy] = useState("");
@@ -98,6 +101,7 @@ function SearchHotel() {
           'checkInDate': checkInDate,
           'checkOutDate': checkOutDate,
           'guestsCount': guestsCount,
+          'roomCount': roomCount,
           'roomPrice': roomPrice
           
         }
@@ -105,6 +109,7 @@ function SearchHotel() {
         let hotels = response.data;
         setHotels(hotels);
         setShowList(true);
+        
       }
 
       return (
@@ -117,11 +122,13 @@ function SearchHotel() {
             <div className="col-md-12">
             <div className="d-flex">
               <div className="p-2 mt-2">
+             
                   <InputSearch
                     value={destination}
                     input={toLocations}
                     onInputChange={searchDestinationLocations}
                     onChange={onDestinationSelected}
+                    //placeholder="Where are you going?"
                     label="Going to"
                     className="mt-2"
                   />
@@ -182,7 +189,7 @@ function SearchHotel() {
                 value={getFilterStrategies()}
                 onChange={onFilterSelected}
               />
-            <HotelList hotels={hotels} />  
+            <HotelList hotels={hotels} checkInDate={checkInDate} checkOutDate={checkOutDate} guestsCount={guestsCount} roomCount={roomCount}/>  
             </div> : <Information/>}
             </div>
             </div>

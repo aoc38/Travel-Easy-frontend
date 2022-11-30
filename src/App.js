@@ -15,11 +15,14 @@ import Usermiles from './Components/Flights/Usermiles';
 import NavigationHome from './layout/NavigationHome';
 import Home from './pages/Home';
 import AddUser from './Users/AddUser';
+
 import BookinghistoryDeals from './Components/Deals/Bookinghistory_deals';
+
 import Hoteldetails from './Components/Hotel/hoteldetails';
 import SearchHotel from './Components/Hotel/searchHotel';
 import LoginPage from './Users/LoginPage';
 import Dealsdetails from './Components/Deals/Dealsdetails';
+import HotelBooking from './Components/Hotel/hotel-bookings';
 import UserBookinghistory from './Users/UserBookinghistory';
 
 
@@ -47,6 +50,9 @@ function App() {
           <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} />
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
           <Route exact path="/bookinghistorydeals/:id" element={<BookinghistoryDeals />} />
+           <Route exact path="/hoteldetails/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<Hoteldetails />} />
+          <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
+		      <Route exact path="/hotelbooking/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<HotelBooking />} />
 
         </Routes>
       </Router>
