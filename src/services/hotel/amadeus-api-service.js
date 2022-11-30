@@ -1,9 +1,6 @@
 import axios from 'axios';
 import oauth from 'axios-oauth-client';
 
-var flights = require('../../Components/Flights/flights.json');
-
-
 const TOKEN_URL = "https://test.api.amadeus.com/v1/security/oauth2/token";
 const CLIENT_ID = "P3G5IApLLov0ZGVVggFdUz81lnJGUk6Q";
 const CLIENT_SECRET = "agEic6gcwcp06XAV";
@@ -50,7 +47,7 @@ export const getHotels = async (request) => {
         params: {
             'cityCode' : request.destination,
             'radius' : '5',
-            'radiusUnit' : 'KM'
+            'radiusUnit' : 'MILE'
         },
         headers: {
             'Authorization': authHeader
@@ -64,7 +61,7 @@ export const getHotelOffers = async (request) => {
     let authHeader = await getAuthHeader();
     const result = await axios.get( HOTEL_OFFER_AVAILABILITY_URL, {
         params: {
-            'hotelIds' : request.hotelId,
+            'hotelIds' : "MCLONGHM",
             'adults' : 1
         },
         headers: {
