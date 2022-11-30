@@ -25,6 +25,9 @@ function Usermiles() {
       // setIsUserMilesCheckbox(true);
       return 0;
     }
+    else{
+     return data.userMiles.milesRemaining;
+    }
     //need to get from user object
   };
 

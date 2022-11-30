@@ -140,7 +140,14 @@ function Flightdetails() {
                 >
                   Proceed
                 </Link>
+                <div className="text-center">
+                  <span className="link-primary">
+                    <Link to={"/hotels"}>Book Hotel </Link>
+                  </span> to avail 20% discount{" "}
+                </div>
+
               </div>
+
             </>
           ) : (
             <>
@@ -151,6 +158,12 @@ function Flightdetails() {
                   Proceed
                 </Link>
 
+                <div className="text-center">
+                  <span className="link-primary">
+                    <Link to={"/hotels"}>Book Hotel </Link>
+                  </span> to avail 20% discount{" "}
+
+                </div>
               </div>
             </>
           )}
