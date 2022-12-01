@@ -7,8 +7,11 @@ import "./hotelList.css";
 
 function HotelList(props) {
 
+  const hotel_data = props.hotels;
+  console.log("In hotel list : " + hotel_data[0]);
+
  
-  const [hotelOffer, setHotelOffer] = useState([]);
+ // const [hotelOffer, setHotelOffer] = useState([]);
   const getDestination = (hotel) => {
     return hotel.iataCode;
   }
@@ -20,26 +23,20 @@ function HotelList(props) {
   return (
     <div className="list-hotel">
       {
-        props.hotels.data.map((hotel, i) => {
-          let result = getHotelById(hotel.hotelId);
-          console.log("hotel data in hotel list ", result);
-          let hotelOffer = result.length == 1 ? result[0] : {};
-          console.log("hotel offer data in hotel list ", hotelOffer);
-         // console.log("Booking details : " + props.hotelBookingDetails[0].destination);
-          return (
-            
-            <Card style={{ margin: "10px" }} className="card-list">
+        props.hotels.map((hotel, i) => {
+          return (  
+            <Card style={{ margin: "10px" }} className="card-list" key={i} id={i}>
                 <CardContent key={hotel.hotelId}>
                 <div className="searchItem">
-                    {/* <img src={hotelOffer.hotel.photo1} alt="" className="isImg" /> */}
+                    <img src={hotel.hotel.photo1} alt="" className="isImg" /> 
                     <div className="isDesc">
                       <h1 className="isTitle">{getHotelName(hotel)}</h1>
-                      <span className="isDistance">{hotelOffer.hotel.distance}</span>
+                      <span className="isDistance">{hotel.hotel.distance}</span>
                       <span className="isTaxiOp">Free airport taxi</span>
                       <span className="isSubtitle">
-                        {hotelOffer.hotel.tagline}
+                        {hotel.hotel.tagline}
                       </span>
-                      <span className="isFeatures">{hotelOffer.offers[0].room.description.text}</span>
+                      <span className="isFeatures">{hotel.offers[0].room.description.text}</span>
                       <span className="isCancelOp">Free cancellation </span>
                       <span className="isCancelOpSubtitle">
                         You can cancel later, so lock in this great price today!
@@ -47,9 +44,9 @@ function HotelList(props) {
                     </div>
                     <div className="isDetails">
                       <div className="isDetailTexts">
-                        <span className="isPrice">${hotelOffer.offers[0].price.base}</span>
+                        <span className="isPrice">${hotel.offers[0].price.base}</span>
                         <span className="isTaxOp">Includes taxes and fees</span>
-                        <Link to={{ pathname: `/hoteldetails/${props.checkInDate}/${props.checkOutDate}/${props.guestsCount}/${props.roomCount}/${hotel.hotelId}`}}>
+                        <Link to={{ pathname: `/hotelbooking/${props.checkInDate}/${props.checkOutDate}/${props.guestsCount}/${props.roomCount}/${hotel.hotelId}`}}>
                           <button className="isCheckButton">See availability</button>
                         </Link>
                       </div>
