@@ -187,7 +187,7 @@ function SearchHotel() {
 
                   disabled={disableButton}
                   onClick={fetchHotel}
-                  btname="Search" />
+                  btname="Search Hotel" />
               </div>
             </Card>
           </div>
