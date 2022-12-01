@@ -47,7 +47,7 @@ function HotelBooking(props) {
 
     function dayDifference(date1, date2) {
         const diffInMs = new Date(date2) - new Date(date1);
-        const diffInDays = diffInMs / MILISECONDS_PER_DAY;
+        let diffInDays = diffInMs / MILISECONDS_PER_DAY;
         if (diffInDays === 0) {
             diffInDays = 1;
         }

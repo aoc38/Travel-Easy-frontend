@@ -32,6 +32,7 @@ export default function LoginPage() {
         // console.log(sessionStorage.getItem("flight-data"));
         let flightdata = JSON.parse(sessionStorage.getItem("flight-data"));
         let dealdata = JSON.parse(sessionStorage.getItem("deal-data"));
+        let hoteldata = JSON.parse(sessionStorage.getItem("hotel-data"));
         let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
         if (flightdata !== null) {
           //go to flight details page
@@ -43,6 +44,18 @@ export default function LoginPage() {
           navigate(`/usermiles/${dealdata.id}/${passengerCount}`);
           sessionStorage.removeItem("deal-data");
           sessionStorage.removeItem("passenger-count");
+        } else if (hoteldata !== null) {
+          let hotelIdSelected =  JSON.parse(sessionStorage.getItem("hotelIdSelected"));
+          //go to deal details page
+          // <HotelList hotels={hoteldata.hotels} 
+          // checkInDate={hoteldata.checkInDate}
+          //  checkOutDate={hoteldata.checkOutDate}
+          //   guestsCount={hoteldata.guestsCount} 
+          //   roomCount={hoteldata.roomCount} />
+          // navigate(`/hotels/${JSON.stringify(hoteldata)}`);
+          navigate(`/hotelbooking/${hoteldata.checkInDate}/${hoteldata.checkOutDate}/${hoteldata.guestsCount}/${hoteldata.roomCount}/${hotelIdSelected}`);
+          //navigate(`/hote/${hoteldata.id}/${passengerCount}`);
+          sessionStorage.removeItem("hotel-data");
         }
         else {
           navigate('/searchFlight');

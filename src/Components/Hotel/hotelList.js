@@ -7,8 +7,11 @@ import "./hotelList.css";
 
 function HotelList(props) {
 
+  let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
+  console.log("loggedinUser in hotel list page : ", loggedinUser);
+
   const hotel_data = props.hotels;
-  console.log("In hotel list : " + hotel_data[0]);
+  // console.log("In hotel list : " + hotel_data[0]);
 
 
   // const [hotelOffer, setHotelOffer] = useState([]);
@@ -20,6 +23,14 @@ function HotelList(props) {
     return hotel.name;
   }
 
+  const [hotelData] = useState({
+    checkInDate: props.checkInDate,
+    checkOutDate: props.checkOutDate,
+    guestsCount: props.guestsCount,
+    roomCount: props.roomCount,
+  });
+  sessionStorage.setItem("hotel-data", JSON.stringify(hotelData));
+
   return (
     <div className="list-hotel">
       {
@@ -27,6 +38,7 @@ function HotelList(props) {
           return (
             <Card style={{ margin: "10px" }} className="card-list" key={i} id={i}>
               <CardContent key={hotel.hotelId}>
+                {/* {sessionStorage.setItem("hotelIdSelected", JSON.stringify(hotel.hotelId))} */}
                 <div className="searchItem">
                   <img src={hotel.hotel.photo1} alt="" className="isImg" />
                   <div className="isDesc">
@@ -45,17 +57,35 @@ function HotelList(props) {
                   <div className="isDetails">
                     <div className="isDetailTexts">
                       <span className="isPrice">${hotel.offers[0].price.base}</span>
-                      <span className="isTaxOp">Includes taxes and fees</span>
-                      {JSON.parse(sessionStorage.getItem("flight-data")) ?
-                        <Link to={{ pathname: `/flighthotelbooking/${props.checkInDate}/${props.checkOutDate}/${props.guestsCount}/${props.roomCount}/${hotel.hotelId}` }}>
-                          <button className="isCheckButton">Select</button>
-                        </Link>
-                        :
-                        <Link to={{ pathname: `/hotelbooking/${props.checkInDate}/${props.checkOutDate}/${props.guestsCount}/${props.roomCount}/${hotel.hotelId}` }}>
-                          <button className="isCheckButton">See availability</button>
-                        </Link>
-                      }
+                      {/* <span className="isTaxOp">Includes taxes and fees</span> */}
 
+                      {loggedinUser ?
+                        <>
+                          {JSON.parse(sessionStorage.getItem("flight-data")) ?
+                            <Link to={{ pathname: `/flighthotelbooking/${props.checkInDate}/${props.checkOutDate}/${props.guestsCount}/${props.roomCount}/${hotel.hotelId}` }}>
+                              <button className="isCheckButton">Select</button>
+                            </Link>
+                            :
+
+                            <Link to={{ pathname: `/hotelbooking/${props.checkInDate}/${props.checkOutDate}/${props.guestsCount}/${props.roomCount}/${hotel.hotelId}` }}>
+                              <button className="isCheckButton">See availability</button>
+
+                            </Link>
+                          }
+                        </>
+                        :
+                        <>
+                          {" "}
+                          <Link to="/loginuser"
+                           >
+                            ${hotel.hotelId}
+                            {/* {console.log("IN LOGIN USER HOTEL ID" , hotel.hotelId)} */}
+                            {sessionStorage.setItem("hotelIdSelected", JSON.stringify(hotel.hotelId))}
+                            <button className="isCheckButton">See availability</button>
+                          </Link>
+
+                        </>
+                      }
                     </div>
                   </div>
                 </div>

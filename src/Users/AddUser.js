@@ -49,35 +49,41 @@ export default function AddUser() {
     e.preventDefault();
     try {
       let response = await axios.post("http://localhost:8080/usersignup", user);
-      console.log(response.data);
-      console.warn(response.data);
-      alert("Registered Succesfully!");
-      //localStorage.setItem("user-info", JSON.stringify(response.data));
-      // SetloggedInUser(JSON.stringify(response.data));
-      //set user data in session
-      sessionStorage.setItem("user-info", JSON.stringify(response.data));
-      // fetch if coming from flight or deal or 
-      let flightdata = JSON.parse(sessionStorage.getItem("flight-data"));
-      let dealdata = JSON.parse(sessionStorage.getItem("deal-data"));
-      let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
-      if (flightdata !== null) {
-        //go to flight details page
-        navigate(`/flightdetails/${flightdata.id}/${passengerCount}`);
-        sessionStorage.removeItem("flight-data");
-        sessionStorage.removeItem("passenger-count");
-      } else if (dealdata !== null) {
-        //go to deal details page
-        navigate(`/usermiles/${dealdata.id}/${passengerCount}`);
-        sessionStorage.removeItem("deal-data");
-        sessionStorage.removeItem("passenger-count");
-      }
-      else {
-        // go to search page
-        navigate('/searchFlight');
+      if (response.data.message !== undefined) {
+        alert(response.data.message);
+      } else {
+
+        console.log(response.data);
+        console.warn(response.data);
+        alert("Registered Succesfully!");
+        //localStorage.setItem("user-info", JSON.stringify(response.data));
+        // SetloggedInUser(JSON.stringify(response.data));
+        //set user data in session
+        sessionStorage.setItem("user-info", JSON.stringify(response.data));
+        // fetch if coming from flight or deal or 
+        let flightdata = JSON.parse(sessionStorage.getItem("flight-data"));
+        let dealdata = JSON.parse(sessionStorage.getItem("deal-data"));
+        let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
+        if (flightdata !== null) {
+          //go to flight details page
+          navigate(`/flightdetails/${flightdata.id}/${passengerCount}`);
+          sessionStorage.removeItem("flight-data");
+          sessionStorage.removeItem("passenger-count");
+        } else if (dealdata !== null) {
+          //go to deal details page
+          navigate(`/usermiles/${dealdata.id}/${passengerCount}`);
+          sessionStorage.removeItem("deal-data");
+          sessionStorage.removeItem("passenger-count");
+        }
+        else {
+          // go to search page
+          navigate('/searchFlight');
+        }
       }
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
+
 
     // try {
     //   let res = await fetch("http://localhost:8080/user", {
