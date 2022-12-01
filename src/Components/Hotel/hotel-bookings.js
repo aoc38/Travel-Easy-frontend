@@ -114,6 +114,7 @@ function HotelBooking(props) {
             );
             console.log("response in book flight ", response.data);
             alert("Booking Successful!");
+            sessionStorage.removeItem("hotel-data");
             sessionStorage.setItem("user-info",JSON.stringify(response.data.user));
             navigate('/hotels');
         } catch (error) {
