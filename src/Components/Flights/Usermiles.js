@@ -35,6 +35,15 @@ function Usermiles() {
   const getReqMiles = (flight) => {
     return flight.miles;
   };
+  const usermilesCheckbox = (flight) => {
+    let miles = getAccMiles();
+    if( miles < flight.miles) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   //toggle checkbox based on user miles
   // const [ usermilesCheckbox, setIsUserMilesCheckbox ] = useState(false);
@@ -96,7 +105,7 @@ function Usermiles() {
 
             <input
               type="checkbox"
-              //  disabled={usermilesCheckbox}
+               disabled={usermilesCheckbox(flight)}
               checked={isUserMilesChecked}
               onChange={(e) => {
                 setIsUserMilesChecked(e.target.checked);
