@@ -15,9 +15,7 @@ import Usermiles from './Components/Flights/Usermiles';
 import NavigationHome from './layout/NavigationHome';
 import Home from './pages/Home';
 import AddUser from './Users/AddUser';
-
 import BookinghistoryDeals from './Components/Deals/Bookinghistory_deals';
-
 import Hoteldetails from './Components/Hotel/hoteldetails';
 import SearchHotel from './Components/Hotel/searchHotel';
 import LoginPage from './Users/LoginPage';
@@ -25,6 +23,7 @@ import Dealsdetails from './Components/Deals/Dealsdetails';
 import HotelBooking from './Components/Hotel/hotel-bookings';
 import UserBookinghistory from './Users/UserBookinghistory';
 import BookFlightMilesForm from './Components/Flights/BookFlightMilesForm';
+import FlightHotelBooking from './Components/Flights/FlightHotelBooking';
 
 
 function App() {
@@ -55,8 +54,8 @@ function App() {
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
 		      <Route exact path="/hotelbooking/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<HotelBooking />} />
           <Route exact path="/bookFlightMiles/:id/:pc" element={<BookFlightMilesForm />} />
-
-
+          <Route exact path="/flighthotelbooking/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<FlightHotelBooking />} />
+          
         </Routes>
       </Router>
       {/* </UserContext.Provider> */}
