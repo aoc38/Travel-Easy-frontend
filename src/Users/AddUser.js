@@ -2,10 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "./adduser.css";
+import { useParams } from 'react-router-dom';
 
 export default function AddUser() {
 
   let navigate = useNavigate();
+  let { hotelId } = useParams();
   // const [cards,setCards] = useState([]);
   // const {SetloggedInUser} = useContext(UserContext);
   const [user, setUser] = useState({
@@ -63,6 +65,7 @@ export default function AddUser() {
         // fetch if coming from flight or deal or 
         let flightdata = JSON.parse(sessionStorage.getItem("flight-data"));
         let dealdata = JSON.parse(sessionStorage.getItem("deal-data"));
+        let hoteldata = JSON.parse(sessionStorage.getItem("hotel-data"));
         let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
         if (flightdata !== null) {
           //go to flight details page
@@ -74,6 +77,11 @@ export default function AddUser() {
           navigate(`/usermiles/${dealdata.id}/${passengerCount}`);
           sessionStorage.removeItem("deal-data");
           sessionStorage.removeItem("passenger-count");
+        }
+        else if (hoteldata !== null) {
+          navigate(`/hotelbooking/${hoteldata.checkInDate}/${hoteldata.checkOutDate}/${hoteldata.guestsCount}/${hoteldata.roomCount}/${hotelId}`);
+          //navigate(`/hote/${hoteldata.id}/${passengerCount}`);
+          sessionStorage.removeItem("hotel-data");
         }
         else {
           // go to search page

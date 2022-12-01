@@ -7,7 +7,8 @@ import { useParams } from 'react-router-dom';
 export default function LoginPage() {
   let navigate = useNavigate();
   // const {SetloggedInUser} = useContext(UserContext);
-  let {hotelId} = useParams();
+  let { hotelId } = useParams();
+  let ishotelIdAvailable = hotelId !== undefined ? true : false;
 
   const [loginData, setLoginData] = useState({
     username: "",
@@ -105,7 +106,18 @@ export default function LoginPage() {
             <div className="text-center">
               Not registered yet?{" "}
               <span className="link-primary">
-                <Link to={"/register"}>Sign Up </Link>
+                {ishotelIdAvailable ?
+                  <Link to={
+                    {
+                      pathname: `/register/${hotelId}`
+                    }
+                  }
+                  >Sign Up </Link>
+                  :
+
+                  <Link to={"/register"}>Sign Up </Link>
+                }
+                {/* <Link to={"/register"}>Sign Up </Link> */}
               </span>
             </div>
 

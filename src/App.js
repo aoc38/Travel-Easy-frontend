@@ -35,7 +35,10 @@ function App() {
         <Routes>
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/register" element={<AddUser />} />
+          <Route exact path="/register/:hotelId" element={<AddUser />} />
           <Route exact path="/loginuser" element={<LoginPage />} />
+          <Route exact path="/loginuser/:hotelId" element={<LoginPage />} />
+          <Route exact path="/" element={<SearchFlight />} />
           <Route exact path="/searchFlight" element={<SearchFlight />} />
           <Route exact path="/flightdetails/:id/:pc" element={<Flightdetails />} />
           <Route exact path="/bookform/:id/:pc" element={<BookForm />} />
@@ -47,6 +50,7 @@ function App() {
           <Route exact path="/deals" element={<SearchDeals />} />
           <Route exact path="/flightstatus" element={<FlightStatus />} />
           <Route exact path="/hotels" element={<SearchHotel />} />
+          
           {/* <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} /> */}
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
           <Route exact path="/bookinghistorydeals/:id" element={<BookinghistoryDeals />} />
