@@ -16,15 +16,9 @@ function Usermiles() {
     flight.miles = pc * flight.miles;
   }
   else{
-<<<<<<< Updated upstream
-    flight.miles=1*flight.miles;
-  }
-  let isDeal = (pc === '0') ? true : false;
-=======
     flight.miles = 1 * flight.miles;
   }
   let isDeal = (noOfPassengers === '0') ? true : false;
->>>>>>> Stashed changes
 
   // const [accumulatedMiles, setAccumulatedMiles] = useState(0);
   // const [redeemedMiles, setRedeemedMiles] = useState(0);
