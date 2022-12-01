@@ -71,16 +71,7 @@ function DealsList(props) {
                     Select
                   </Link>
               </div>
-              <div>
-                  <h5>{getPriceinMiles(flight)} miles</h5>
-                  
-                  <Link
-                    to={{ pathname: `/dealsdetails/${flight.id}`, state:"isMiles: true"}}
-                    className="btn btn-primary"
-                  >
-                    Select
-                  </Link>
-        </div>
+              
               </div>
             </CardContent>
           </Card>

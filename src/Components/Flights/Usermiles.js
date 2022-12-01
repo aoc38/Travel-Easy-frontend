@@ -12,10 +12,13 @@ function Usermiles() {
   let flight = data.length === 1 ? data[0] : {};
   console.log("flight details in user miles : ", flight);
   let noOfPassengers = pc;
-  if (pc !== 0) {
+  if (pc > 0) {
     flight.miles = pc * flight.miles;
   }
-  let isDeal = (noOfPassengers === '0') ? true : false;
+  else{
+    flight.miles=1*flight.miles;
+  }
+  let isDeal = (pc === '0') ? true : false;
 
   // const [accumulatedMiles, setAccumulatedMiles] = useState(0);
   // const [redeemedMiles, setRedeemedMiles] = useState(0);
