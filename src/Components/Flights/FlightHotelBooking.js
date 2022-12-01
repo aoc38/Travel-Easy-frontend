@@ -41,6 +41,7 @@ export default function FlightHotelBooking() {
     let data = getHotelById(id);
     let hotel = data.length == 1 ? data[0] : {};
     let flight = JSON.parse(sessionStorage.getItem("flight-data"));
+    let noOfPassengers = JSON.parse(sessionStorage.getItem("passenger-count"));
     const MILISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
     const days = dayDifference(checkindate, checkoutdate);
     const price = days * roomcount * hotel.offers[0].price.base;
@@ -316,12 +317,12 @@ export default function FlightHotelBooking() {
                     <span>Check-out: {checkoutdate}</span>
                     <span>Travelers: {guestcount}</span>
                     <h1>Price Details</h1>
-                    <span>Flight Price: ${flight.price}</span>
-                    <span>Tax: ${flight.price *0.15}</span>
+                    <span>Flight Price: ${flight.price * noOfPassengers}</span>
+                    <span>Tax: ${ noOfPassengers *flight.price *0.15}</span>
                     <span>Hotel Price: {roomcount} room * {days} night : ${price}</span>
                     <span>Taxes and fees :   ${tax}</span>
                     <span>Discount: ${(total_price + flight.price *0.15 +flight.price) *0.2}</span>
-                    <span>Total  :     ${(total_price + flight.price *0.15 +flight.price)-(total_price + flight.price *0.15 +flight.price) *0.2}</span>
+                    <span>Total  :     ${(total_price + flight.price *0.15 * noOfPassengers +flight.price *noOfPassengers)-(total_price + flight.price * noOfPassengers *0.15 +flight.price *noOfPassengers) *0.2}</span>
                     
                     
 
