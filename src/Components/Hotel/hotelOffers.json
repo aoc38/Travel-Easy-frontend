@@ -11,11 +11,11 @@
         "name": "Quality Inn Hobby Airport",
         "tagline": "Enhanced Cleaning at our Airport hotel",
         "cityCode": "Houston",
-        "photo1": "http://pix3.agoda.net/hotelimages/15/0/59a863c3a6e93b759faf2beea910d516.jpg?s=312x",
-        "photo2": "http://pix5.agoda.net/hotelimages/15/15/15_13072409510013984463.jpg?s=312x",
-        "photo3": "http://pix2.agoda.net/hotelimages/15/15/15_17091312040056285473.jpg?s=312x",
-        "photo4": "http://pix4.agoda.net/hotelimages/15/15/15_17091312040056285476.jpg?s=312x",
-        "photo5": "http://pix5.agoda.net/hotelimages/15/15/15_17091312040056285477.jpg?s=312x",
+        "photo1": "http://pix5.agoda.net/hotelimages/138/-1/5a34a779300e997df06fee851cadda1c.jpg?s=312x",
+        "photo2": "http://pix3.agoda.net/hotelimages/138/-1/69ecbd6e3d1539022b153668922b61aa.jpg?s=312x",
+        "photo3": "http://pix4.agoda.net/hotelimages/138/138/138_13010722350010092471.jpg?s=312x",
+        "photo4": "http://pix1.agoda.net/hotelimages/138/138/138_13123022340017985380.jpg?s=312x",
+        "photo5": "http://pix4.agoda.net/hotelimages/138/138/138_13123022340017985391.jpg?s=312x",
         "distance": "500 mi from Houston Intercontinental Airport",
         "latitude": 51.50988,
         "longitude": -0.15509
@@ -48,11 +48,11 @@
           },
           "price": {
             "currency": "$",
-            "base": "150",
-            "total": "150",
+            "base": 150,
+            "total": 150,
             "variations": {
               "average": {
-                "base": "150"
+                "base": 150
               },
               "changes": [
                 {
@@ -66,7 +66,7 @@
           "policies": {
             "paymentType": "guarantee",
             "cancellation": {
-              "amount": "150.00",
+              "amount": 150.00,
               "deadline": "2022-11-21T23:59:00Z"
             }
           },
@@ -408,9 +408,9 @@
           "room": {
             "type": "XMI",
             "typeEstimated": {
-              "category": "DELUXE_ROOM",
+              "category": "STANDARD_ROOM",
               "beds": 1,
-              "bedType": "QUEEN"
+              "bedType": "KING"
             },
             "description": {
               "text": "JW Marriot Hotel Houston is a popular choice amongst travelers in Houston, whether exploring or just passing through. The hotel has everything you need for a comfortable stay. Service-minded staff will welcome and guide you at the La Quinta Inn Ste Houston Hobby Airport.",
@@ -441,6 +441,231 @@
             "paymentType": "guarantee",
             "cancellation": {
               "amount": "300.00",
+              "deadline": "2022-11-21T23:59:00Z"
+            }
+          },
+          "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+        }
+      ],
+      "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+    },
+    {
+      "type": "hotel-offers",
+      "hotelId": "DEN101",
+      "hotel": {
+        "type": "hotel",
+        "hotelId": "DEN101",
+        "chainCode": "MC",
+        "dupeId": "700031300",
+        "name": "Regency Hotel",
+        "tagline": "Where customer satisfaction is a philosophy",
+        "cityCode": "Denver",
+        "photo1": "http://pix3.agoda.net/hotelimages/13/0/5f8b6d43a6a287d37bfe1626ab22b0b1.jpg?s=312x",
+        "photo2": "http://pix4.agoda.net/hotelimages/13/13/13_15072020190032641184.jpg?s=312x",
+        "photo3": "http://pix5.agoda.net/hotelimages/13/13/13_15072020200032641185.jpg?s=312x",
+        "photo4": "http://pix1.agoda.net/hotelimages/13/13/13_15072020200032641186.jpg?s=312x",
+        "photo5": "http://pix2.agoda.net/hotelimages/13/0/ff8100c85955522a0289e5c71329a17a.jpg?s=312x",
+        "distance": "500 mi from Denver Airport",
+        "latitude": 51.50988,
+        "longitude": -0.15509
+      },
+      "available": true,
+      "offers": [
+        {
+          "id": "1FV3EH6OPV",
+          "checkInDate": "2022-11-22",
+          "checkOutDate": "2022-11-23",
+          "rateCode": "S9R",
+          "rateFamilyEstimated": {
+            "code": "SRS",
+            "type": "C"
+          },
+          "room": {
+            "type": "XMI",
+            "typeEstimated": {
+              "category": "STUDIO_ROOM",
+              "beds": 1,
+              "bedType": "QUEEN"
+            },
+            "description": {
+              "text": "The hotel has everything you need for a comfortable stay. To be found at the hotel are 24-hour room service, free Wi-Fi in all rooms, 24-hour front desk, facilities for disabled guests, Wi-Fi in public areas.",
+              "lang": "EN"
+            }
+          },
+          "guests": {
+            "adults": 1
+          },
+          "price": {
+            "currency": "$",
+            "base": 220,
+            "total": 220,
+            "variations": {
+              "average": {
+                "base": 220
+              },
+              "changes": [
+                {
+                  "startDate": "2022-11-22",
+                  "endDate": "2022-11-23",
+                  "total": "220"
+                }
+              ]
+            }
+          },
+          "policies": {
+            "paymentType": "guarantee",
+            "cancellation": {
+              "amount": 220.00,
+              "deadline": "2022-11-21T23:59:00Z"
+            }
+          },
+          "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+        }
+      ],
+      "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+    },
+    {
+      "type": "hotel-offers",
+      "hotelId": "DEN102",
+      "hotel": {
+        "type": "hotel",
+        "hotelId": "DEN102",
+        "chainCode": "MC",
+        "dupeId": "700031300",
+        "name": "Brown Palace Hotel",
+        "tagline": "The best value under the sun",
+        "cityCode": "Denver",
+        "photo1": "http://pix3.agoda.net/hotelimages/6584938/0/dc16bcf0fcfe7d2d5110462ebed1705b.jpg?s=312x",
+        "photo2": "http://pix3.agoda.net/hotelimages/33/33/33_15022714410025654631.jpg?s=312x",
+        "photo3": "http://pix4.agoda.net/hotelimages/33/33/33_17080709240054945185.jpg?s=312x",
+        "photo4": "http://pix5.agoda.net/hotelimages/33/33/33_17080709240054945186.jpg?s=312x",
+        "photo5": "http://pix3.agoda.net/hotelimages/33/33/33_17080709240054945187.jpg?s=312x",
+        "distance": "2 km from Denver Airport",
+        "latitude": 51.50988,
+        "longitude": -0.15509
+      },
+      "available": true,
+      "offers": [
+        {
+          "id": "1FV3EH6OPV",
+          "checkInDate": "2022-11-22",
+          "checkOutDate": "2022-11-23",
+          "rateCode": "S9R",
+          "rateFamilyEstimated": {
+            "code": "SRS",
+            "type": "C"
+          },
+          "room": {
+            "type": "XMI",
+            "typeEstimated": {
+              "category": "SUITE",
+              "beds": 1,
+              "bedType": "QUEEN"
+            },
+            "description": {
+              "text": "The hotel has everything you need for a comfortable stay. To be found at the hotel are 24-hour room service, free Wi-Fi in all rooms, 24-hour front desk, facilities for disabled guests, Wi-Fi in public areas.",
+              "lang": "EN"
+            }
+          },
+          "guests": {
+            "adults": 1
+          },
+          "price": {
+            "currency": "$",
+            "base": 250,
+            "total": 250,
+            "variations": {
+              "average": {
+                "base": "220"
+              },
+              "changes": [
+                {
+                  "startDate": "2022-11-22",
+                  "endDate": "2022-11-23",
+                  "total": "220"
+                }
+              ]
+            }
+          },
+          "policies": {
+            "paymentType": "guarantee",
+            "cancellation": {
+              "amount": 250.00,
+              "deadline": "2022-11-21T23:59:00Z"
+            }
+          },
+          "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/1FV3EH6OPV"
+        }
+      ],
+      "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2022-11-22&paymentPolicy=NONE&roomQuantity=1"
+    },
+    {
+      "type": "hotel-offers",
+      "hotelId": "DEN103",
+      "hotel": {
+        "type": "hotel",
+        "hotelId": "DEN103",
+        "chainCode": "MC",
+        "dupeId": "700031300",
+        "name": "Hilton Garden Inn",
+        "tagline": "Life’s better at the Garden",
+        "cityCode": "Denver",
+        "photo1": "http://pix3.agoda.net/hotelimages/147/147/147_1112051559004767099.jpg?s=312x",
+        "photo2": "http://pix4.agoda.net/hotelimages/147/147/147_1201061640005633620.jpg?s=312x",
+        "photo3": "http://pix5.agoda.net/hotelimages/147/147/147_0912031314001740894.jpg?s=312x",
+        "photo4": "http://pix4.agoda.net/hotelimages/147/147/147_0912031314001740898.jpg?s=312x",
+        "photo5": "http://pix1.agoda.net/hotelimages/147/147/147_0912031314001740899.jpg?s=312x",
+        "distance": "4 km from Denver Airport",
+        "latitude": 51.50988,
+        "longitude": -0.15509
+      },
+      "available": true,
+      "offers": [
+        {
+          "id": "1FV3EH6OPV",
+          "checkInDate": "2022-11-22",
+          "checkOutDate": "2022-11-23",
+          "rateCode": "S9R",
+          "rateFamilyEstimated": {
+            "code": "SRS",
+            "type": "C"
+          },
+          "room": {
+            "type": "XMI",
+            "typeEstimated": {
+              "category": "DELUXE_ROOM",
+              "beds": 1,
+              "bedType": "QUEEN"
+            },
+            "description": {
+              "text": "Hilton Garden Inn Greenwich is a popular choice amongst travelers in Denver, whether exploring or just passing through. The hotel has everything you need for a comfortable stay.",
+              "lang": "EN"
+            }
+          },
+          "guests": {
+            "adults": 1
+          },
+          "price": {
+            "currency": "$",
+            "base": 300,
+            "total": 300,
+            "variations": {
+              "average": {
+                "base": "220"
+              },
+              "changes": [
+                {
+                  "startDate": "2022-11-22",
+                  "endDate": "2022-11-23",
+                  "total": "220"
+                }
+              ]
+            }
+          },
+          "policies": {
+            "paymentType": "guarantee",
+            "cancellation": {
+              "amount": 300.00,
               "deadline": "2022-11-21T23:59:00Z"
             }
           },
