@@ -304,17 +304,26 @@ export default function FlightHotelBooking() {
                     </TabContext>
                 </div>
                 <div className="hotelDetailsPrice">
+                    <h1 className="text-bold text-center">Review Flight and Hotel</h1>
+                    <h1>{flight.airline}</h1>
+                    <span>From: {flight.departureCityName}</span>
+                    <span>To: {flight.arrivalCityName}</span>
+                    <span>Departure Date: {flight.departureDate}({flight.departureTime})</span>
+                    <span>Arrival Date: {flight.arrivalDate}({flight.arrivalTime})</span>
                     <h1>{hotel.hotel.name}</h1>
-                    <img src={hotel.hotel.photo2} alt="" className="isImg" />
                     <span>Property 1: {hotel.offers[0].room.typeEstimated.category}, {hotel.offers[0].room.typeEstimated.bedType}</span>
                     <span>Check-in: {checkindate}</span>
                     <span>Check-out: {checkoutdate}</span>
                     <span>Travelers: {guestcount}</span>
                     <h1>Price Details</h1>
-                    <span>{roomcount} room * {days} night : ${price}</span>
+                    <span>Flight Price: ${flight.price}</span>
+                    <span>Tax: ${flight.price *0.15}</span>
+                    <span>Hotel Price: {roomcount} room * {days} night : ${price}</span>
                     <span>Taxes and fees :   ${tax}</span>
-                    <span>Total  :     ${total_price}</span>
-
+                    <span>Discount: ${(total_price + flight.price *0.15 +flight.price) *0.2}</span>
+                    <span>Total  :     ${(total_price + flight.price *0.15 +flight.price)-(total_price + flight.price *0.15 +flight.price) *0.2}</span>
+                    
+                    
 
                 </div>
             </div>

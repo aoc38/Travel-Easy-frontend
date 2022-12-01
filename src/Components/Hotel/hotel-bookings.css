@@ -133,6 +133,13 @@
   font-size: 18px;
   color: #555;
 }
+
+.hotelDetailsPrice > h3 {
+  font-size: 14px;
+  color: #555;
+}
+
+
 .hotelDetailsPrice > span {
   font-size: 14px;
 }
