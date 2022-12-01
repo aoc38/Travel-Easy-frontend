@@ -15,9 +15,7 @@ import Usermiles from './Components/Flights/Usermiles';
 import NavigationHome from './layout/NavigationHome';
 import Home from './pages/Home';
 import AddUser from './Users/AddUser';
-
 import BookinghistoryDeals from './Components/Deals/Bookinghistory_deals';
-
 import Hoteldetails from './Components/Hotel/hoteldetails';
 import SearchHotel from './Components/Hotel/searchHotel';
 import LoginPage from './Users/LoginPage';
@@ -25,6 +23,7 @@ import Dealsdetails from './Components/Deals/Dealsdetails';
 import HotelBooking from './Components/Hotel/hotel-bookings';
 import UserBookinghistory from './Users/UserBookinghistory';
 import BookFlightMilesForm from './Components/Flights/BookFlightMilesForm';
+import FlightHotelBooking from './Components/Flights/FlightHotelBooking';
 
 
 function App() {
@@ -36,7 +35,10 @@ function App() {
         <Routes>
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/register" element={<AddUser />} />
+          <Route exact path="/register/:hotelId" element={<AddUser />} />
           <Route exact path="/loginuser" element={<LoginPage />} />
+          <Route exact path="/loginuser/:hotelId" element={<LoginPage />} />
+          <Route exact path="/" element={<SearchFlight />} />
           <Route exact path="/searchFlight" element={<SearchFlight />} />
           <Route exact path="/flightdetails/:id/:pc" element={<Flightdetails />} />
           <Route exact path="/bookform/:id/:pc" element={<BookForm />} />
@@ -48,6 +50,7 @@ function App() {
           <Route exact path="/deals" element={<SearchDeals />} />
           <Route exact path="/flightstatus" element={<FlightStatus />} />
           <Route exact path="/hotels" element={<SearchHotel />} />
+          
           {/* <Route exact path="/hoteldetails/:id" element={<Hoteldetails />} /> */}
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
           <Route exact path="/bookinghistorydeals/:id" element={<BookinghistoryDeals />} />
@@ -55,8 +58,8 @@ function App() {
           <Route exact path="/dealsdetails/:id" element={<Dealsdetails />} />
 		      <Route exact path="/hotelbooking/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<HotelBooking />} />
           <Route exact path="/bookFlightMiles/:id/:pc" element={<BookFlightMilesForm />} />
-
-
+          <Route exact path="/flighthotelbooking/:checkindate/:checkoutdate/:guestcount/:roomcount/:id" element={<FlightHotelBooking />} />
+          
         </Routes>
       </Router>
       {/* </UserContext.Provider> */}

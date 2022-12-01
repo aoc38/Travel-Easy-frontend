@@ -1,24 +1,26 @@
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import axios from 'axios';
+import { AddBox, Delete } from '@mui/icons-material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Paper from "@mui/material/Paper";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
-import "./hotel-bookings.css";
-// import { getHotelById } from './hotel-service';
-import {getHotelById} from './hotel-service';
+// import "./hotel-bookings.css";
+import "../Hotel/hotel-bookings.css";
+import { getHotelById } from '../Hotel/hotel-service';
 import React, { useEffect, useState } from "react";
 
-function HotelBooking(props) {
+export default function FlightHotelBooking() {
+
     //getting logged in user from local storage
+    let navigate = useNavigate();
     let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
     console.log("logged in user in book form", loggedinUser);
     const userData = loggedinUser;
     let userid = userData.id;
-
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -26,6 +28,9 @@ function HotelBooking(props) {
     const [card, setCard] = useState({});
     const { firstName, lastName } = user;
     const { cardNumber, cardOwnerName, cvv, expiryDate, cardType } = card;
+    const [passengerlist, setPassengerList] = useState([
+        { firstName: "", lastName: "" },
+    ]);
 
     const { id } = useParams();
     const { checkindate } = useParams();
@@ -33,11 +38,9 @@ function HotelBooking(props) {
     const { guestcount } = useParams();
     const { roomcount } = useParams();
 
-    const [value, setValue] = useState("Debit/Credit Card");
-    // Use Navigate
-    const navigate = useNavigate();
     let data = getHotelById(id);
-    let hotel = data.length === 1 ? data[0] : {};
+    let hotel = data.length == 1 ? data[0] : {};
+    let flight = JSON.parse(sessionStorage.getItem("flight-data"));
     const MILISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
     const days = dayDifference(checkindate, checkoutdate);
     const price = days * roomcount * hotel.offers[0].price.base;
@@ -47,13 +50,13 @@ function HotelBooking(props) {
 
     function dayDifference(date1, date2) {
         const diffInMs = new Date(date2) - new Date(date1);
-        let diffInDays = diffInMs / MILISECONDS_PER_DAY;
+        const diffInDays = diffInMs / MILISECONDS_PER_DAY;
         if (diffInDays === 0) {
             diffInDays = 1;
         }
         return diffInDays;
     }
-    const [hotelSelectedData] = useState({
+    const [hotelSelectedData, sethotelSelectedData] = useState({
         destination: hotel.hotel.cityCode,
         checkindate: checkindate,
         checkoutdate: checkoutdate,
@@ -63,17 +66,41 @@ function HotelBooking(props) {
         hotelname: hotel.hotel.name,
         hotelid: hotel.hotelId
     });
-
-
-
-   
     const [hotelbookingData, sethotelBookingData] = useState({
         userData: user,
         cardData: userData.cards.filter((obj) => obj.default === true)[0],
-       // hotelData: hotel,
+        // hotelData: hotel,
         hotelSelectedData: hotelSelectedData
     });
-   
+    const handleremove = (index) => {
+        const list = [...passengerlist];
+        list.splice(index, 1);
+        setPassengerList(list);
+        // setBookingData(...bookingData.passengerData,list);
+    };
+
+    const handleaddclick = () => {
+        setPassengerList([...passengerlist, { firstName: "", lastName: "" }]);
+    };
+
+    const [bookingData, setBookingData] = useState({
+        flightData: flight,
+        passengerData: passengerlist,
+    });
+
+    const handleinputchange = (e, index) => {
+        const { name, value } = e.target;
+        const list = [...passengerlist];
+        list[index][name] = value;
+        setPassengerList(list);
+        // setBookingData(...bookingData.passengerData,list);
+        setBookingData({
+            ...bookingData,
+            ...{ passengerData: { ...bookingData.passengerData, list } },
+        });
+    };
+
+    const [value, setValue] = useState("Debit/Credit Card");
 
     const onCardInputChange = (e) => {
         setCard({ ...card, [e.target.name]: e.target.value });
@@ -96,26 +123,26 @@ function HotelBooking(props) {
         // console.log("logged in user card info : ",userData.cards.filter((obj) => obj.default === true));
         setCard(userData.cards.filter((obj) => obj.default === true)[0]);
         setUser(userData);
-      };
-    
-
-
-    // get days using actual date define function
-   
-
-
+    };
     const showSuccessPopup = async (e) => {
         e.preventDefault();
         try {
 
-            let response = await axios.post(
+            let hotelResponse = await axios.post(
                 `http://localhost:8080/bookhotel/${userid}`,
                 hotelbookingData
             );
-            console.log("response in book flight ", response.data);
+            console.log("response in book hotel ", hotelResponse.data);
+
+            let flightResponse = await axios.post(
+                `http://localhost:8080/bookflight/${userid}`,
+                bookingData
+            );
+            console.log("response in book flight ", flightResponse.data);
             alert("Booking Successful!");
-            sessionStorage.setItem("user-info",JSON.stringify(response.data.user));
-            navigate('/hotels');
+            sessionStorage.removeItem("flight-info");
+            sessionStorage.setItem("user-info", JSON.stringify(flightResponse.data.user));
+            navigate('/searchHotel');
         } catch (error) {
             console.log(`ERROR: ${error}`);
         }
@@ -126,46 +153,65 @@ function HotelBooking(props) {
         <div className='container'>
             <div className="hotelDetails">
                 <div className="hotelDetailsTexts">
-                    <Card style={{ margin: 10 }}>
+                    {/* <Card style={{ margin: 10 }}>
                         <CardContent>
                             <div className="row">
                                 <h2>Secure booking — only takes 2 minutes!</h2>
                             </div>
                         </CardContent>
-                    </Card>
+                    </Card> */}
                     <Card style={{ margin: 10 }}>
                         <CardContent>
-                            <form>
-                                <div className='mb-3'>
+                            <h5>Add passenger information</h5>
 
-
-                                    <div class='required-field'>
-                                        <label htmlFor='firstname' className='form-label'>First name</label>
+                            {passengerlist.map((x, i) => {
+                                return (
+                                    <div key={i} className="row mb-3"><span><h6>Passenger {i + 1}</h6>
+                                    </span>
+                                        <div className="form-group col-md-4">
+                                            <label className="required-field">First Name</label>
+                                            <input
+                                                type="text"
+                                                name="firstName"
+                                                required
+                                                className="form-control"
+                                                placeholder="Enter First Name"
+                                                onChange={(e) => handleinputchange(e, i)}
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-4">
+                                            <label className="required-field">Last Name</label>
+                                            <input
+                                                type="text"
+                                                name="lastName"
+                                                required
+                                                className="form-control"
+                                                placeholder="Enter Last Name"
+                                                onChange={(e) => handleinputchange(e, i)}
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-2 mt-4">
+                                            {passengerlist.length !== 1 && (
+                                                <button
+                                                    className="btn btn-danger mx-1"
+                                                    onClick={() => handleremove(i)}
+                                                    style={{ marginBottom: 10 }}
+                                                >
+                                                    <Delete />
+                                                </button>
+                                            )}
+                                            {passengerlist.length - 1 === i && (
+                                                <button
+                                                    className="btn btn-success"
+                                                    onClick={handleaddclick}
+                                                >
+                                                    <AddBox />
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
-                                    <input
-                                        type={"text"}
-                                        className="form-control"
-                                        placeholder='(eg : John)'
-                                        name='firstName'
-                                        value={firstName}
-                                        onChange={(e) => onInputChange(e)}
-
-                                    />
-                                    <div class='required-field'>
-                                        <label htmlFor='lastName' className='form-label'> Last name </label>
-                                    </div>
-
-                                    <input
-                                        type={"text"}
-                                        className="form-control"
-                                        placeholder='(eg : Smith)'
-                                        name='lastName'
-                                        value={lastName}
-                                        onChange={(e) => onInputChange(e)}
-                                    />
-                                    
-                                </div>
-                            </form>
+                                );
+                            })}
                         </CardContent>
                     </Card>
                     <TabContext value={value}>
@@ -258,24 +304,29 @@ function HotelBooking(props) {
                     </TabContext>
                 </div>
                 <div className="hotelDetailsPrice">
+                    <h1 className="text-bold text-center">Review Flight and Hotel</h1>
+                    <h1>{flight.airline}</h1>
+                    <span>From: {flight.departureCityName}</span>
+                    <span>To: {flight.arrivalCityName}</span>
+                    <span>Departure Date: {flight.departureDate}({flight.departureTime})</span>
+                    <span>Arrival Date: {flight.arrivalDate}({flight.arrivalTime})</span>
                     <h1>{hotel.hotel.name}</h1>
-                    <img src={hotel.hotel.photo2} alt="" className="isImg" />
                     <span>Property 1: {hotel.offers[0].room.typeEstimated.category}, {hotel.offers[0].room.typeEstimated.bedType}</span>
                     <span>Check-in: {checkindate}</span>
                     <span>Check-out: {checkoutdate}</span>
                     <span>Travelers: {guestcount}</span>
                     <h1>Price Details</h1>
-                    <span>{roomcount} room * {days} night : ${price}</span>
+                    <span>Flight Price: ${flight.price}</span>
+                    <span>Tax: ${flight.price *0.15}</span>
+                    <span>Hotel Price: {roomcount} room * {days} night : ${price}</span>
                     <span>Taxes and fees :   ${tax}</span>
-                    <span>Total  :     ${total_price}</span>
-
+                    <span>Discount: ${(total_price + flight.price *0.15 +flight.price) *0.2}</span>
+                    <span>Total  :     ${(total_price + flight.price *0.15 +flight.price)-(total_price + flight.price *0.15 +flight.price) *0.2}</span>
+                    
+                    
 
                 </div>
             </div>
         </div>
-
-    );
-
+    )
 }
-
-export default HotelBooking;

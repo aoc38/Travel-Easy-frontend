@@ -124,7 +124,7 @@ export default function NavigationHome() {
     </Navbar> */}
       <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="#home">Travel-Easy</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             {loggedinUser ? (
@@ -152,6 +152,12 @@ export default function NavigationHome() {
           {loggedinUser ? (
             <Nav>
               <Navbar.Collapse className="justify-content-end">
+                <span className='bg-primary'>Miles Remaining {(loggedinUser
+                  && (loggedinUser.userMiles)
+                  && (loggedinUser.userMiles.milesRemaining)) ?
+                  loggedinUser.userMiles.milesRemaining
+                  : 0
+                }</span>
                 <NavDropdown title={loggedinUser && loggedinUser.firstName}>
                   <NavDropdown.Item onClick={bookingHistory}>
                     Booking History
