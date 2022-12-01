@@ -20,7 +20,7 @@ function HotelList(props) {
   }
 
   const getHotelName = (hotel) => {
-    return hotel.name;
+    return hotel.hotel.name;
   }
 
   const [hotelData] = useState({
@@ -41,7 +41,7 @@ function HotelList(props) {
                 {/* {sessionStorage.setItem("hotelIdSelected", JSON.stringify(hotel.hotelId))} */}
                 <div className="searchItem">
                   <img src={hotel.hotel.photo1} alt="" className="isImg" />
-                  <div className="isDesc">
+                   <div className="isDesc">
                     <h1 className="isTitle">{getHotelName(hotel)}</h1>
                     <span className="isDistance">{hotel.hotel.distance}</span>
                     <span className="isTaxiOp">Free airport taxi</span>
