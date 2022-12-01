@@ -27,14 +27,14 @@ export default function FlightStatus() {
 
   const handleDepartureDate = (deptDate) => {
     setDepartureDate(deptDate);
-    let buttonVal = disableSearchBtn();
+    let buttonVal = disableSearchBtn(deptDate);
     console.log(`button val = ${buttonVal}`);
     setDisableButton(buttonVal);
   }
 
-  const disableSearchBtn = () => {
+  const disableSearchBtn = (deptDate = "") => {
     // console.log("search button");
-    if (flightNumber !== '' && airlineName !== '' && departureDate !== '') {
+    if (flightNumber !== '' && airlineName !== '' && deptDate !== '') {
       return false;
     }
     return true;
