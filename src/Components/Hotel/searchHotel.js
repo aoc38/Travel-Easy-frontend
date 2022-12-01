@@ -35,7 +35,7 @@ function SearchHotel() {
     const [disableButton, setDisableButton] = useState(true);
 
     const onDestinationSelected = (location) => {
-        setDestination(location.iataCode);
+        setDestination(location.name);
         validateForm();
     }
 
@@ -103,10 +103,9 @@ function SearchHotel() {
           'roomPrice': roomPrice
           
         }
-        // let response = await getHotels(request);
         let response = await getHotelByRequest(request);
-        let hotels = response.data;
-        console.log("hotels data", hotels);
+        let hotels = response;
+        //console.log("hotels data", hotels);
         setHotels(hotels);
         setShowList(true);
         
