@@ -141,7 +141,7 @@ export default function FlightHotelBooking() {
             );
             console.log("response in book flight ", flightResponse.data);
             alert("Booking Successful!");
-            sessionStorage.removeItem("flight-info");
+            sessionStorage.removeItem("flight-data");
             sessionStorage.setItem("user-info", JSON.stringify(flightResponse.data.user));
             navigate('/searchFlight');
         } catch (error) {
@@ -317,14 +317,15 @@ export default function FlightHotelBooking() {
                     <span>Check-out: {checkoutdate}</span>
                     <span>Travelers: {guestcount}</span>
                     <h1>Price Details</h1>
+                    <span>Passenger Count : ${noOfPassengers}</span>
                     <span>Flight Price: ${flight.price * noOfPassengers}</span>
-                    <span>Tax: ${ noOfPassengers *flight.price *0.15}</span>
+                    <span>Tax: ${noOfPassengers * flight.price * 0.15}</span>
                     <span>Hotel Price: {roomcount} room * {days} night : ${price}</span>
                     <span>Taxes and fees :   ${tax}</span>
-                    <span>Discount: ${(total_price + flight.price *0.15 +flight.price) *0.2}</span>
-                    <span>Total  :     ${(total_price + flight.price *0.15 * noOfPassengers +flight.price *noOfPassengers)-(total_price + flight.price * noOfPassengers *0.15 +flight.price *noOfPassengers) *0.2}</span>
-                    
-                    
+                    <span>Discount: ${(total_price + flight.price * 0.15 + flight.price) * 0.2}</span>
+                    <span>Total  :     ${(total_price + flight.price * 0.15 * noOfPassengers + flight.price * noOfPassengers) - (total_price + flight.price * noOfPassengers * 0.15 + flight.price * noOfPassengers) * 0.2}</span>
+
+
 
                 </div>
             </div>
