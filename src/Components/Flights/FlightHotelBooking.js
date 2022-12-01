@@ -40,7 +40,7 @@ export default function FlightHotelBooking() {
 
     let data = getHotelById(id);
     let hotel = data.length == 1 ? data[0] : {};
-    let flight = sessionStorage.getItem("flight-data");
+    let flight = JSON.parse(sessionStorage.getItem("flight-data"));
     const MILISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
     const days = dayDifference(checkindate, checkoutdate);
     const price = days * roomcount * hotel.offers[0].price.base;
