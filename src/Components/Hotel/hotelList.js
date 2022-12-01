@@ -31,9 +31,17 @@ function HotelList(props) {
   });
   sessionStorage.setItem("hotel-data", JSON.stringify(hotelData));
 
+  const isValid = () => {
+    if (props.hasOwnProperty("hotels") && props.hotels.length !== 0) {
+      return true;
+    }
+    return false;
+  }
+
   return (
     <div className="list-hotel">
-      {
+      {!isValid() ?
+        <div>No Hotels Found</div> : 
         props.hotels.map((hotel, i) => {
           return (
             <Card style={{ margin: "10px" }} className="card-list" key={i} id={i}>
