@@ -168,7 +168,7 @@ function SearchHotel() {
                     </div>
                     <div className="p-2 mt-2">
                       <SelectDropdown
-                        label="Travelers"
+                        label="Guests"
                         value={noOfGuestList}
                         onChange={handleNumberOfGuest}
                       />

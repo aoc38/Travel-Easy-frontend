@@ -3,7 +3,7 @@ var hotels = require('./hotelOffers.json');
 
 export function getNoOfGuest() {
     let guest = [];
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 4; i++) {
         guest.push({ "label": i });
     }
     return guest;
@@ -11,7 +11,7 @@ export function getNoOfGuest() {
 
 export function getNoOfRoom() {
     let room = [];
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 10; i++) {
         room.push({ "label": i });
     }
     return room;
