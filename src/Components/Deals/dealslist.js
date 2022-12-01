@@ -7,7 +7,7 @@ import "../Flights/flightlist.css";
 function DealsList(props) {
 
   const getSource = (flight) => {
-   // return flight.segment[0].origin;
+    // return flight.segment[0].origin;
     return flight.departureCityName;
   };
 
@@ -30,8 +30,8 @@ function DealsList(props) {
   }
 
   const getEndTime = (flight) => {
-   // return flight.segments[flight.segments.length - 1].arrival.at;
-   return flight.arrivalTime;
+    // return flight.segments[flight.segments.length - 1].arrival.at;
+    return flight.arrivalTime;
   }
 
   const isValid = () => {
@@ -45,48 +45,48 @@ function DealsList(props) {
       {!isValid() ?
 
         <div>No Deals Found</div> :
-        
-      props.deals.map((flight, i) => {
-        return (
-          
-          <Card style={{ margin: "10px" }} className="card-list">
-          
-            <CardContent key={flight.id}>
-              <div className="flex-container">
-                <div>
-                  <h5>{getSource(flight)}</h5>
-                  <p>{getStartTime(flight)}</p>
+
+        props.deals.map((flight, i) => {
+          return (
+
+            <Card style={{ margin: "10px" }} className="card-list">
+
+              <CardContent key={flight.id}>
+                <div className="flex-container">
+                  <div>
+                    <h5>{getSource(flight)}</h5>
+                    <p>{getStartTime(flight)}</p>
+                  </div>
+                  <div>
+                    <h5>{getDestination(flight)}</h5>
+                    <p>{getEndTime(flight)}</p>
+                  </div>
+                  <div>
+                    <h5>${getPrice(flight)}</h5>
+
+                    <Link
+                      to={{ pathname: `/dealsdetails/${flight.id}`, state: "isMiles: false" }}
+                      className="btn btn-primary"
+                    >
+                      Select
+                    </Link>
+                  </div>
+                  {/* <div>
+                    <h5>{getPriceinMiles(flight)} miles</h5>
+
+                    <Link
+                      to={{ pathname: `/dealsdetails/${flight.id}`, state: "isMiles: true" }}
+                      className="btn btn-primary"
+                    >
+                      Select
+                    </Link>
+                  </div> */}
                 </div>
-                <div>
-                  <h5>{getDestination(flight)}</h5>
-                  <p>{getEndTime(flight)}</p>
-                </div>
-              <div>
-                  <h5>${getPrice(flight)}</h5>
-                  
-                  <Link
-                    to={{ pathname: `/dealsdetails/${flight.id}`, state:"isMiles: false"  }}
-                    className="btn btn-primary"
-                  >
-                    Select
-                  </Link>
-              </div>
-              <div>
-                  <h5>{getPriceinMiles(flight)} miles</h5>
-                  
-                  <Link
-                    to={{ pathname: `/dealsdetails/${flight.id}`, state:"isMiles: true"}}
-                    className="btn btn-primary"
-                  >
-                    Select
-                  </Link>
-        </div>
-              </div>
-            </CardContent>
-          </Card>
-        );
-      })}
-      
+              </CardContent>
+            </Card>
+          );
+        })}
+
     </div>
   );
 }
