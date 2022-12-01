@@ -2,10 +2,12 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function LoginPage() {
   let navigate = useNavigate();
   // const {SetloggedInUser} = useContext(UserContext);
+  let {hotelId} = useParams();
 
   const [loginData, setLoginData] = useState({
     username: "",
@@ -45,7 +47,7 @@ export default function LoginPage() {
           sessionStorage.removeItem("deal-data");
           sessionStorage.removeItem("passenger-count");
         } else if (hoteldata !== null) {
-          let hotelIdSelected =  JSON.parse(sessionStorage.getItem("hotelIdSelected"));
+          // let hotelIdSelected =  JSON.parse(sessionStorage.getItem("hotelIdSelected"));
           //go to deal details page
           // <HotelList hotels={hoteldata.hotels} 
           // checkInDate={hoteldata.checkInDate}
@@ -53,7 +55,7 @@ export default function LoginPage() {
           //   guestsCount={hoteldata.guestsCount} 
           //   roomCount={hoteldata.roomCount} />
           // navigate(`/hotels/${JSON.stringify(hoteldata)}`);
-          navigate(`/hotelbooking/${hoteldata.checkInDate}/${hoteldata.checkOutDate}/${hoteldata.guestsCount}/${hoteldata.roomCount}/${hotelIdSelected}`);
+          navigate(`/hotelbooking/${hoteldata.checkInDate}/${hoteldata.checkOutDate}/${hoteldata.guestsCount}/${hoteldata.roomCount}/${hotelId}`);
           //navigate(`/hote/${hoteldata.id}/${passengerCount}`);
           sessionStorage.removeItem("hotel-data");
         }

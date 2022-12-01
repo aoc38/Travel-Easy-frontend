@@ -76,11 +76,15 @@ function HotelList(props) {
                         :
                         <>
                           {" "}
-                          <Link to="/loginuser"
-                           >
-                            ${hotel.hotelId}
+                          <Link to={
+                            {
+                              pathname: `/loginuser/${hotel.hotelId}`
+                            }
+                          }
+                          >
+
                             {/* {console.log("IN LOGIN USER HOTEL ID" , hotel.hotelId)} */}
-                            {sessionStorage.setItem("hotelIdSelected", JSON.stringify(hotel.hotelId))}
+                            {/* {sessionStorage.setItem("hotelIdSelected", JSON.stringify(hotel.hotelId))} */}
                             <button className="isCheckButton">See availability</button>
                           </Link>
 
