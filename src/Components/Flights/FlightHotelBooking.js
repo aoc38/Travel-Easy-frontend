@@ -142,7 +142,7 @@ export default function FlightHotelBooking() {
             alert("Booking Successful!");
             sessionStorage.removeItem("flight-info");
             sessionStorage.setItem("user-info", JSON.stringify(flightResponse.data.user));
-            navigate('/searchHotel');
+            navigate('/searchFlight');
         } catch (error) {
             console.log(`ERROR: ${error}`);
         }

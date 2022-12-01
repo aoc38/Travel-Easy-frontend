@@ -67,7 +67,11 @@ export default function AddUser() {
         let dealdata = JSON.parse(sessionStorage.getItem("deal-data"));
         let hoteldata = JSON.parse(sessionStorage.getItem("hotel-data"));
         let passengerCount = JSON.parse(sessionStorage.getItem("passenger-count"));
-        if (flightdata !== null) {
+        if (flightdata !== null && hoteldata !== null) {
+          navigate(`/flighthotelbooking/${hoteldata.checkInDate}/${hoteldata.checkOutDate}/${hoteldata.guestsCount}/${hoteldata.roomCount}/${hotelId}`);
+          sessionStorage.removeItem("hotel-data");
+          sessionStorage.removeItem("");
+        }else if (flightdata !== null) {
           //go to flight details page
           navigate(`/flightdetails/${flightdata.id}/${passengerCount}`);
           sessionStorage.removeItem("flight-data");
