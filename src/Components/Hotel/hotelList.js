@@ -85,7 +85,7 @@ function HotelList(props) {
 
                             {/* {console.log("IN LOGIN USER HOTEL ID" , hotel.hotelId)} */}
                             {/* {sessionStorage.setItem("hotelIdSelected", JSON.stringify(hotel.hotelId))} */}
-                            <button className="isCheckButton">See availability</button>
+                            <button className="isCheckButton"> Reserve </button>
                           </Link>
 
                         </>
