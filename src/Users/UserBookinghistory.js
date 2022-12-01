@@ -89,14 +89,22 @@ export default function UserBookinghistory() {
   }
 
   const isValid = () => {
-    if (userbookinghistory.hasOwnProperty("flights") && userbookinghistory.flights.length !== 0) {
+    if (userbookinghistory.hasOwnProperty("flights") && userbookinghistory.flights !== null && userbookinghistory.flights.length !== 0) {
       return true;
     }
     return false;
   }
 
   const isValidHotel = () => {
-    if (userbookinghistory.hasOwnProperty("hotels") && userbookinghistory.hotels.length !== 0) {
+    if (userbookinghistory.hasOwnProperty("hotels") && userbookinghistory.hotels !== null && userbookinghistory.hotels.length !== 0) {
+      return true;
+    }
+    return false;
+  }
+
+  const isValidDeal = () => {
+    
+    if (userbookinghistory.hasOwnProperty("deals") && userbookinghistory.deals !== null && userbookinghistory.deals.length !== 0) {
       return true;
     }
     return false;
@@ -129,6 +137,7 @@ export default function UserBookinghistory() {
               >
                 <Tab label="Flight" value="Flight" />
                 <Tab label="Hotel" value="Hotel" />
+                <Tab label="Deal" value="Deal" />
 
               </Tabs>
 
@@ -208,6 +217,46 @@ export default function UserBookinghistory() {
                       )
                     })}
 
+                </TabPanel>
+
+                <TabPanel value="Deal">
+                <div className="list-flight">
+                    {!isValidDeal() ?
+                      <div>No deals found</div> :
+                      userbookinghistory.deals.map((deal, i) => {
+                        return (
+                          <Card style={{ margin: "10px" }} className="card-list" key={i} id={i}>
+                            <CardContent key={i}>
+                              <div className="flex-container">
+                                <div>
+                                  <h5 id={i}>{deal.departureCityName}</h5>
+                                  <p>{getModifiedDate(deal.departureDate)}</p>
+                                </div>
+                                <div>
+                                  <h5>{deal.arrivalCityName}</h5>
+                                  <p>{getModifiedDate(deal.arrivalDate)}</p>
+
+                                </div>
+                                <div>
+                                  <h5>{deal.airline}</h5>
+                                  {/*<p>{getDuration(flight)}</p>*/ }
+
+                                </div>
+                                <div>
+                                  <h5>${deal.deals_price}</h5>
+                                  <p>{deal.miles} miles</p>
+
+
+
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        )
+                      })}
+                  </div>
+
+                    
                 </TabPanel>
 
               </div>
