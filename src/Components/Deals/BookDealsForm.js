@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "../Flights/flight-form";
 import { getFlightById } from "../Flights/flight-service";
-
+ 
 function DealsBookForm() {
+  let navigate = useNavigate();
   //getting logged in user from local storage
   let loggedinUser = JSON.parse(sessionStorage.getItem("user-info"));
   console.log("logged in user in book form", loggedinUser);
@@ -13,7 +14,7 @@ function DealsBookForm() {
 
   //getting params from url
   const { id } = useParams();
-  console.log("user id data in Book Deal page: ", id);
+  console.log("flight id data in Book Deal page: ", id);
   let data = getFlightById(id);
   let dealData = data.length === 1 ? data[0] : {};
 
@@ -44,7 +45,7 @@ function DealsBookForm() {
   // }
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/user/${id}`);
+    const result = await axios.get(`http://localhost:8080/user/${userid}`);
     console.log(
       "logged in user card info : ",
       userData.cards.filter((obj) => obj.default === true)
@@ -66,19 +67,15 @@ function DealsBookForm() {
     e.preventDefault();
     try {
       //call flight booking api and send flight object data along with user data
-      // console.log(bookingData);
-      //pc=0 bookdeals
-      //pc>0 bookflight
+
       let response = await axios.post(
-        `http://localhost:8080/bookinghistorydeals/${userid}`,
+        `http://localhost:8080/bookdeal/${userid}`,
         bookingData
       );
       console.log(response);
-      // console.log("response in book flight ", response);
-      // let response = await axios.post("http://localhost:8080/usersignup", userData  );
-      // console.log(response.data);
-      // console.warn(response.data);
-      // sessionStorage.setItem("user-info", JSON.stringify(response.data));
+      alert("Booking Successful!");
+      sessionStorage.setItem("user-info",JSON.stringify(response.data.user));
+      navigate('/deals');
     } catch (error) {
        console.log(`ERROR: ${error}`);
     }
@@ -133,7 +130,7 @@ function DealsBookForm() {
 
             <h5> Card Information </h5>
             <div className="row">
-              <div class="col s12 m6">
+              <div className="col s12 m6">
                 <label htmlFor="cardOwnerName" className="form-label">
                   Name on Card{" "}
                 </label>
@@ -150,7 +147,7 @@ function DealsBookForm() {
             </div>
             <div className="add-space"></div>
             <div className="row">
-              <div class="col s12 m6">
+              <div className="col s12 m6">
                 <label htmlFor="cardNumber" className="form-label">
                   Card Number{" "}
                 </label>
@@ -164,7 +161,7 @@ function DealsBookForm() {
                   onChange={(e) => onCardInputChange(e)}
                 />
               </div>
-              <div class="col s12 m6">
+              <div className="col s12 m6">
                 <label htmlFor="cardType" className="form-label">
                   Card Type
                 </label>
@@ -183,7 +180,7 @@ function DealsBookForm() {
 
             <div className="add-space"></div>
             <div className="row">
-              <div class="col s12 m6">
+              <div className="col s12 m6">
                 <label htmlFor="expiryDate" className="form-label">
                   Expiry Date{" "}
                 </label>
@@ -197,7 +194,7 @@ function DealsBookForm() {
                   onChange={(e) => onCardInputChange(e)}
                 />
               </div>
-              <div class="col s12 m6">
+              <div className="col s12 m6">
                 <label htmlFor="cvv" className="form-label">
                   CVV{" "}
                 </label>
@@ -219,7 +216,6 @@ function DealsBookForm() {
               {" "}
               <Link
                 className="mt-2 btn  btn btn-outline-primary"
-                to="/bookinghistorydeals"
                 onClick={showSuccessPopup}
                 label="Continue"
               >

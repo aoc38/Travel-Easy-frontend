@@ -82,6 +82,20 @@ function DealsList(props) {
                     </Link>
                   </div> */}
                 </div>
+                <div>
+                  <h5>{getDestination(flight)}</h5>
+                  <p>{getEndTime(flight)}</p>
+                </div>
+                <div>
+                  <h5>${getPrice(flight)}</h5>
+
+                  <Link
+                    to={{ pathname: `/dealsdetails/${flight.id}`, state: "isMiles: false" }}
+                    className="btn btn-primary"
+                  >
+                    Select
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           );

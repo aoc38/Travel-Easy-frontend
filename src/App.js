@@ -6,7 +6,7 @@ import './App.css';
 import SearchDeals from './Components/Deals/SearchDeals';
 import Feedback from './Components/Feedback/Feedbackform';
 import BookForm from './Components/Flights/bookform';
-import DealsBookForm from './Components/Deals/dealsBookForm';
+import DealsBookForm from './Components/Deals/BookDealsForm';
 import Bookinghistory from './Components/Flights/bookinghistory';
 import Flightdetails from './Components/Flights/flightdetails';
 import FlightStatus from './Components/Flights/FlightStatus';
