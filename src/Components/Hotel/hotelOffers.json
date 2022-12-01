@@ -123,17 +123,17 @@
           },
           "price": {
             "currency": "$",
-            "base": "150",
-            "total": "150",
+            "base": 150,
+            "total": 150,
             "variations": {
               "average": {
-                "base": "150"
+                "base": 150
               },
               "changes": [
                 {
                   "startDate": "2022-11-22",
                   "endDate": "2022-11-23",
-                  "total": "552.00"
+                  "total": 150
                 }
               ]
             }
@@ -198,17 +198,17 @@
           },
           "price": {
             "currency": "$",
-            "base": "250.00",
-            "total": "250.00",
+            "base": 250.00,
+            "total": 250.00,
             "variations": {
               "average": {
-                "base": "250.00"
+                "base": 250.00
               },
               "changes": [
                 {
                   "startDate": "2022-11-22",
                   "endDate": "2022-11-23",
-                  "total": "552.00"
+                  "total": 250
                 }
               ]
             }
@@ -271,18 +271,18 @@
             "adults": 1
           },
           "price": {
-            "currency": "GBP",
-            "base": "552.00",
-            "total": "552.00",
+            "currency": "$",
+            "base": 350,
+            "total": 350,
             "variations": {
               "average": {
-                "base": "552.00"
+                "base": 350
               },
               "changes": [
                 {
                   "startDate": "2022-11-22",
                   "endDate": "2022-11-23",
-                  "total": "552.00"
+                  "total": 350
                 }
               ]
             }
@@ -290,7 +290,7 @@
           "policies": {
             "paymentType": "guarantee",
             "cancellation": {
-              "amount": "552.00",
+              "amount": 350,
               "deadline": "2022-11-21T23:59:00Z"
             }
           },
@@ -347,11 +347,11 @@
           },
           "price": {
             "currency": "$",
-            "base": "180",
-            "total": "180",
+            "base": 180,
+            "total": 180,
             "variations": {
               "average": {
-                "base": "180"
+                "base": 180
               },
               "changes": [
                 {
@@ -365,7 +365,7 @@
           "policies": {
             "paymentType": "guarantee",
             "cancellation": {
-              "amount": "180.00",
+              "amount": 180.00,
               "deadline": "2022-11-21T23:59:00Z"
             }
           },
@@ -422,17 +422,17 @@
           },
           "price": {
             "currency": "$",
-            "base": "300",
-            "total": "300",
+            "base": 300,
+            "total": 300,
             "variations": {
               "average": {
-                "base": "300"
+                "base": 300
               },
               "changes": [
                 {
                   "startDate": "2022-11-22",
                   "endDate": "2022-11-23",
-                  "total": "200"
+                  "total": 200
                 }
               ]
             }

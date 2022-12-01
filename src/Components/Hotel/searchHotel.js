@@ -112,7 +112,8 @@ function SearchHotel() {
       'checkOutDate': checkOutDate,
       'guestsCount': guestsCount,
       'roomCount': roomCount,
-      'roomPrice': roomPrice
+      'roomPrice': roomPrice,
+      'filterBy': filterBy
 
     }
     let response = await getHotelByRequest(request);
