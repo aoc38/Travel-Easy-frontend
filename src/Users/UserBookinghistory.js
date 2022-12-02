@@ -244,7 +244,7 @@ export default function UserBookinghistory() {
                                 </div>
                                 <div>
                                   <h5>${deal.deals_price}</h5>
-                                  <p>{deal.miles} miles</p>
+                                  {/* <p>{deal.miles} miles</p> */}
 
 
 

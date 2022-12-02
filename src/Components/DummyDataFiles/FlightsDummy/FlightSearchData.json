@@ -21,7 +21,7 @@
             "departureDate":"2022-12-01",
             "arrivalDate":"2022-12-01",
             "departureCityName":"SEATTLE",
-            "arrivalCityName":"DENVER",
+            "arrivalCityName":"HOUSTON",
             "flightType":"DOMESTIC",
             "price":400,
             "deals_price":350,
