@@ -317,7 +317,7 @@ export default function FlightHotelBooking() {
                     <span>Check-out: {checkoutdate}</span>
                     <span>Travelers: {guestcount}</span>
                     <h1>Price Details</h1>
-                    <span>Passenger Count : ${noOfPassengers}</span>
+                    <span>Passenger Count : {noOfPassengers}</span>
                     <span>Flight Price: ${flight.price * noOfPassengers}</span>
                     <span>Tax: ${noOfPassengers * flight.price * 0.15}</span>
                     <span>Hotel Price: {roomcount} room * {days} night : ${price}</span>

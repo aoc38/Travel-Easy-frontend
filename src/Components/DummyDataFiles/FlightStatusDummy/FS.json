@@ -2,14 +2,14 @@
     "data": [
         {
             "id": 1,
-            "flightNumber": "LAT998",
-            "airline": "Kingfisher Airlines",
-            "departureCityName": "LOS ANGELES",
+            "flightNumber": "SLT978",
+            "airline": "American Airlines",
+            "departureCityName": "SEATTLE",
             "arrivalCityName": "HOUSTON",
             "departureTime": "05:30:00",
             "arrivalTime": "08:41:00",
-            "departureDate": "2022-11-30",
-            "arrivalDate": "2022-11-30",
+            "departureDate": "2022-12-01",
+            "arrivalDate": "2022-12-01",
             "isArrived": true,
             "isInflight": false,
             "isDelayed": false
